@@ -1,0 +1,197 @@
+<div>
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Previous
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+    <!-- <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
+      >{{ day.badgeTotal }}</span
+    > -->
+    <span class="cal-day-number"
+      >{{ day.date | calendarDate:'monthViewDayNumber':locale }}
+      </span>            
+      
+  </div>
+   
+  
+    <div  *ngFor="let event of day.events; index as i">      
+      <span style="margin: 5px; font-weight: 500; color: blue;"> {{event.title}} </span>      
+    </div>    
+  
+
+</ng-template>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="eventsList"
+    [refresh]="refresh"
+    [cellTemplate]="customCellTemplate"   
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="eventsList"
+    [refresh]="refresh" 
+    
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="eventsList"
+    [refresh]="refresh"  
+   
+  >
+  </mwl-calendar-day-view>
+</div>
+
+
+
+
+
+
+
+<!-- Calendar Events -->
+
+<div style="margin-top: 30px;" *ngIf="isAdmin">
+<h3>
+  Holiday List  
+  <button class="btn btn-primary float-right" (click)="addEvent()">
+    Add new
+  </button>
+  <div class="clearfix"></div>
+</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+  <thead>
+    <th>Title</th>
+    <th>Date</th>
+    <th colspan="2">Action</th> 
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of eventsList" >
+      <td><input
+        type="text"
+        class="form-control"
+        [(ngModel)]="event.title"  
+        (keyup)="refresh.next()"       
+      /></td>
+     
+        <td>
+          <input            
+          class="form-control"
+          type="text" name="startdate"
+          mwlFlatpickr
+              [(ngModel)]="event.start"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="false"
+              dateFormat="Y-m-d"
+              altFormat="F j, Y"
+              placeholder="Select Date"
+        /> 
+        </td>
+        <td style="display: none;">
+          <input            
+          class="form-control"
+          type="text" name="startdate"
+          mwlFlatpickr
+              [(ngModel)]="event.end"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="Select Date"
+        /> 
+        </td>
+     
+      <!-- <td>
+           <button class="btn btn-primary active" (click)="saveEvents(event)"  >Save</button></td>  -->
+         <td>  <button  class="btn btn-primary active" (click)="update(event)">Save</button> </td>
+        <td><button id="remove" class="btn btn-danger" (click)="delete(event.id)">Delete</button></td> 
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div>{{eventsList.title}}</div>
+
+<div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+  <line x1="12" y1="16" x2="12.01" y2="16"  ></line>
+  </svg></i-feather> {{error}} 
+</div>
+</div>
+
+
+
+
+
+
+
+
+

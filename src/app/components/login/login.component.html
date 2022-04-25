@@ -1,0 +1,44 @@
+<!-- Form Layout -->
+
+
+
+<div class="form-container">
+  
+    
+      <img src="assets/images/sb.png" alt="" width="250" height="125">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">         
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Enter email" formControlName="email">
+            <mat-error *ngIf="email?.errors?.['required']">
+              Email address is required
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.['email']">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+  
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter password" formControlName="password">
+          <mat-error *ngIf="password?.errors?.['required']">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+          <div class="button-row mb-24">
+          <button mat-raised-button class="me-8 mb-8 btn btn-info fw-normal"  [disabled]="loginForm.invalid" type="submit">Login</button>
+          </div>
+
+          
+          <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+            <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg></i-feather> {{error}} 
+         </div>
+         <span class="button-row mb-24"><a class="btn-link" href="reset-password" routerLinkActive="active">Forgot Password</a></span>
+          
+      </form>
+     
+   
+  </div>
+  

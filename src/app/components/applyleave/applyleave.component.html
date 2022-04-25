@@ -1,0 +1,61 @@
+<mat-card>
+    <mat-card-content>
+        <h4 class="mb-16">Apply Leave</h4>
+         <form [formGroup]="leaveform" >
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>Leave type</mat-label>
+            <mat-select formControlName="leavetype" placeholder="Select leave type" >
+              <ng-container *ngFor="let leavetype of leavetypes">
+                <mat-option value="{{leavetype.id}}">{{leavetype.value}}</mat-option>
+              </ng-container>
+            </mat-select>
+            <mat-error *ngIf="leavetype?.errors?.['required']">
+                Leave type is required
+              </mat-error>
+           </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+          <mat-label>Leave Reason</mat-label>
+          <input matInput type="text" placeholder="Enter user's LastName" maxlength="30"  formControlName="leavereason"/>
+          <mat-error *ngIf="leavetype?.errors?.['required']">
+            Leave reason is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>Leave days</mat-label>
+            <input matInput type="number" min="1"   formControlName="days">
+            <mat-error *ngIf="days?.errors?.['required']">
+                date from is required
+            </mat-error>
+            <mat-error *ngIf="days?.errors?.['max']">
+                Maximum 8 days
+              </mat-error>
+          </mat-form-field>
+       
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>Date from</mat-label>
+          <input matInput type="date" placeholder="Enter user's personal email" [min]="getToday()" ngModel  formControlName="datefrom"/>
+          <mat-error *ngIf="datefrom?.errors?.['required']">
+            date from is required
+          </mat-error>
+          
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>Date to</mat-label>
+          <input matInput type="date" placeholder="Enter user's official email" [min]="getToday()" ngModel formControlName="dateto"/>
+          <mat-error *ngIf="dateto?.errors?.['required']">
+            date to is required
+          </mat-error>
+        </mat-form-field><br>
+        <button mat-button class="btn btn-info fw-normal" (click)="submit()"  [disabled]="leaveform.invalid"  type="submit">Submit</button>     
+        <div role="green"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg></i-feather> {{error}} 
+        </div> 
+
+      </form>
+
+    </mat-card-content>
+</mat-card>
