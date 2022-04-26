@@ -80,8 +80,11 @@ export class CalendarComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date(); 
+  tempAdmin:any;
 
-  isAdmin:boolean = this.userService.selectedUser?.role == "1" ? true : false;
+  //var numberr=localStorage.getItem('logurl');
+  isAdmin:boolean = localStorage.getItem('logRole') == "1" ? true : false;
+  //isAdmin:boolean = this.userService.selectedUser?.role == "1" ? true : false;
   
   
   // actions: CalendarEventAction[] = [

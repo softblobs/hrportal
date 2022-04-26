@@ -48,7 +48,7 @@ export class ApproveTimesheetComponent implements OnInit {
   fetchDataDropDown() {
     this.timesheetService.getSheetList().subscribe(data => {             
     var selectedData= data.filter( (record) => {  
-   return this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && localStorage.getItem('logProject') == record.payload.doc.get("project") && localStorage.getItem('currentUser') != record.payload.doc.get("userId") 
+   return  localStorage.getItem('logProject') == record.payload.doc.get("project") && localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) &&
    && localStorage.getItem('logName') != record.payload.doc.get("userName");  
   });  
 

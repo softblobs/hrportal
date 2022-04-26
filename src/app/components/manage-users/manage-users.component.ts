@@ -50,21 +50,17 @@ export class ManageUsersComponent implements OnInit {
     
     
     this.userService.getAllUsers().subscribe(res=>{
-      for(var i=0;i<res.length;i++)
-      {
-        
-        if(id == res[i].uid)
-        {          
-          this.userService.editSelectedUser = res[i];
-          //
-          localStorage.setItem('userdata', JSON.stringify(this.userService.editSelectedUser));
-          localStorage.setItem('logUrl',this.userService.editSelectedUser.photoURL)
-                                                             // this.userService.populateForm(res[i]);
-          console.log(res[i]);
-                                                             // this._router.navigate(['/user-detail']);
-          break;          
-        }       
-      }
+      var selectedData= res.find( ({ uid }) => uid === id )
+      console.log(selectedData?.id);
+      this.userService.editSelectedUser = selectedData;
+      localStorage.setItem('userdata', JSON.stringify(this.userService.editSelectedUser));
+      localStorage.setItem('logUrl',this.userService.editSelectedUser.photoURL)
+
+      
+
+
+
+
       setTimeout(() => {
         console.log('sleep');
         this._router.navigate(['/user-detail']);
@@ -73,6 +69,7 @@ export class ManageUsersComponent implements OnInit {
       //this._router.navigate(['/user-detail']);
     });
     
+  
   }
   
   onAddUser(): void{

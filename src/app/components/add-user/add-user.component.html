@@ -33,6 +33,9 @@
         <mat-form-field class="w-75 fs-16" appearance="outline">
           <mat-label>Last Name</mat-label>
           <input matInput type="text" placeholder="Enter user's LastName" [value]="ud.lastName"  formControlName="lastName"/>
+          <mat-error *ngIf="lastName?.errors?.['pattern']">
+            Only alphabets allowed
+          </mat-error>
         </mat-form-field>
        
         <mat-form-field class="w-75 fs-16"  appearance="outline">
@@ -61,7 +64,7 @@
             Contact number is required
           </mat-error>
           <mat-error *ngIf="phone?.errors?.['pattern']">
-            Mobile number is not 10 digit
+            Mobile number should numbers and 10 digit
           </mat-error>
         </mat-form-field>
 

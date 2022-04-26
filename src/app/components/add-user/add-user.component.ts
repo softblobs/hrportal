@@ -20,6 +20,7 @@ import {
 import { V } from '@angular/cdk/keycodes';
 import { AngularFireList } from '@angular/fire/compat/database';
 
+
 export function passwordsMatchValidator(): ValidatorFn {
   
   return (control: AbstractControl): ValidationErrors | null => {
@@ -51,6 +52,7 @@ export class AddUserComponent implements OnInit {
   hide = true;
   useridcount:number=0;
   enull="";
+  
 
   //
   //today = new Date();
@@ -79,7 +81,7 @@ export class AddUserComponent implements OnInit {
   signUpForm = new FormGroup({
       
       firstName:new FormControl('',[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
-      lastName:new FormControl(''),
+      lastName:new FormControl('',Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
       email:new FormControl('', [Validators.email,Validators.required]),
       //password: new FormControl('',[ Validators.required,Validators.minLength(8)]),
       //confirmPassword: new FormControl('', Validators.required),
@@ -105,7 +107,9 @@ export class AddUserComponent implements OnInit {
     constructor(private _router: Router,private authService: AuthenticationService, 
       public afs: AngularFirestore,
       public afAuth: AngularFireAuth,private storage: AngularFireStorage,
-      ) { } 
+      ) {
+        
+       } 
       roles =[ {id:1,value:"Admin"},
                    {id:2,value:"Co-Admin"},
                    {id:3,value:"Employee"},
@@ -115,11 +119,15 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.lastuser();
+    
 
   }
 
   get firstName(){
     return this.signUpForm.get('firstName');
+   }
+   get lastName(){
+    return this.signUpForm.get('lastName');
    }
   get email(){
     return this.signUpForm.get('email');
@@ -166,7 +174,7 @@ export class AddUserComponent implements OnInit {
      //return this.fb;
      if(this.fb !=null){
       return this.fb;
-      console.log(this.fb);
+      
   }
   else{
   return this.enull;
@@ -222,7 +230,7 @@ export class AddUserComponent implements OnInit {
     }
     
     submit(){ 
-                    
+                
       this.authService.signUp(this.signUpForm.value.email,this.password,this.signUpForm.value.firstName,
         this.signUpForm.value.lastName,this.signUpForm.value.doj,this.signUpForm.value.dob,
         this.photoURL,this.signUpForm.value.role,this.userId, 

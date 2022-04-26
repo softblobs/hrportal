@@ -48,7 +48,7 @@
                   <ng-container matColumnDef="delete">
                     <th mat-header-cell *matHeaderCellDef>Delete VM</th>
                     <td mat-cell *matCellDef="let element">
-                      <button mat-raised-button class="me-1 mb-1" color="primary">Delete</button>
+                      <button mat-raised-button class="me-1 mb-1" color="primary" (click)="Deletevm(element.id)"   >Delete</button>
                     </td>
                   </ng-container>
           
@@ -87,7 +87,7 @@
                   <input matInput type="text" placeholder="Enter VM password" formControlName="vmpassword">
                 </mat-form-field>
         
-                    <section class="fs-16">
+                  <!--  <section class="fs-16">
                         <mat-checkbox color="primary" [checked]="checked" class="d-block mb-16">VM is Active to use</mat-checkbox>
                       </section>
         
@@ -99,7 +99,7 @@
                       </mat-form-field>
                   </section> -->
           
-                <mat-form-field class="w-100 fs-16" appearance="outline">
+               <!-- <mat-form-field class="w-100 fs-16" appearance="outline">
                   <mat-label>More Details / Instructions</mat-label>
                   <textarea matInput rows="6" placeholder="Enter Instructions" value="Login using regular RDP"></textarea>
                 </mat-form-field>
@@ -110,7 +110,7 @@
                   <mat-radio-button value="2" class="d-block mb-16">Testing VM</mat-radio-button>
                   <mat-radio-button value="3" class="d-block mb-36">Restricted</mat-radio-button>
                 </mat-radio-group>
-                
+              -->  
           
                 <button mat-button class="btn btn-info fw-normal" (click)="createVM()"  [disabled]="vmForm.invalid" type="submit">Submit</button><br>
                 <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
@@ -165,10 +165,10 @@
                     </mat-form-field>
                 </section> -->
         
-              <mat-form-field class="w-100 fs-16" appearance="outline">
+              <!--<mat-form-field class="w-100 fs-16" appearance="outline">
                 <mat-label>Comments</mat-label>
                 <textarea matInput rows="6" placeholder="Enter Instructions" value="Login using regular RDP"></textarea>
-              </mat-form-field>
+              </mat-form-field> -->
 
               <button mat-button class="btn btn-info fw-normal" (click)="assignvmtoUser()" >Submit</button><br>
 

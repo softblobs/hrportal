@@ -76,6 +76,7 @@ export class VmDetailsComponent implements OnInit {
 
   createVM():void{
     this.vmservice.createvm(this.vmForm.value);
+    this.vmForm.reset();
     this.error="Succesfully submitted"
     setTimeout(() => {
       this.error=""
@@ -141,7 +142,10 @@ export class VmDetailsComponent implements OnInit {
   //     this.userservice.updateVMDetails(this.vmformupdate.value.userid,this.vmformupdate.value.firstName);     
   //    return;
   //   }
+  Deletevm(id:any){
 
+    this.vmservice.deletevm(id);
+  }
 
 
 

@@ -29,6 +29,10 @@ export class VirtualmachineService {
     return this.firestore.collection('vms').add(vm);
   }
 
+  deletevm(uid:any){
+    return this.firestore.collection('vms').doc(uid).delete();
+  } 
+
 
   //-- vm related method --
   // ******   Do not remove if condition -- it loops infinite times ********

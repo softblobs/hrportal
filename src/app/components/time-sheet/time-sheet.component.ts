@@ -88,14 +88,20 @@ export class TimeSheetComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
   //End
-
+  minDate = new Date();
   selectedDate = new Date();
   date = new Date();
   myDate = new Date();  
-  constructor(private timesheetService : TimesheetService,public firestore: AngularFirestore) { }
+  constructor(private timesheetService : TimesheetService,public firestore: AngularFirestore) {
+    const currentYear = new Date().getFullYear();
+    const currentMonth= new Date().getMonth();
+    const currentDate =new Date().getDay();
+    this.minDate = new Date(currentYear - 0, currentMonth-1, currentDate+39);
+   }
   //,public userService:UserService
   //date1 = new Date((new Date().getTime() - 3888000000));
   maxDate = new Date();
+
   curDate = new Date();
   startDay = 1; //0=sunday, 1=monday etc.
   d = this.maxDate.getDay(); //get the current day

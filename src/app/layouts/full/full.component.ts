@@ -111,11 +111,11 @@ export class FullComponent {
       icon: "layout",
       menu: "User Details",
     },
-    {
-      link: "/change-password",
-      icon: "layout",
-      menu: "Change Password",
-    },
+    // {
+    //   link: "/change-password",
+    //   icon: "layout",
+    //   menu: "Change Password",
+    // },
     {
       link: "/calendar",
       icon: "layout",
@@ -152,8 +152,10 @@ export class FullComponent {
 
   onLogout(){ 
 
-    localStorage.setItem('UpdateSt',''); 
-    
+    //localStorage.setItem('UpdateSt',''); 
+    this.afAuth.signOut()
+    .then(() => {window.location.href = '/'});
+    localStorage.setItem('UpdateSt','');
     this._router.navigate(['/login']);    
   } 
 }
