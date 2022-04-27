@@ -156,6 +156,7 @@ export class FullComponent {
     this.afAuth.signOut()
     .then(() => {window.location.href = '/'});
     localStorage.setItem('UpdateSt','');
-    this._router.navigate(['/login']);    
+    this._router.navigate(['/login']); 
+    localStorage.setItem('UpdateSt','');   
   } 
 }
