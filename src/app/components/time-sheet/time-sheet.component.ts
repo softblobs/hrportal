@@ -60,6 +60,7 @@ export class TimeSheetComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
   sheetList:any;
+  error="";
   //showListDate:any;
 
   addEvent(): void {
@@ -156,12 +157,34 @@ update(timesht: timesheetInfo) {
   timesht.userId = localStorage.getItem('currentUser'); 
   timesht.status= "pending" ;
   timesht.project= localStorage.getItem('logProject');
-  this.timesheetService.saveupdateSheetList(timesht); 
+  this.saveupdateSheetList(timesht); 
   
 }
+
+saveupdateSheetList(timeSheet: timesheetInfo){  
+  
+  if(timeSheet.id==0 || timeSheet.id==null || timeSheet.id=='') 
+  {     
+     this.firestore.collection('timesheet').add(timeSheet);
+    this.error="Inserted Successfully";
+    setTimeout(() => {this.error="";}, 3000);
+  }
+  else{
+   //alert(timeSheet.id);
+    this.firestore.doc('timesheet/'+timeSheet.id).update(timeSheet);
+   this.error="Updated Successfully";
+  
+  setTimeout(() => {this.error="";}, 3000);  
+  }   
+ }
+
+
 delete(id: string) {
   this.timesheetService.deleteEvent(id);     
-  alert('The events was Deleted');
+  
+  this.error="The events was Deleted";
+  setTimeout(() => {this.error="";}, 3000);
+  
   this.ngOnInit();  
   for(let i = 0; i < this.sheetList.length; ++i){
     if (this.sheetList[i].id === id) {

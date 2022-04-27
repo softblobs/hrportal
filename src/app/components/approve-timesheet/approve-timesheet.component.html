@@ -63,6 +63,11 @@
         <button type="submit" value="Submit" class="btn btn-danger" style="margin-right: 5px;" (click)="uncheckAll()">Deselect All</button>
       </div>
 
+      <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg></i-feather> {{error}} 
+      </div>
+
 
 
       

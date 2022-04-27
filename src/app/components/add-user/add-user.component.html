@@ -84,6 +84,9 @@
          <mat-form-field class="w-75 fs-16" appearance="outline">
           <mat-label>Project</mat-label>
           <input matInput type="text" placeholder="Project"   formControlName="project"/>
+          <mat-error *ngIf="project?.errors?.['required']">
+            Project is required
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
@@ -98,7 +101,10 @@
 
          <mat-form-field class="w-75 fs-16"  appearance="outline">
             <mat-label>Birth Date (DOB)</mat-label>
-           <input matInput type="date"  max=today placeholder="Date of Birth" [value]="ud.dob" [max]="getToday()" ngModel  formControlName="dob"/>             
+           <input matInput type="date"  max=today placeholder="Date of Birth" [value]="ud.dob" [max]="getToday()" ngModel [min]="minDateyy()" ngModel   formControlName="dob"/> 
+           <mat-error *ngIf="dob?.errors?.['required']">
+            DOB is required
+          </mat-error>            
          </mat-form-field><br>
 
         
@@ -173,7 +179,7 @@
 
       
       <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
-        <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg></i-feather> {{error}} 
       </div>
 

@@ -24,6 +24,7 @@ export class ApproveTimesheetComponent implements OnInit {
   approveDropSheetList:any;
   form: any;
   UserList: any;
+  error="";
 
 
   constructor(private timesheetService:TimesheetService) { }
@@ -122,7 +123,8 @@ export class ApproveTimesheetComponent implements OnInit {
         }
       }
     }  
-      alert("Updated Successfully")
+    this.error="Approved Successfully";
+    setTimeout(() => {this.error="";}, 3000);
   }
 
 

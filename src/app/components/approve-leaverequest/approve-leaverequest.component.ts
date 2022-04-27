@@ -24,6 +24,7 @@ export class ApproveLeaverequestComponent implements OnInit {
   approveDropSheetList:any;
   form: any;
   currenstatus:any = "Approved";
+  error="";
  
   constructor(private leaveService:LeaveService) { }
 
@@ -140,7 +141,9 @@ approve(timesht: leaveinfo) {
       }
     }
   }  
-    alert("Updated Successfully")
+    this.error="Approved Successfully";
+    setTimeout(() => {this.error="";}, 3000);
+   
 }
 
 changeUser(e: any) {    

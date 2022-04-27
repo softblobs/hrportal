@@ -61,6 +61,7 @@ export class ApplyleaveComponent implements OnInit {
   customerArrayU:any[]=[];
   dayss:any[] = []; 
   dayscout:any;
+  
 
 
   constructor(private leaveservice:LeaveService,private _router: Router, public afs:AngularFirestore ) { }

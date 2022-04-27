@@ -60,6 +60,11 @@ export class AddUserComponent implements OnInit {
   getToday(): string {
     return new Date().toISOString().split('T')[0]
  }
+ minDateyy():string{
+  console.log((Number(new Date().toISOString().split('-')[0]))-this.signUpForm.value.dob.split('-')[0]);
+   
+  return ((Number(new Date().toISOString().split('-')[0]))-12).toString()
+ }
 
 
   noteList: Observable<ProfileUser[]> | undefined ;
@@ -79,6 +84,7 @@ export class AddUserComponent implements OnInit {
 
   
   signUpForm = new FormGroup({
+
       
       firstName:new FormControl('',[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
       lastName:new FormControl('',Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
@@ -86,10 +92,10 @@ export class AddUserComponent implements OnInit {
       //password: new FormControl('',[ Validators.required,Validators.minLength(8)]),
       //confirmPassword: new FormControl('', Validators.required),
       doj:new FormControl('', Validators.required),
-      dob:new FormControl(''),
+      dob:new FormControl('',Validators.required),
       officeEmail:new FormControl('',Validators.email),
       phone:new FormControl('',[ Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]),
-      project:new FormControl(''),
+      project:new FormControl('',Validators.required),
       address:new FormControl(''),
       skillSet:new FormControl(''),
       //photoURL: new FormControl(''),
@@ -100,6 +106,7 @@ export class AddUserComponent implements OnInit {
   historyRef: any;
   history: any;
   error="";
+  minDate = new Date();
   
   
 
@@ -108,6 +115,11 @@ export class AddUserComponent implements OnInit {
       public afs: AngularFirestore,
       public afAuth: AngularFireAuth,private storage: AngularFireStorage,
       ) {
+        const currentYear = new Date().getFullYear();
+    const currentMonth= new Date().getMonth();
+    const currentDate =new Date().getDay();
+    this.minDate = new Date(currentYear, currentMonth, currentDate);
+
         
        } 
       roles =[ {id:1,value:"Admin"},
@@ -166,6 +178,14 @@ export class AddUserComponent implements OnInit {
   get doj(){
     return this.signUpForm.get('doj');
    }
+   get dob(){
+    return this.signUpForm.get('dob');
+   }
+   get project(){
+    return this.signUpForm.get('project');
+   }
+
+
    get role(){
     return this.signUpForm.get('role');
    }
@@ -230,7 +250,9 @@ export class AddUserComponent implements OnInit {
     }
     
     submit(){ 
-                
+      if((Number(new Date().toISOString().split('-')[0]))-this.signUpForm.value.dob.split('-')[0]>20) {
+        
+            
       this.authService.signUp(this.signUpForm.value.email,this.password,this.signUpForm.value.firstName,
         this.signUpForm.value.lastName,this.signUpForm.value.doj,this.signUpForm.value.dob,
         this.photoURL,this.signUpForm.value.role,this.userId, 
@@ -249,7 +271,12 @@ export class AddUserComponent implements OnInit {
         });        
         //this.error="Successfully created user";
         //setTimeout(() => {this.error="";}, 2000);  //5s
-        localStorage.setItem('UpdateSt','Yes');        
+        localStorage.setItem('UpdateSt','Yes'); 
+      }
+      else{
+        this.error="DOB should be more than 20 years"
+        setTimeout(() => {this.error="";}, 2000);
+      }       
     }  
     
    
