@@ -95,10 +95,10 @@ export class LoginComponent implements OnInit {
         {
           
          
-          if(localStorage.getItem('UpdateSt') != 'Yes' || localStorage.getItem('loginCheck') == 'Yes' )
+          if(localStorage.getItem('UpdateSt') != 'Yes')// || localStorage.getItem('loginCheck') == 'Yes' )
           this.router.navigate(['/manage-users']);
 
-          localStorage.setItem('loginCheck','');
+          //localStorage.setItem('loginCheck','');
           
         
         }
