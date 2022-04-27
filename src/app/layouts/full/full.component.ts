@@ -154,9 +154,10 @@ export class FullComponent {
 
     //localStorage.setItem('UpdateSt',''); 
     this.afAuth.signOut()
-    .then(() => {window.location.href = '/'});
-    localStorage.setItem('UpdateSt','');
-    this._router.navigate(['/login']); 
+    .then(() => {window.location.href = '/hrportal/login'}
+    );
+    //localStorage.setItem('UpdateSt','');
+   // this._router.navigate(['/login']); 
     localStorage.setItem('UpdateSt','');   
   } 
 }
