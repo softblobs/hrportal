@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
       // }
       // else
       // {
-        if(this.userService.selectedUser.role == "1")
+        if(this.userService.selectedUser.role == "1" ||  this.userService.selectedUser.role == "2")
         {
           
          

@@ -47,29 +47,83 @@ export class ApproveTimesheetComponent implements OnInit {
   }   
 
   fetchDataDropDown() {
-    this.timesheetService.getSheetList().subscribe(data => {             
-    var selectedData= data.filter( (record) => {  
-   return  localStorage.getItem('logProject') == record.payload.doc.get("project") && localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) &&
-   && localStorage.getItem('logName') != record.payload.doc.get("userName");  
-  });  
 
-      this.approveDropSheetList = selectedData.map(e => {
-        console.log(e.payload.doc.get("modified").toDate());             
-        return {        
-          id: e.payload.doc.id,                           
-          userId:e.payload.doc.get("userId"),   
-         status:e.payload.doc.get("status"),  
-         userName:e.payload.doc.get("userName")     
-        } as timesheetInfo;     
-     })  
+    if (localStorage.getItem("logRole")=="2"){
+      this.timesheetService.getSheetList().subscribe(data => {             
+        var selectedData= data;//.filter( (record) => {  
+      // localStorage.getItem('currentUser') != record.payload.doc.get("userId")
+      // && localStorage.getItem('logName') != record.payload.doc.get("userName");  
+     // });  
+    
+          this.approveDropSheetList = selectedData.map(e => {
+            console.log(e.payload.doc.get("modified").toDate());             
+            return {        
+              id: e.payload.doc.id,                           
+              userId:e.payload.doc.get("userId"),   
+             status:e.payload.doc.get("status"),  
+             userName:e.payload.doc.get("userName")     
+            } as timesheetInfo;     
+         })  
+              
+         var key = "userName";
+         this.approveDropSheetList = [...new Map(this.approveDropSheetList.map((d: { [x: string]: any; }) => [d[key], d])).values()]
           
-     var key = "userName";
-     this.approveDropSheetList = [...new Map(this.approveDropSheetList.map((d: { [x: string]: any; }) => [d[key], d])).values()]
-      
-    });      
+        }); 
+  }
+  
+  else{
+    this.timesheetService.getSheetList().subscribe(data => {             
+      var selectedData= data.filter( (record) => {  
+     return  localStorage.getItem('logProject') == record.payload.doc.get("project") && localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) &&
+     && localStorage.getItem('logName') != record.payload.doc.get("userName");  
+    });  
+  
+        this.approveDropSheetList = selectedData.map(e => {
+          console.log(e.payload.doc.get("modified").toDate());             
+          return {        
+            id: e.payload.doc.id,                           
+            userId:e.payload.doc.get("userId"),   
+           status:e.payload.doc.get("status"),  
+           userName:e.payload.doc.get("userName")     
+          } as timesheetInfo;     
+       })  
+            
+       var key = "userName";
+       this.approveDropSheetList = [...new Map(this.approveDropSheetList.map((d: { [x: string]: any; }) => [d[key], d])).values()]
+        
+      }); 
+
+  }
+
+
   } 
 
    fetchData() {
+
+    if (localStorage.getItem("logRole")=="2"){
+      this.timesheetService.getSheetList().subscribe(data => {             
+        var selectedData= data.filter( (record) => {    
+       return this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && record.payload.doc.get("userId") == this.UserList; 
+    });  
+  
+        this.approveSheetList = selectedData.map(e => {
+          console.log(e.payload.doc.get("modified").toDate());             
+          return {        
+            id: e.payload.doc.id,                                                   
+            description:e.payload.doc.get("description"),
+            hours:e.payload.doc.get("hours"),
+            task:e.payload.doc.get("task"),
+            modified:e.payload.doc.get("modified").toDate(),
+            userId:e.payload.doc.get("userId"),   
+           status:e.payload.doc.get("status"),  
+           userName:e.payload.doc.get("userName")     
+          } as timesheetInfo;     
+       })   
+      }); 
+
+    }
+
+    else{
     this.timesheetService.getSheetList().subscribe(data => {             
       var selectedData= data.filter( (record) => {    
      return this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && localStorage.getItem('logProject') == record.payload.doc.get("project") && record.payload.doc.get("userId") == this.UserList; 
@@ -88,7 +142,8 @@ export class ApproveTimesheetComponent implements OnInit {
          userName:e.payload.doc.get("userName")     
         } as timesheetInfo;     
      })   
-    });      
+    }); 
+  }     
   } 
  
    checkAll() {

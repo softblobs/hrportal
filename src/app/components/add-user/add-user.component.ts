@@ -123,7 +123,7 @@ export class AddUserComponent implements OnInit {
         
        } 
       roles =[ {id:1,value:"Admin"},
-                   {id:2,value:"Co-Admin"},
+                   {id:2,value:"Super-Admin"},
                    {id:3,value:"Employee"},
                    {id:4,value:"Other"}
 

@@ -55,7 +55,7 @@ export class FullComponent {
        console.log(localStorage.getItem('logRole')); 
        
        this.rolee=localStorage.getItem('logRole')
-       this.isAdmin = this.rolee== "1" ? true:false;
+       this.isAdmin = this.rolee== "1" || this.rolee== "2" ? true:false;
        this.photourl=localStorage.getItem('logUrltime');
        console.log(localStorage.getItem('logUrltime'));
 
@@ -69,10 +69,18 @@ export class FullComponent {
 
   adminSideBarMenu: sidebarMenu[] = [
     {
-      link: "/dashboard",
+      link: "/roles",
       icon: "home",
       menu: "Dashboard",
     },
+
+    // {
+    //   link: "/dashboard",
+    //   icon: "home",
+    //   menu: "Dashboard",
+    // },
+
+
     {
       link: "/manage-users",
       icon: "layout",
@@ -92,6 +100,16 @@ export class FullComponent {
       link: "/time-sheet",
       icon: "layout",
       menu: "Time Sheet",
+    },
+    {
+      link: "/applyleave",
+      icon: "layout",
+      menu: "Leave Request",
+    },
+    {
+      link: "/leaves-list",
+      icon: "layout",
+      menu: "Leaves List",
     },
     {
       link: "/approve-timesheet",
@@ -154,7 +172,8 @@ export class FullComponent {
 
     //localStorage.setItem('UpdateSt',''); 
     this.afAuth.signOut()
-    .then(() => {window.location.href = '/hrportal/login'}
+    //.then(() => {window.location.href = '/hrportal/login'}
+    .then(() => {window.location.href = '/login'}
     );
     //localStorage.setItem('UpdateSt','');
    // this._router.navigate(['/login']); 

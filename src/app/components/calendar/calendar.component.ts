@@ -83,7 +83,7 @@ export class CalendarComponent implements OnInit {
   tempAdmin:any;
 
   //var numberr=localStorage.getItem('logurl');
-  isAdmin:boolean = localStorage.getItem('logRole') == "1" ? true : false;
+  isAdmin:boolean = localStorage.getItem('logRole') == "2" ? true : false;
   //isAdmin:boolean = this.userService.selectedUser?.role == "1" ? true : false;
   
   

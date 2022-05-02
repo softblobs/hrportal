@@ -35,6 +35,7 @@ import { ApproveTimesheetComponent } from './components/approve-timesheet/approv
 import { ApplyleaveComponent } from './components/applyleave/applyleave.component';
 import { ApproveLeaverequestComponent } from './components/approve-leaverequest/approve-leaverequest.component';
 import { LeavesListComponent } from './components/leaves-list/leaves-list.component';
+import {RolesComponent} from './components/roles/roles.component';
 
 
 const routes: Routes = [
@@ -93,7 +94,8 @@ const routes: Routes = [
       {path:"approve-timesheet",component:ApproveTimesheetComponent},
       {path:"applyleave",component:ApplyleaveComponent},
       {path:"approve-leaverequest",component:ApproveLeaverequestComponent},
-      {path:"leaves-list",component:LeavesListComponent}
+      {path:"leaves-list",component:LeavesListComponent},
+      {path:"roles",component:RolesComponent}
 
       //{path:"home", component:DashboardComponent},
       //{path:"**", redirectTo:"/home", pathMatch:"full"},
