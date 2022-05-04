@@ -110,8 +110,9 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),FormsModule,
+  imports: [RouterModule.forRoot(routes),FormsModule, RouterModule,
     ReactiveFormsModule,CommonModule],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  
 })
 export class AppRoutingModule { }

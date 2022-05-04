@@ -72,8 +72,8 @@
         <mat-form-field class="w-75 fs-16"  appearance="outline">
           <mat-label>User Designation</mat-label>
           <mat-select formControlName="role" placeholder="Role of Employee" >
-            <ng-container *ngFor="let role of roles">
-              <mat-option value="{{role.id}}">{{role.value}}</mat-option>
+            <ng-container *ngFor="let role of roleSheetList">
+              <mat-option value="{{role.proleid}}">{{role.prole}}</mat-option>
             </ng-container>
           </mat-select>
           <mat-error *ngIf="role?.errors?.['required']">
@@ -83,11 +83,24 @@
 
          <mat-form-field class="w-75 fs-16" appearance="outline">
           <mat-label>Project</mat-label>
+          <mat-select   placeholder="Project"   formControlName="project">
+          <ng-container *ngFor="let role of projectSheetList">
+            <mat-option value="{{role.pproject}}">{{role.pproject}}</mat-option>
+          </ng-container>
+        </mat-select>
+          <mat-error *ngIf="project?.errors?.['required']">
+            Project is required
+          </mat-error>
+          </mat-form-field>
+
+      <!--   <mat-form-field class="w-75 fs-16" appearance="outline">
+          <mat-label>Project</mat-label>
           <input matInput type="text" placeholder="Project"   formControlName="project"/>
           <mat-error *ngIf="project?.errors?.['required']">
             Project is required
           </mat-error>
         </mat-form-field>
+      -->
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
           <mat-label>Address for Communication</mat-label>

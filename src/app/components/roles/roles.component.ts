@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import {ChangeDetectionStrategy,ViewChild,TemplateRef,} from '@angular/core';
 import {startOfDay,endOfDay,subDays,addDays,endOfMonth,isSameDay, isSameMonth, addHours, getDate,} from 'date-fns';
 import { Subject } from 'rxjs';
@@ -19,6 +20,8 @@ import { ProjectService } from 'src/app/services/project.service';
 import { count } from 'console';
 import { TimesheetService } from 'src/app/services/timesheet.service';
 import { timesheetInfo } from 'src/app/models/timesheet-data';
+import { LeaveService } from 'src/app/services/leave.service';
+import { leaveinfo } from 'src/app/models/leave-data';
 
 @Component({
   selector: 'app-roles',
@@ -34,11 +37,19 @@ export class RolesComponent implements OnInit {
   psheetList:any;
   pendingtimel:any;
   alltimel:any;
+  pendingleavel:any;
+  allleavel:any;
+
+  isSuperAdmin = localStorage.getItem("logRole") == "2" ? true: false;
+
 
 
   error="";
   approveDropSheetList:any;
   approveDropSheetList2:any;
+  leaveDropSheetList:any;
+  leaveDropSheetList2:any;
+
   
 
   addEvent(): void {
@@ -69,7 +80,7 @@ export class RolesComponent implements OnInit {
   selectedDate = new Date();
   date = new Date();
   myDate = new Date();  
-  constructor(private rolesService : RolesService,private projectService : ProjectService, private timesheetService:TimesheetService, public firestore: AngularFirestore) {
+  constructor(private router: Router, private rolesService : RolesService,private projectService : ProjectService, private timesheetService:TimesheetService, public firestore: AngularFirestore,private leaveService:LeaveService) {
     const currentYear = new Date().getFullYear();
     const currentMonth= new Date().getMonth();
     const currentDate =new Date().getDay();
@@ -85,6 +96,7 @@ export class RolesComponent implements OnInit {
 
   ngOnInit(): void {
     this.rfetchDataDropDown();
+    this.LfetchDataDropDown();
     this.rolescount();
     
   this.selectedDate = new Date();
@@ -287,11 +299,9 @@ rfetchDataDropDown() {
        var selectedData2= data.filter( (record) => { 
 
        return  localStorage.getItem('logProject') == record.payload.doc.get("project") && localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) &&
-     && localStorage.getItem('logName') != record.payload.doc.get("userName")&&
-
-         
-      record.payload.doc.get("status")=="pending"
-       });  this.approveDropSheetList2= selectedData2.map(e => {
+     && localStorage.getItem('logName') != record.payload.doc.get("userName") && record.payload.doc.get("status")=="pending"
+       });  
+       this.approveDropSheetList2= selectedData2.map(e => {
         console.log(e.payload.doc.get("modified").toDate());             
         return {        
           id: e.payload.doc.id,                           
@@ -304,4 +314,98 @@ rfetchDataDropDown() {
       }); 
 
   }
-  } }
+  } 
+
+
+
+  //****************************Leaves************************************ */
+
+
+  LfetchDataDropDown() {
+    if (localStorage.getItem("logRole")=="2"){
+      this.leaveService.getLeaveList().subscribe(data => { 
+        this.allleavel = data.length; 
+        var selectedData3= data.filter( (record) => {  
+          return   localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && localStorage.getItem('logProject') == record.payload.doc.get("project") && 
+          && localStorage.getItem('logName') != record.payload.doc.get("userName") && record.payload.doc.get("status")=="pending" 
+         });  
+          
+        this.leaveDropSheetList = selectedData3.map(e => {        
+          return {        
+            id: e.payload.doc.id,      
+            leavetype:e.payload.doc.get("leavetype"),
+            leavereason:e.payload.doc.get("leavereason"),
+            datefrom:e.payload.doc.get("datefrom"),
+            dateto:e.payload.doc.get("dateto"), 
+            userId:e.payload.doc.get("userId"),   
+            status:e.payload.doc.get("status"),      
+            userName:e.payload.doc.get("userName"),
+          } as leaveinfo;     
+        })       
+        this.pendingleavel=(this.leaveDropSheetList.length)
+  
+      });  
+
+    }
+
+    else{
+    
+    this.leaveService.getLeaveList().subscribe(data => { 
+      
+      var selectedData4= data.filter( (record) => {                 
+        return localStorage.getItem('logProject') == record.payload.doc.get("project") 
+         && localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && localStorage.getItem('logProject') == record.payload.doc.get("project") && 
+          && localStorage.getItem('logName') != record.payload.doc.get("userName");  
+         });   
+        
+      this.leaveDropSheetList = selectedData4.map(e => {        
+        return {        
+          id: e.payload.doc.id,      
+          leavetype:e.payload.doc.get("leavetype"),
+          leavereason:e.payload.doc.get("leavereason"),
+          datefrom:e.payload.doc.get("datefrom"),
+          dateto:e.payload.doc.get("dateto"), 
+          userId:e.payload.doc.get("userId"),   
+          status:e.payload.doc.get("status"),      
+          userName:e.payload.doc.get("userName"),
+        } as leaveinfo;     
+      })       
+      this.allleavel=(this.leaveDropSheetList.length)
+
+      var selectedData5= data.filter( (record) => { 
+
+        return localStorage.getItem('logProject') == record.payload.doc.get("project") 
+         && localStorage.getItem('currentUser') != record.payload.doc.get("userId")  //this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && localStorage.getItem('logProject') == record.payload.doc.get("project") && 
+          && localStorage.getItem('logName') != record.payload.doc.get("userName") && record.payload.doc.get("status")=="pending" 
+         });   
+        this.leaveDropSheetList2= selectedData5.map(e => {
+                    
+         return {        
+          id: e.payload.doc.id,      
+          leavetype:e.payload.doc.get("leavetype"),
+          leavereason:e.payload.doc.get("leavereason"),
+          datefrom:e.payload.doc.get("datefrom"),
+          dateto:e.payload.doc.get("dateto"), 
+          userId:e.payload.doc.get("userId"),   
+          status:e.payload.doc.get("status"),      
+          userName:e.payload.doc.get("userName"),
+        } as leaveinfo;     
+      })  
+      this.pendingleavel=(this.leaveDropSheetList2.length)
+     // console.log(this.pendingleavel)
+       });  
+      }} 
+
+
+
+  
+  fortimelink(){
+    this.router.navigate(['/approve-timesheet']);
+  }
+  forleavelink(){
+    this.router.navigate(['/approve-leaverequest']);
+  }
+
+
+
+}

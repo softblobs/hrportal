@@ -8,6 +8,7 @@ import { map, finalize } from "rxjs/operators";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProfileUser } from 'src/app/models/user-profile';
+import { RolesService } from 'src/app/services/roles.service';
 import {  
   AbstractControl,
   FormControl,
@@ -19,6 +20,9 @@ import {
 } from '@angular/forms';
 import { V } from '@angular/cdk/keycodes';
 import { AngularFireList } from '@angular/fire/compat/database';
+import { roleInfo } from 'src/app/models/roles-data';
+import { ProjectService } from 'src/app/services/project.service';
+import { projectInfo } from 'src/app/models/project-data';
 
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -52,6 +56,8 @@ export class AddUserComponent implements OnInit {
   hide = true;
   useridcount:number=0;
   enull="";
+  roleSheetList: any;
+  projectSheetList: any;
   
 
   //
@@ -114,6 +120,8 @@ export class AddUserComponent implements OnInit {
     constructor(private _router: Router,private authService: AuthenticationService, 
       public afs: AngularFirestore,
       public afAuth: AngularFireAuth,private storage: AngularFireStorage,
+      public roleservice:RolesService,
+      public projectservice:ProjectService,
       ) {
         const currentYear = new Date().getFullYear();
     const currentMonth= new Date().getMonth();
@@ -131,6 +139,8 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.lastuser();
+    this.rolesnumber();
+    this.projectnumber();
     
 
   }
@@ -288,8 +298,35 @@ export class AddUserComponent implements OnInit {
         this.useridcount=result.length+100;
         console.log(this.useridcount);
        })
-  
     }
-  
+
+
+    rolesnumber(){
+      this.roleservice.getSheetList().subscribe(data => {             
+        var selectedDataa= data  ;            
+        this.roleSheetList = selectedDataa.map(e => {                    
+          return {        
+            id: e.payload.doc.id,                                                                
+            prole:e.payload.doc.get("prole"),
+            proleid:e.payload.doc.get("proleid")                 
+          } as roleInfo;     
+       }) 
+       console.log(this.roleSheetList)  ;
+      }); 
+    }
+    
+    projectnumber(){
+      this.projectservice.getSheetList().subscribe(data => {             
+        var selectedDataa= data  ;            
+        this.projectSheetList = selectedDataa.map(e => {                    
+          return {        
+            id: e.payload.doc.id,                                                                
+            pproject:e.payload.doc.get("pproject"),
+                             
+          } as projectInfo;     
+       }) 
+       console.log(this.projectSheetList)  ;
+      }); 
+    }
   
 }

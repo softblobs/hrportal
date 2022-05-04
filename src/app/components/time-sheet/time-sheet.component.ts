@@ -97,7 +97,7 @@ export class TimeSheetComponent implements OnInit {
     const currentYear = new Date().getFullYear();
     const currentMonth= new Date().getMonth();
     const currentDate =new Date().getDay();
-    this.minDate = new Date(currentYear - 0, currentMonth-1, currentDate+39);
+    this.minDate = new Date(currentYear - 0, currentMonth-0, currentDate-15);
    }
   //,public userService:UserService
   //date1 = new Date((new Date().getTime() - 3888000000));
@@ -110,6 +110,8 @@ export class TimeSheetComponent implements OnInit {
   weekEnd = new Date(this.weekStart.valueOf() + 6*86400000); //add 6 days to get last day  
   weekStarttemp = this.weekStart;
   tasks:any;
+
+
   ngOnInit(): void {
   //this.myDate.setDate(this.date.getDate() + 7);
   this.selectedDate = new Date();
@@ -127,7 +129,8 @@ export class TimeSheetComponent implements OnInit {
 
   fetchData() {
     this.timesheetService.getSheetList().subscribe(data => {             
-      var selectedData= data.filter( (record) => {  
+      var selectedData= data.filter( (record) => { 
+        
       return this.convert(record.payload.doc.get("modified").toDate()) == this.convert(this.selectedDate) && localStorage.getItem('currentUser') == record.payload.doc.get("userId");  
      
      });  
@@ -148,7 +151,9 @@ export class TimeSheetComponent implements OnInit {
     });      
   } 
   onChangeEvent(event:any){ 
+   
    this.selectedDate = event.target.value;
+   
    this.fetchData();  
   }
 update(timesht: timesheetInfo) {    
@@ -167,14 +172,14 @@ saveupdateSheetList(timeSheet: timesheetInfo){
   {     
      this.firestore.collection('timesheet').add(timeSheet);
     this.error="Inserted Successfully";
-    setTimeout(() => {this.error="";}, 3000);
+    
   }
   else{
    //alert(timeSheet.id);
     this.firestore.doc('timesheet/'+timeSheet.id).update(timeSheet);
    this.error="Updated Successfully";
   
-  setTimeout(() => {this.error="";}, 3000);  
+   
   }   
  }
 
@@ -183,7 +188,7 @@ delete(id: string) {
   this.timesheetService.deleteEvent(id);     
   
   this.error="The events was Deleted";
-  setTimeout(() => {this.error="";}, 3000);
+  
   
   this.ngOnInit();  
   for(let i = 0; i < this.sheetList.length; ++i){
