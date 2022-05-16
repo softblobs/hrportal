@@ -1,0 +1,131 @@
+<!-- Form Layout -->
+<div class="card">
+    <div class="card-body">
+      <h4 class="mb-32">Add Payinfo</h4>
+      <form [formGroup]="paymentForm"  (ngSubmit)="submit()">
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>Select User</mat-label>               
+            <mat-select  placeholder="Role of Employee"  formControlName="userId" >
+              <ng-container *ngFor="let user of customerArray">
+                <mat-option value="{{user.userId}}">{{user.firstName}} {{user.lastName}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+     <!--   <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>User ID</mat-label>
+            <input matInput type="text" placeholder="Enter user's FirstName" maxlength="30"  formControlName="userId"/>
+            <mat-error *ngIf="userId?.errors?.['required']">
+              User Id is required
+            </mat-error>
+          </mat-form-field>
+        -->   
+        
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+          <mat-label>Bank Name</mat-label>
+          <input matInput type="text" placeholder="Enter user's FirstName" maxlength="30"  formControlName="bankName"/>
+          <mat-error *ngIf="bankName?.errors?.['required']">
+            Bank Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+          <mat-label>Bank Account Number</mat-label>
+          <input matInput type="number" placeholder="Enter user's LastName"   formControlName="bankAccount"/>
+          <mat-error *ngIf="bankAccount?.errors?.['required']">
+            Bank Account Number is required
+          </mat-error>
+        </mat-form-field>
+       
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>PF Number</mat-label>
+          <input matInput type="text" placeholder="Enter user's personal email"  formControlName="pfNumber"/>
+          <mat-error *ngIf="pfNumber?.errors?.['required']">
+            PF Number is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>UAN Number</mat-label>
+            <input matInput type="text" placeholder="Enter user's personal email"  formControlName="uanNumber"/>
+            <mat-error *ngIf="uanNumber?.errors?.['required']">
+              PF Number is required
+            </mat-error>
+        </mat-form-field>
+
+        
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>Basic Amount</mat-label>
+            <input matInput type="number" placeholder="Enter user's personal email"  formControlName="basicAmount"/>
+            <mat-error *ngIf="basicAmount?.errors?.['required']">
+              PF Number is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>PF Amount</mat-label>
+            <input matInput type="number" placeholder="Enter user's personal email" formControlName="pfAmount"/>
+            <mat-error *ngIf="pfAmount?.errors?.['required']">
+              PF Number is required
+            </mat-error>
+        </mat-form-field>
+
+        
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>PROF TAX</mat-label>
+            <input matInput type="number" placeholder="Enter user's personal email" formControlName="profTax"/>
+            <mat-error *ngIf="profTax?.errors?.['required']">
+              PF Number is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>Direct Allowence (DA) </mat-label>
+            <input matInput type="number" placeholder="Enter user's personal email" min="20" formControlName="directAllowence"/>
+            <mat-error *ngIf="directAllowence?.errors?.['required']">
+              Direct Allowence Number is required
+            </mat-error>
+        </mat-form-field>
+    
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+            <mat-label>Fixed Bonus</mat-label>
+            <input matInput type="number" placeholder="Enter user's personal email"  formControlName="fixedBonus"/>
+            <mat-error *ngIf="fixedBonus?.errors?.['required']">
+              Fixed Bonus is required
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" placeholder="Role of Employee" >
+            <ng-container *ngFor="let role of roles">
+              <mat-option value="{{role.id}}">{{role.value}}</mat-option>
+            </ng-container>
+          </mat-select>          
+        </mat-form-field>
+        
+        
+        <br/>
+
+
+
+        
+        
+        
+  
+        <button mat-button class="btn btn-info fw-normal"    type="submit">Submit</button>
+
+      
+      <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg></i-feather> {{error}} 
+      </div>
+
+      </form>
+    </div>
+  </div>
+  

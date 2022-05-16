@@ -120,6 +120,16 @@ export class FullComponent {
       link: "/approve-leaverequest",
       icon: "layout",
       menu: "Approve Leave",
+    },
+    {
+      link: "/pay-info",
+      icon: "layout",
+      menu: "Pay-Role",
+    },
+    {
+      link: "/generate-payslip",
+      icon: "layout",
+      menu: "Generate-payslip",
     }
 
   ]
@@ -129,11 +139,11 @@ export class FullComponent {
       icon: "layout",
       menu: "User Details",
     },
-    // {
-    //   link: "/change-password",
-    //   icon: "layout",
-    //   menu: "Change Password",
-    // },
+    {
+      link: "/change-password",
+      icon: "layout",
+      menu: "Change Password",
+    },
     {
       link: "/calendar",
       icon: "layout",
@@ -153,7 +163,13 @@ export class FullComponent {
       link: "/leaves-list",
       icon: "layout",
       menu: "Leaves List",
+    },
+    {
+      link: "/payslip",
+      icon: "layout",
+      menu: "Payslip",
     }
+
 
   ]
   sidebarMenu:any = null;

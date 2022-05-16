@@ -39,12 +39,14 @@ export class RolesComponent implements OnInit {
   alltimel:any;
   pendingleavel:any;
   allleavel:any;
+  
 
   isSuperAdmin = localStorage.getItem("logRole") == "2" ? true: false;
 
 
 
   error="";
+  errorp="";
   approveDropSheetList:any;
   approveDropSheetList2:any;
   leaveDropSheetList:any;
@@ -213,15 +215,15 @@ psaveupdateSheetList(ptimeSheet: projectInfo){
 if(ptimeSheet.id==0 || ptimeSheet.id==null || ptimeSheet.id=='') 
 {     
    this.firestore.collection('projects').add(ptimeSheet);
-  this.error="Inserted Successfully";
-  setTimeout(() => {this.error="";}, 3000);
+  this.errorp="Inserted Successfully";
+  setTimeout(() => {this.errorp="";}, 3000);
 }
 else{
  //alert(timeSheet.id);
   this.firestore.doc('projects/'+ptimeSheet.id).update(ptimeSheet);
- this.error="Updated Successfully";
+ this.errorp="Updated Successfully";
 
-setTimeout(() => {this.error="";}, 3000);  
+setTimeout(() => {this.errorp="";}, 3000);  
 }   
 }
 
@@ -229,8 +231,8 @@ setTimeout(() => {this.error="";}, 3000);
 pdelete(id: string) {
 this.projectService.deleteEvent(id);     
 
-this.error="The events was Deleted";
-setTimeout(() => {this.error="";}, 3000);
+this.errorp="The events was Deleted";
+setTimeout(() => {this.errorp="";}, 3000);
 
 this.ngOnInit();  
 for(let i = 0; i < this.psheetList.length; ++i){

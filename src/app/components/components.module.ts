@@ -41,7 +41,12 @@ import { ApproveTimesheetComponent } from './approve-timesheet/approve-timesheet
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
 import { ApproveLeaverequestComponent } from './approve-leaverequest/approve-leaverequest.component';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
-import { RolesComponent } from './roles/roles.component'; 
+import { RolesComponent } from './roles/roles.component';
+import { PayslipComponent } from './payslip/payslip.component';
+import { PayInfoComponent } from './pay-info/pay-info.component';
+import { AddPayinfoComponent } from './add-payinfo/add-payinfo.component';
+import { PayinfoDetailComponent } from './payinfo-detail/payinfo-detail.component';
+import { GeneratePayslipComponent } from './generate-payslip/generate-payslip.component'; 
 //End
 
 
@@ -77,7 +82,12 @@ import { RolesComponent } from './roles/roles.component';
     ApplyleaveComponent,
     ApproveLeaverequestComponent,
     LeavesListComponent,
-    RolesComponent
+    RolesComponent,
+    PayslipComponent,
+    PayInfoComponent,
+    AddPayinfoComponent,
+    PayinfoDetailComponent,
+    GeneratePayslipComponent
    
   ],
   imports: [

@@ -36,6 +36,12 @@ import { ApplyleaveComponent } from './components/applyleave/applyleave.componen
 import { ApproveLeaverequestComponent } from './components/approve-leaverequest/approve-leaverequest.component';
 import { LeavesListComponent } from './components/leaves-list/leaves-list.component';
 import {RolesComponent} from './components/roles/roles.component';
+import { PayslipComponent } from './components/payslip/payslip.component';
+import { PayInfoComponent } from './components/pay-info/pay-info.component';
+import { AddPayinfoComponent } from './components/add-payinfo/add-payinfo.component';
+import { PayinfoDetailComponent } from './components/payinfo-detail/payinfo-detail.component';
+import { GeneratePayslipComponent } from './components/generate-payslip/generate-payslip.component';
+
 
 
 const routes: Routes = [
@@ -95,7 +101,14 @@ const routes: Routes = [
       {path:"applyleave",component:ApplyleaveComponent},
       {path:"approve-leaverequest",component:ApproveLeaverequestComponent},
       {path:"leaves-list",component:LeavesListComponent},
-      {path:"roles",component:RolesComponent}
+      {path:"roles",component:RolesComponent},
+      {path:"payslip",component:PayslipComponent},
+      {path:"pay-info",component:PayInfoComponent},
+      {path:"add-payinfo",component:AddPayinfoComponent},
+      {path:"payinfo-detail",component:PayinfoDetailComponent},
+      {path:"generate-payslip", component:GeneratePayslipComponent}
+      
+            
 
       //{path:"home", component:DashboardComponent},
       //{path:"**", redirectTo:"/home", pathMatch:"full"},

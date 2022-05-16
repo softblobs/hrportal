@@ -1,0 +1,124 @@
+<div  class="container mt-5 mb-5">
+ <!--   <label for="start">Month:</label>
+     <input type="month" id="start" name="start"  >
+ -->
+  <div class="row">
+      <div id=contentToConvert class="col-md-12">
+        <div class="d-flex justify-content-end">
+            <img src="assets/images/sb.png" alt="" width="200" height="50">
+          </div>
+          <div class="text-center lh-1 mb-2">
+              <h3 class="fw-bold">Payslip</h3> 
+              <span class="fw-normal">Softblobs PVT LTD, Sri Krishna Nagar Yousufguda, Hyderabad, Telangana 500045</span>                 
+          </div>
+          <div class="d-flex justify-content-end"> <span>Month and Year:<input type="month" id="start" name="start"  ></span> </div>
+          <div class="row">
+              <div class="col-md-10">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">EMP Name: </span> <span class="ms-3">{{arraydata.firstName}} {{arraydata.lastName}}</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">PF NO: </span> <span class="ms-3">{{arraydata2.pfNumber}}</span> </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">EMP Code:</span> <span class="ms-3">{{arraydata.userId}}</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">UAN: </span> <span class="ms-3">{{arraydata2.uanNumber}}</span> </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Join Date: </span> <span class="ms-3">{{arraydata.doj}}</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Bank Name: </span> <span class="ms-3">{{arraydata2.bankName}}</span> </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Location: </span> <span class="ms-3">Hyderabad</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Bank Account Number: </span> <span class="ms-3">{{arraydata2.bankAccount}}</span> </div>
+                      </div>
+                  </div>
+              </div>
+              <table id="contentToConvert" class="mt-4 table table-bordered">
+                  <thead class="bg-dark text-white">
+                      <tr>
+                          <th scope="col">Earnings</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Deductions</th>
+                          <th scope="col">Amount</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">Basic</th>
+                          <td>{{arraydata2.basicAmount}}</td>
+                          <td>PF</td>
+                          <td>{{arraydata2.pfAmount}}</td>
+                      </tr>
+                      
+                      
+                      <tr>
+                          <th scope="row">Fixed Bonus</th>
+                          <td>{{arraydata2.fixedBonus}}</td>
+
+                          <td>Prof Tax</td>
+                          <td>{{arraydata2.profTax}}</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">DA</th>
+                          <td>{{arraydata2.directAllowence}}</td>
+                          
+                      </tr>
+
+
+                   <!--   <tr>
+                          <th scope="row">Bonus</th>
+                          <td>1400.00</td>
+                          <td colspan="2"></td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Individual Incentive</th>
+                          <td>2400.00</td>
+                          <td colspan="2"></td>
+                      </tr> 
+                    -->
+                    
+                      <tr class="border-top">
+                          <th scope="row">Total Earning</th>
+                          <td>{{totalearnings}}</td>
+
+
+                          <td>Total Deductions</td>
+                          <td>{{totaldec}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="row">
+              <div class="col-md-4"> <br> <span class="fw-bold">Net Pay for the month:{{ netpay}}</span> </div>
+            <!--  <div class="border col-md-8">
+                  <div class="d-flex flex-column"> <span>In Words</span> <span>Twenty Five thousand nine hundred seventy only</span> </div>
+              </div>
+              -->
+          </div>
+        <!--  <div class="d-flex justify-content-end">
+              <div class="d-flex flex-column mt-2"> <span class="fw-bolder">softblobs</span> <span class="mt-4">Authorised Signatory</span> </div>
+          </div>
+        -->
+        
+      </div>
+     
+      <div class="button-row mb-24">
+        <button mat-raised-button class="me-8 mb-8 btn btn-info fw-normal" (click)="downloadpdf()"   >Download PDF</button>
+      <!--  <button mat-raised-button class="me-8 mb-8" color="warn">Cancel</button> -->
+      </div>
+  </div>
+</div>
