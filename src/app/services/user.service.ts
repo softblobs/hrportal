@@ -83,6 +83,10 @@ export class UserService {
       )   
   }
 
+  getusersList() {  
+    return this.afs.collection('users').snapshotChanges();
+}
+
   
   // getUsers(){
   //   this.userList=this.afd.list('users');

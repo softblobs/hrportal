@@ -106,6 +106,7 @@ export class AddUserComponent implements OnInit {
       skillSet:new FormControl(''),
       //photoURL: new FormControl(''),
       role:new FormControl('', Validators.required),
+      paystatus:new FormControl('1'),
     },
       //{ validators: passwordsMatchValidator()}
      );
@@ -271,6 +272,7 @@ export class AddUserComponent implements OnInit {
         this.signUpForm.value.project,
         this.signUpForm.value.address,
         this.signUpForm.value.skillSet,
+        this.signUpForm.value.paystatus
         ).then((result) => {
           this.error="Successfully created user";
             setTimeout(() => {this.error="";}, 3000);  //5s        
