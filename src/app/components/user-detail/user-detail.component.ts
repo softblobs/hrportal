@@ -42,7 +42,9 @@ export class UserDetailComponent implements OnInit {
     project:new FormControl(''),
     address:new FormControl(''),
     skillSet:new FormControl(''),
-    officeEmail:new FormControl(''),    
+    officeEmail:new FormControl(''),
+    paystatus:new FormControl(''),
+
   });
 
   uid:any;
