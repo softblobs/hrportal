@@ -33,8 +33,8 @@ export class PayInfoComponent implements OnInit {
     //user:any;
   
 
-  constructor(public firestore: AngularFirestore,private paymentService:PaymentService,public router:Router ) { }
-
+  constructor(public firestore: AngularFirestore,private paymentService:PaymentService,public router:Router,public userservice:UserService ) { }
+  issuperAdmin= localStorage.getItem("logRole")== "2" ? true: false;
   ngOnInit(): void {
     this.getAllUser();
     

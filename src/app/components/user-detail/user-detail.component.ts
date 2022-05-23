@@ -53,6 +53,7 @@ export class UserDetailComponent implements OnInit {
   selectedUserID = this.userService.selectedUser != null ? this.userService.selectedUser.uid : 0;
   photoURL = this.userService.editSelectedUser.photoURL;
   isEdit = false;
+  issuperAdmin= this.userService.selectedUser.role == "2" ? true: false;
   isAdmin = this.userService.selectedUser.role == "1" ? true: false;
   isAdminEdit = this.isAdmin && !this.isEdit ? true : false;
   error="";

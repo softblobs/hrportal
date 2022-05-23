@@ -70,7 +70,7 @@ export class FullComponent {
   adminSideBarMenu: sidebarMenu[] = [
     {
       link: "/roles",
-      icon: "home",
+      icon: "dns",
       menu: "Dashboard",
     },
 
@@ -83,52 +83,52 @@ export class FullComponent {
 
     {
       link: "/manage-users",
-      icon: "layout",
+      icon: "people",
       menu: "Manage Users",
     },
     {
       link: "/calendar",
-      icon: "layout",
+      icon: "calendar_month",
       menu: "Calendar",
     },
     {
       link: "/vm-details",
-      icon: "layout",
+      icon: "airplay",
       menu: "Manage VMs",
     },
     {
       link: "/time-sheet",
-      icon: "layout",
+      icon: "access_time",
       menu: "Time Sheet",
     },
     {
       link: "/applyleave",
-      icon: "layout",
+      icon: "time_to_leave",
       menu: "Leave Request",
     },
     {
       link: "/leaves-list",
-      icon: "layout",
+      icon: "format_list_bulleted",
       menu: "Leaves List",
     },
     {
       link: "/approve-timesheet",
-      icon: "layout",
+      icon: "approval",
       menu: "Approve Timesheet",
     },
     {
       link: "/approve-leaverequest",
-      icon: "layout",
+      icon: "approval",
       menu: "Approve Leave",
     },
     {
       link: "/pay-info",
-      icon: "layout",
+      icon: "payment",
       menu: "Pay-Role",
     },
     {
       link: "/generate-payslip",
-      icon: "layout",
+      icon: "payments",
       menu: "Generate-payslip",
     }
 
@@ -136,37 +136,37 @@ export class FullComponent {
   userSideBarMenu: sidebarMenu[] = [
     {
       link: "/user-detail",
-      icon: "layout",
+      icon: "details",
       menu: "User Details",
     },
     {
       link: "/change-password",
-      icon: "layout",
+      icon: "password",
       menu: "Change Password",
     },
     {
       link: "/calendar",
-      icon: "layout",
+      icon: "calendar_month",
       menu: "Calendar",
     },
     {
       link: "/time-sheet",
-      icon: "layout",
+      icon: "access_time",
       menu: "Time Sheet",
     },
     {
       link: "/applyleave",
-      icon: "layout",
+      icon: "border_color",
       menu: "Leave Request",
     },
     {
       link: "/leaves-list",
-      icon: "layout",
+      icon: "format_list_bulleted",
       menu: "Leaves List",
     },
     {
       link: "/payslip",
-      icon: "layout",
+      icon: "note",
       menu: "Payslip",
     }
 
@@ -188,7 +188,7 @@ export class FullComponent {
 
     //localStorage.setItem('UpdateSt',''); 
     this.afAuth.signOut()
-    .then(() => {window.location.href = '/hrportal/login'}
+    .then(() => {window.location.href = '/login'}
     );
     //localStorage.setItem('UpdateSt','');
    // this._router.navigate(['/login']); 

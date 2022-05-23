@@ -44,6 +44,7 @@ export class PayinfoDetailComponent implements OnInit {
   //newdata= JSON.parse(localStorage.getItem('userdatatwo')!);
   
   
+  
 
   
 
@@ -52,7 +53,7 @@ export class PayinfoDetailComponent implements OnInit {
   roles =[ {id:"Active",value:"Active"},
            {id:"InActive",value:"InActive"}, ];
 
-
+  
   ngOnInit(): void {
     console.log(JSON.parse(localStorage.getItem('userdatatwo')!).id);
     this.populateForm(JSON.parse(localStorage.getItem('userdatatwo')!));

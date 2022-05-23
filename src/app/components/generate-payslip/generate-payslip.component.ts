@@ -13,6 +13,7 @@ import { paymentinfo } from 'src/app/models/payment-data';
 import { GeneratePaymentService } from 'src/app/services/generate-payment.service';
 import { FormControl } from '@angular/forms';
 import {MatDatepicker} from '@angular/material/datepicker';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-generate-payslip',
@@ -40,13 +41,17 @@ export class GeneratePayslipComponent implements OnInit {
  }
 
  minDate = new Date();
-  constructor(public paymentserve:PaymentService,public genpaymentserve:GeneratePaymentService) {
+  constructor(public paymentserve:PaymentService,public genpaymentserve:GeneratePaymentService,public userService:UserService) {
 
     const currentYear = new Date().getFullYear();
     const currentMonth= new Date().getMonth();
     const currentDate =new Date().getDay();
     this.minDate = new Date(currentYear - 0, currentMonth-1, currentDate);
    }
+   issuperAdmin= localStorage.getItem("logRole") == "2" ? true: false;
+
+
+
   @ViewChild('picker') datePickerElement = MatDatepicker;
   ngOnInit(): void {
     

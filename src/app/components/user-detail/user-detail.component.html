@@ -67,17 +67,17 @@
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Date of Joining</mat-label>
-            <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!isAdmin">
+            <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!isAdmin" [readonly]="!isEdit">
           </mat-form-field>
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
               <mat-label>Designation</mat-label>
-              <input matInput type="text" placeholder="User Designation" formControlName="role" [readonly]="!isAdmin" >
+              <input matInput type="text" placeholder="User Designation" formControlName="role" [readonly]="!isAdmin" [readonly]="!isEdit" >
             </mat-form-field>            
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Project</mat-label>
-            <input matInput type="text" placeholder="Project"  formControlName="project" [readonly]="!isAdmin">
+            <input matInput type="text" placeholder="Project"  [readonly]="!isAdmin" [readonly]="!isEdit">
           </mat-form-field>          
   
         <mat-form-field class="w-100 fs-16" appearance="outline">

@@ -1,7 +1,7 @@
 <h3>Payinfo</h3>
 
 
-<button mat-raised-button right class="me-8 mb-8" (click)="onAddUser()" color="primary">Add New User Details</button>
+<button mat-raised-button right class="me-8 mb-8" (click)="onAddUser()" color="primary" [disabled]="!issuperAdmin" >Add New User Details</button>
 
 <div class="table-responsive">
         
@@ -51,7 +51,7 @@
       <th mat-header-cell *matHeaderCellDef>Details</th>
       <td mat-cell *matCellDef="let element">
         <!-- <p class="mb-0 fw-medium">{{element.id}}</p> -->
-        <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary">View</button>
+        <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary"   [disabled]="!issuperAdmin" >View</button>
       </td>
     </ng-container>
 
