@@ -22,7 +22,7 @@
 <mat-card class="example-card">
     <mat-card-content>
       <h4 class="mb-60">Roles</h4>    
-    <button class="btn btn-primary float-right" (click)="addEvent()">
+    <button class="btn btn-primary float-right" (click)="addEvent()"  [disabled]="!isSuperAdmin">
       Add new
     </button>
     <br/>
@@ -72,7 +72,7 @@
   <mat-card class="example-cardd">
     <mat-card-content>
       <h4 class="mb-60">Projects</h4>
-      <button class="btn btn-primary float-right" (click)="paddEvent()">
+      <button class="btn btn-primary float-right" (click)="paddEvent()" [disabled]="!isSuperAdmin">
         Add
       </button>
       <br/>

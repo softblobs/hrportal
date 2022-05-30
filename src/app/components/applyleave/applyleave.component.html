@@ -32,10 +32,34 @@
                 Maximum 8 days
               </mat-error>
           </mat-form-field>
+
+
+
+          <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="d1" formControlName="datefrom">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="d1"></mat-datepicker-toggle>
+            <mat-datepicker #d1></mat-datepicker>
+            <mat-error *ngIf="datefrom?.errors?.['required']">
+              date from is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-75 fs-16" appearance="outline" >
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="d2" formControlName="dateto">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="d2"></mat-datepicker-toggle>
+            <mat-datepicker #d2></mat-datepicker>
+            <mat-error *ngIf="dateto?.errors?.['required']">
+              date to is required
+            </mat-error>
+          </mat-form-field><br>
        
-        <mat-form-field class="w-75 fs-16"  appearance="outline">
+     <!--   <mat-form-field class="w-75 fs-16"  appearance="outline">
           <mat-label>Date from</mat-label>
-          <input matInput type="date" placeholder="Enter user's personal email" [min]="getToday()" ngModel  formControlName="datefrom"/>
+          <input matInput type="date" value="2018-07-22" [min]="getToday()" ngModel  formControlName="datefrom"/>
           <mat-error *ngIf="datefrom?.errors?.['required']">
             date from is required
           </mat-error>
@@ -49,6 +73,9 @@
             date to is required
           </mat-error>
         </mat-form-field><br>
+      -->
+
+
         <button mat-button class="btn btn-info fw-normal" (click)="submit()"  [disabled]="leaveform.invalid"  type="submit">Submit</button>     
         <div role="green"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
         <line x1="12" y1="16" x2="12.01" y2="16"></line>

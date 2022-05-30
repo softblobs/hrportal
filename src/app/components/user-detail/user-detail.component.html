@@ -31,17 +31,17 @@
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>First Name</mat-label>
-          <input matInput type="text" value="User" placeholder="Enter user's first name" formControlName="firstName" [readonly]="!isAdmin" >
+          <input matInput type="text" value="User" placeholder="Enter user's first name" formControlName="firstName"  [readonly]="!issuperAdmin"  >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Last Name</mat-label>
-          <input matInput type="text" value="User" placeholder="Enter user's last name" formControlName="lastName" [readonly]="!isEdit">
+          <input matInput type="text" value="User" placeholder="Enter user's last name" formControlName="lastName" [readonly]="!issuperAdmin" >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Date of Birth</mat-label>
-          <input matInput type="date" placeholder="Date of Birth"   formControlName="dob" [max]="getToday()" [readonly]="!isEdit">
+          <input matInput type="date" placeholder="Date of Birth"   formControlName="dob" [max]="getToday()" [readonly]="!issuperAdmin">
         </mat-form-field>
 
         <mat-form-field class="w-100 fs-16" appearance="outline">
@@ -62,22 +62,26 @@
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Official Mail</mat-label>
-          <input matInput type="email" placeholder="Enter company email"   formControlName="officeEmail" [readonly]="!isEdit">
+          <input matInput type="email" placeholder="Enter company email"   formControlName="officeEmail" [readonly]="!issuperAdmin" >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Date of Joining</mat-label>
-            <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!isAdmin" [readonly]="!isEdit">
+            <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!issuperAdmin" >
           </mat-form-field>
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
               <mat-label>Designation</mat-label>
-              <input matInput type="text" placeholder="User Designation" formControlName="role" [readonly]="!isAdmin" [readonly]="!isEdit" >
+              <input matInput type="text" placeholder="User Designation" formControlName="role"   [readonly]="!issuperAdmin">
             </mat-form-field>            
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>Project</mat-label>
-            <input matInput type="text" placeholder="Project"  [readonly]="!isAdmin" [readonly]="!isEdit">
+            <mat-label>Project</mat-label>           
+            <mat-select     formControlName="project" [disabled]="!issuperAdmin" >
+              <ng-container *ngFor="let role of projectSheetList">
+                <mat-option value="{{role.pproject}}" >{{role.pproject}}</mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>          
   
         <mat-form-field class="w-100 fs-16" appearance="outline">

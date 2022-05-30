@@ -23,6 +23,7 @@ export class ManageUsersComponent implements OnInit {
   employeeList: any;
   hospitalsArray=[];
   displayedColumns: string[] = ['uid', 'assigned', 'name', 'doj', 'view'];
+  issuperAdmin= localStorage.getItem("logRole") == "2" ? true: false;
     
     //dataSource:firebase.firestore.DocumentData[]=[];
      dataSourceone:any;

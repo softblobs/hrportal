@@ -52,6 +52,12 @@ export class LeavesListComponent implements OnInit {
 
 
   dayslist:any[]=[];
+  convert(str:any) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+  }
 
   
 
@@ -101,8 +107,8 @@ export class LeavesListComponent implements OnInit {
                      
         return {        
           id: e.payload.doc.id,                                                   
-          datefrom:e.payload.doc.get("datefrom"),
-          dateto:e.payload.doc.get("dateto"),
+          datefrom:e.payload.doc.get("datefrom").toDate().toISOString().split("T")[0],
+          dateto:e.payload.doc.get("dateto").toDate().toISOString().split("T")[0],
           leavereason:e.payload.doc.get("leavereason"),
           leavetype:e.payload.doc.get("leavetype"),
           days:e.payload.doc.get("days"),
@@ -189,6 +195,8 @@ export class LeavesListComponent implements OnInit {
          }
         }
       })
-    }    
+    }
+    
+    
 }
 

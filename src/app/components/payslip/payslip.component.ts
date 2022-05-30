@@ -205,7 +205,8 @@ export class PayslipComponent implements OnInit {
               let pdf = new jspdf('p', 'mm', 'a4');
               var position = 20;
               pdf.addImage(contentDataURL, 'PNG', 3, position, imgWidth, imgHeight)
-              pdf.save('newPDF.pdf');
+              //pdf.save('newPDF.pdf');
+              pdf.save("payslip"+"-"+ this.arraydata.firstName+"-"+this.arraydata.lastName +"-"+this.monthandyear );
             });
           }          
        }

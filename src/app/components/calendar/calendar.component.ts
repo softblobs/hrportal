@@ -167,7 +167,7 @@ export class CalendarComponent implements OnInit {
       {
         title: 'New event',
         start: startOfDay(new Date()),
-        end: endOfDay(new Date()),        
+        //end: endOfDay(new Date()),        
         color: colors.red,
         draggable: true,
         resizable: {

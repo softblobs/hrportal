@@ -19,6 +19,8 @@ import { Observable, Subject } from 'rxjs';
 import { map, finalize } from "rxjs/operators";
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ProjectService } from 'src/app/services/project.service';
+import { projectInfo } from 'src/app/models/project-data';
 
 @Component({
   selector: 'app-user-detail',
@@ -53,10 +55,13 @@ export class UserDetailComponent implements OnInit {
   selectedUserID = this.userService.selectedUser != null ? this.userService.selectedUser.uid : 0;
   photoURL = this.userService.editSelectedUser.photoURL;
   isEdit = false;
-  issuperAdmin= this.userService.selectedUser.role == "2" ? true: false;
+  //issuperAdmin= localStorage.getItem("logRole") == "2" ? true: false;
+  issuperAdmin= localStorage.getItem("logRole") == "2" && !this.isEdit  ? true: false;
   isAdmin = this.userService.selectedUser.role == "1" ? true: false;
   isAdminEdit = this.isAdmin && !this.isEdit ? true : false;
   error="";
+
+  projectSheetList:any;
   
   
 
@@ -66,7 +71,7 @@ export class UserDetailComponent implements OnInit {
   ref:AngularFireStorageReference | undefined;
   task:AngularFireUploadTask | undefined;
   
-  constructor(private _router: Router,public userService:UserService,private storage: AngularFireStorage,public afs:AngularFirestore) {
+  constructor(private _router: Router,public userService:UserService,private storage: AngularFireStorage,public afs:AngularFirestore,public projectservice:ProjectService) {
     console.log(this.userService.editSelectedUser)
    }
 
@@ -79,6 +84,7 @@ export class UserDetailComponent implements OnInit {
    // this.populateForm(this.userService.editSelectedUser); 
       this.populateForm(JSON.parse(localStorage.getItem('userdata')!))
       this.photoURL=localStorage.getItem('logUrl');
+      this.projectnumber();
 
 
 
@@ -242,4 +248,19 @@ export class UserDetailComponent implements OnInit {
     getToday(): string {
       return new Date().toISOString().split('T')[0]
    }
+
+
+   projectnumber(){
+    this.projectservice.getSheetList().subscribe(data => {             
+      var selectedDataa= data  ;            
+      this.projectSheetList = selectedDataa.map(e => {                    
+        return {        
+          id: e.payload.doc.id,                                                                
+          pproject:e.payload.doc.get("pproject"),
+                           
+        } as projectInfo;     
+     }) 
+     console.log(this.projectSheetList)  ;
+    }); 
+  }
 }
