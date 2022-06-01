@@ -1,23 +1,26 @@
 <!-- Daily Activity -->
 <mat-card class="w-100">
     <mat-card-content>
-      <h4 class="mb-16">View & Manage Users</h4>
-      <button mat-raised-button right class="me-8 mb-8" (click)="onAddUser()" color="primary">Add New User</button>
+      <h4 class="mb-16" class="btn-link"><b>View & Manage Users</b></h4>
+      <button mat-raised-button right class="me-8 mb-8" (click)="onAddUser()" class="btn btn-danger active">Add New User</button>
   
       <div class="table-responsive">
         
         <table mat-table [dataSource]="datasoc" class="text-nowrap w-100">
           
           <!-- Id Column -->
-          <ng-container matColumnDef="uid">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell class="fw-medium" *matCellDef="let element"> {{element.userId}} </td>
-          </ng-container>
+          <ng-container matColumnDef="uid" >
+            <th mat-header-cell  *matHeaderCellDef class="alert alert-primary alert-text-danger align-items-center " style="color:rgb(255, 0, 187);"> <b><i>ID </i></b></th>
+            <td mat-cell class="fw-medium" *matCellDef="let element" > {{element.userId}} </td>
+            
+
+            </ng-container>
+            
   
           <!-- Assigned Column -->
           <ng-container matColumnDef="assigned">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element">
+            <th mat-header-cell *matHeaderCellDef class="alert alert-primary alert-text-danger align-items-center "style="color:rgb(255, 0, 187);"><b> <i>Name</i></b> </th>
+            <td mat-cell *matCellDef="let element" >
               <p class="mb-0 fw-medium">{{ element.firstName }}</p>
               <p class="mb-0 fw-normal op-5">{{ element.work }}</p>
             </td>
@@ -25,9 +28,10 @@
   
           <!-- Project Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Position </th>
+            <th mat-header-cell *matHeaderCellDef class="alert alert-primary alert-text-danger align-items-center" style="color:rgb(255, 0, 187);"> <b><i>lastName</i></b> </th>
             <td mat-cell *matCellDef="let element">
-              <p class="mb-0 fw-medium op-5">{{element.role}}</p>
+              <p class="mb-0 fw-medium op-3">{{element.lastName}}</p>
+              
             </td>
           </ng-container>
   
@@ -41,7 +45,7 @@
   
           <!-- doj Column -->
           <ng-container matColumnDef="doj">
-            <th mat-header-cell *matHeaderCellDef> Project </th>
+            <th mat-header-cell *matHeaderCellDef class="alert alert-primary alert-text-danger align-items-center "style="color:rgb(255, 0, 187);"> <b><i>Project</i></b> </th>
             <td mat-cell *matCellDef="let element">
               <p class="mb-0 fw-medium">{{element.project}}</p>
             </td>
@@ -49,7 +53,7 @@
 
            <!-- view Column -->
            <ng-container matColumnDef="view">
-            <th mat-header-cell *matHeaderCellDef>Details</th>
+            <th mat-header-cell *matHeaderCellDef class="alert alert-primary alert-text-danger align-items-center "style="color:rgb(255, 0, 187);"><b><i>Details</i></b></th>
             <td mat-cell *matCellDef="let element">
               <!-- <p class="mb-0 fw-medium">{{element.id}}</p> -->
               <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary">View</button>

@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class DashboardComponent implements OnInit {
 
   constructor(public authService: AuthenticationService,public userService:UserService) {
+    
     console.log("userservice data:");
     console.log(this.userService.selectedUser);
   }

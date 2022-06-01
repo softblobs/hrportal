@@ -174,6 +174,7 @@ approve(timesht: leaveinfo) {
   }  
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
+    
    
 }
 

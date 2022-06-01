@@ -1,6 +1,6 @@
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
+  flex-basis:0;
 }
 
 .example-headers-align .mat-expansion-panel-header-description {
@@ -11,10 +11,16 @@
 mat-panel-title,
 mat-panel-description {
     font-size: 15px;
+    width: 100px;
+    margin-bottom: 8px;
+    margin-left: 60px;
+    background-color: adjust-color($color: #d0990d,)
 }
 
 .table-responsive {
-    overflow-x: auto;
+    overflow-x:scroll;
+
+
   }
   
   td.mat-cell {

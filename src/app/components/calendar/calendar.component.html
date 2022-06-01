@@ -19,7 +19,7 @@
         Today
       </div>
       <div
-        class="btn btn-primary"
+      class="btn btn-primary"
         mwlCalendarNextView
         [view]="view"
         [(viewDate)]="viewDate"
@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4" style="color:rgb(0, 255, 68);">
     <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
   </div>
   <div class="col-md-4">
@@ -115,7 +115,7 @@
 <!-- Calendar Events -->
 
 <div style="margin-top: 30px;" *ngIf="isAdmin">
-<h3>
+<h3 class="btn-link">
   Holiday List  
   <button class="btn btn-primary float-right" (click)="addEvent()">
     Add new
@@ -126,9 +126,9 @@
 <div class="table-responsive">
 <table class="table table-bordered">
   <thead>
-    <th>Title</th>
-    <th>Date</th>
-    <th colspan="2">Action</th> 
+    <th class="alert alert-danger alert-text-danger align-items-center " style="color:rgb(21, 255, 0);">Title</th>
+    <th class="alert alert-danger alert-text-danger align-items-center " style="color:rgb(21, 255, 0);">Date</th>
+    <th colspan="2" class="alert alert-danger alert-text-danger align-items-center " style="color:rgb(21, 255, 0);">Action</th> 
   </thead>
   <tbody>
     <tr *ngFor="let event of eventsList" >

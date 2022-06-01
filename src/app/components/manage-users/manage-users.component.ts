@@ -24,6 +24,8 @@ export class ManageUsersComponent implements OnInit {
   hospitalsArray=[];
   displayedColumns: string[] = ['uid', 'assigned', 'name', 'doj', 'view'];
     
+  
+    
     //dataSource:firebase.firestore.DocumentData[]=[];
      dataSourceone:any;
     //dataSource:MatTableDataSource<Element>;

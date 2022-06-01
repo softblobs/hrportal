@@ -1,28 +1,28 @@
-<h3>Time Sheet</h3>
+<h3 class="btn-link">Time Sheet</h3>
 
-<h4 style="color:blue;">   
+<h4 style="color:olivedrab;">   
     <mat-form-field style="float: right;">
     <input matInput [matDatepicker]="picker" [(ngModel)]="curDate" [max]="maxDate"   [min]="minDate" placeholder="Choose a date" (dateChange)="onChangeEvent($event)" >
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker ></mat-datepicker>
   </mat-form-field>  
-  <div class="clearfix"></div>  
+  <div class="clearfix"></div>
  
   
 </h4>
-<button class="btn btn-primary float-right" (click)="addEvent()">
-  Add new
+<button  (click)="addEvent()" class="btn btn-danger active float-right">
+  <b>Add new </b> 
 </button>
 <br/>
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
       <tr>          
-        <th>Task</th>
-        <th>Description</th>
-        <th>Hours</th>  
-        <th>Status</th>
-        <th colspan="2">Action</th>   
+        <th style="color:rgb(255, 0, 0);">Task</th>
+        <th  style="color:rgb(255, 0, 0);">Description</th>
+        <th style="color:rgb(255, 0, 0);">Hours</th>  
+        <th style="color:rgb(255, 0, 0);">Status</th>
+        <th style="color:rgb(255, 0, 0);" colspan="2">Action</th>   
       </tr>
     </thead>
 
@@ -55,8 +55,8 @@
         <td>
           {{list.status}}
         </td> 
-        <td> <button  class="btn btn-primary active" [disabled]="list.status == 'Approved'" (click)="update(list)">Save</button> </td>
-        <td><button id="remove" class="btn btn-danger" [disabled]="list.status == 'Approved'" (click)="delete(list.id)">Delete</button></td>          
+        <td> <button  class="btn btn-danger" [disabled]="list.status == 'Approved'" (click)="update(list)">Save</button> </td>
+        <td><button id="remove" class="btn btn-primary active" [disabled]="list.status == 'Approved'" (click)="delete(list.id)">Delete</button></td>          
       </tr>
       
     </tbody>    

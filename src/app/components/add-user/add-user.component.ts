@@ -93,6 +93,7 @@ export class AddUserComponent implements OnInit {
 
       
       firstName:new FormControl('',[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
+      middleName:new FormControl('',Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
       lastName:new FormControl('',Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
       email:new FormControl('', [Validators.email,Validators.required]),
       //password: new FormControl('',[ Validators.required,Validators.minLength(8)]),
@@ -148,6 +149,11 @@ export class AddUserComponent implements OnInit {
   get firstName(){
     return this.signUpForm.get('firstName');
    }
+
+   get MiddleName(){
+    return this.signUpForm.get('middleName');
+  }
+   
    get lastName(){
     return this.signUpForm.get('lastName');
    }

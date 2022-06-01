@@ -8,10 +8,12 @@ import { ProfileUser } from 'src/app/models/user-profile';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
+
 interface sidebarMenu {
   link: string;
   icon: string;
   menu: string;
+  
 }
 
 @Component({
@@ -57,7 +59,7 @@ export class FullComponent {
        this.rolee=localStorage.getItem('logRole')
        this.isAdmin = this.rolee== "1" || this.rolee== "2" ? true:false;
        this.photourl=localStorage.getItem('logUrltime');
-       console.log(localStorage.getItem('logUrltime'));
+       console.log(localStorage.getItem('logUrltime'));   
 
        this.sidebarMenu= this.isAdmin ? this.adminSideBarMenu : this.userSideBarMenu;
 
@@ -82,43 +84,44 @@ export class FullComponent {
 
 
     {
-      link: "/manage-users",
-      icon: "layout",
+      
+      link: "/manage-users",      
+      icon: "list",
       menu: "Manage Users",
     },
     {
       link: "/calendar",
-      icon: "layout",
+      icon: "calendar",
       menu: "Calendar",
     },
     {
       link: "/vm-details",
-      icon: "layout",
+      icon: "settings",
       menu: "Manage VMs",
     },
     {
       link: "/time-sheet",
-      icon: "layout",
+      icon: "folder",
       menu: "Time Sheet",
     },
     {
       link: "/applyleave",
-      icon: "layout",
+      icon: "edit",
       menu: "Leave Request",
     },
     {
       link: "/leaves-list",
-      icon: "layout",
+      icon: "search",
       menu: "Leaves List",
     },
     {
       link: "/approve-timesheet",
-      icon: "layout",
+      icon: "info",
       menu: "Approve Timesheet",
     },
     {
       link: "/approve-leaverequest",
-      icon: "layout",
+      icon: "share",
       menu: "Approve Leave",
     }
 
@@ -126,7 +129,7 @@ export class FullComponent {
   userSideBarMenu: sidebarMenu[] = [
     {
       link: "/user-detail",
-      icon: "layout",
+      icon: "home",
       menu: "User Details",
     },
     // {
@@ -136,22 +139,22 @@ export class FullComponent {
     // },
     {
       link: "/calendar",
-      icon: "layout",
+      icon:"save",
       menu: "Calendar",
     },
     {
       link: "/time-sheet",
-      icon: "layout",
+      icon: "settings",
       menu: "Time Sheet",
     },
     {
       link: "/applyleave",
-      icon: "layout",
+      icon: "edit",
       menu: "Leave Request",
     },
     {
-      link: "/leaves-list",
-      icon: "layout",
+      link: "/leaves-list ",
+      icon: "list",
       menu: "Leaves List",
     }
 

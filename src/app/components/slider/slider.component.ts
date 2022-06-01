@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {ThemePalette} from '@angular/material/core';
+
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
 })
 export class SliderComponent implements OnInit {
+  color: ThemePalette = 'accent';
+
 
   constructor() { }
 

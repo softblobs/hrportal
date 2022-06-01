@@ -3,6 +3,9 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 
+
+
+
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 
@@ -11,7 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FullComponent } from './layouts/full/full.component';
-import { DemoFlexyModule } from './demo-flexy-module'
+import { DemoFlexyModule } from './demo-flexy-module';
+
 
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -25,10 +29,15 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import {AngularFireStorageReference,AngularFireUploadTask,BUCKET} from "@angular/fire/compat/storage";
 import { CommonModule } from '@angular/common';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    FullComponent,
+    FullComponent
+    
+    
   ],
   imports: [
     BrowserModule,

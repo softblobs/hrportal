@@ -12,6 +12,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -19,6 +20,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ActivityComponent,
     ProductComponent,
     CardsComponent,
+    
+    
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     SalesComponent,
     ActivityComponent,
     ProductComponent,
+    
+    
   ]
 })
 export class DashboardModule { }

@@ -42,6 +42,7 @@ import { ApplyleaveComponent } from './applyleave/applyleave.component';
 import { ApproveLeaverequestComponent } from './approve-leaverequest/approve-leaverequest.component';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { RolesComponent } from './roles/roles.component'; 
+
 //End
 
 

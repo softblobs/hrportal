@@ -1,8 +1,8 @@
 
 <div style="display:inline;">
-<h3>Approve Time Sheet</h3>
+<h3 class="btn-link">Approve Time Sheet</h3>
 
-<h4 style="color:blue;">   
+<h4 style="color:rgb(0, 255, 179);">   
    
   <select style="float: left; margin-top: 34px; width: 220px;"  formControlName="userName" (change)="changeUser($event)" aria-placeholder="select">    
     <option [ngValue]="undefined" selected disabled="disabled">Select User</option>
@@ -20,17 +20,17 @@
 
 </h4>
 
-<button class="btn btn-primary float-right" (click)="approve(approveSheetList)" >Approve</button>
+<button class="btn btn-danger active float-right" (click)="approve(approveSheetList)" >Approve</button>
 <br/>
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead class="headerstyle">
       <tr>                
-        <th>Select</th>        
-        <th>Task</th>
-        <th>Description</th>
-        <th>Hours</th>  
-        <th>Status</th> 
+        <th style="color:rgb(255, 0, 187);"><b>Select</b></th>        
+        <th style="color:rgb(255, 0, 187);">Task</th>
+        <th style="color:rgb(255, 0, 187);">Description</th>
+        <th style="color:rgb(255, 0, 187);">Hours</th>  
+        <th style="color:rgb(255, 0, 187);">Status</th> 
       </tr>
     </thead>
     <tbody>      

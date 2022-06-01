@@ -1,0 +1,36 @@
+.example-card {
+    width: 400px;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    background-color: adjust-color($color: #0dc3d0,)
+    
+  };
+
+  .example-cardd{
+    width: 400px;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    background-color: adjust-color($color: #eee416,)
+    
+  }
+    
+  
+
+  .btn-link{
+    color:rgb(255, 136, 0);
+    font-size: 1.5rem;
+}
+
+.btn-linkk{
+    color:rgb(99, 194, 78);
+    font-size: 1.5rem;
+}
+
+.btn-linkkk{
+    color:rgb(8, 0, 255)
+}
+
+span {
+    
+    margin: 10px    /* apply the needed vertical margins */
+}

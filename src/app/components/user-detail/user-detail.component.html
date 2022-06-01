@@ -1,7 +1,7 @@
 <!-- Form Layout -->
 <div class="card">
     <div class="card-body">
-      <h4 class="mb-32">View / Edit User</h4>
+      <h4 class="mb-32" style="color:rgb(0, 255, 68);">View / Edit User</h4>
       
       
       <form [formGroup]="resetformone">
@@ -25,27 +25,27 @@
     </div>
 
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Employee ID</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Employee ID</mat-label>
           <input matInput type="text" value="User" placeholder="Employee ID" formControlName="userId" readonly>
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>First Name</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">First Name</mat-label>
           <input matInput type="text" value="User" placeholder="Enter user's first name" formControlName="firstName" [readonly]="!isAdmin" >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Last Name</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Last Name</mat-label>
           <input matInput type="text" value="User" placeholder="Enter user's last name" formControlName="lastName" [readonly]="!isEdit">
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Date of Birth</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Date of Birth</mat-label>
           <input matInput type="date" placeholder="Date of Birth"   formControlName="dob" [max]="getToday()" [readonly]="!isEdit">
         </mat-form-field>
 
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Contact Number</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Contact Number</mat-label>
           <input matInput type="text" placeholder="Enter Contact Number" maxlength="10" formControlName="phone" [readonly]="!isEdit">
           <mat-error *ngIf="phone?.errors?.['required']">
             Contact number is required
@@ -56,38 +56,38 @@
         </mat-form-field>
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Personal Mail</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Personal Mail</mat-label>
           <input matInput type="email" placeholder="Enter user's personal email"  formControlName="email" [readonly]="!isEdit" readonly>
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Official Mail</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Official Mail</mat-label>
           <input matInput type="email" placeholder="Enter company email"   formControlName="officeEmail" [readonly]="!isEdit">
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>Date of Joining</mat-label>
+            <mat-label style="color:rgb(255, 0, 0);">Date of Joining</mat-label>
             <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!isAdmin">
           </mat-form-field>
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
-              <mat-label>Designation</mat-label>
+              <mat-label style="color:rgb(255, 0, 0);">Designation</mat-label>
               <input matInput type="text" placeholder="User Designation" formControlName="role" [readonly]="!isAdmin" >
             </mat-form-field>            
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>Project</mat-label>
+            <mat-label style="color:rgb(255, 0, 0);">Project</mat-label>
             <input matInput type="text" placeholder="Project"  formControlName="project" [readonly]="!isEdit">
           </mat-form-field>          
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Address for Communication</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">Address for Communication</mat-label>
           <textarea matInput [readonly]="!isEdit" rows="5" placeholder="Address for Communication" formControlName="address"></textarea>
         </mat-form-field>
         
 
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>skill set</mat-label>
+          <mat-label style="color:rgb(255, 0, 0);">skill set</mat-label>
           <textarea matInput [readonly]="!isEdit" rows="5" placeholder="Address for Communication" formControlName="skillSet"></textarea>
         </mat-form-field>
 

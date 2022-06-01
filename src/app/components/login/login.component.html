@@ -8,7 +8,7 @@
       <img src="assets/images/sb.png" alt="" width="250" height="125">
       <form [formGroup]="loginForm" (ngSubmit)="submit()">         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>Email</mat-label>
+            <mat-label style="color:rgb(47, 0, 255);">Email</mat-label>
             <input matInput type="email" placeholder="Enter email" formControlName="email">
             <mat-error *ngIf="email?.errors?.['required']">
               Email address is required
@@ -19,7 +19,7 @@
           </mat-form-field>
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label style="color:rgb(47, 0, 255);">Password</mat-label>
           <input matInput type="password" placeholder="Enter password" formControlName="password">
           <mat-error *ngIf="password?.errors?.['required']">
             Password is required

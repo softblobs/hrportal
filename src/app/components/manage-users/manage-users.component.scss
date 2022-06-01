@@ -1,22 +1,35 @@
 .table-responsive {
-    overflow-x: auto;
+    overflow-x:visible;
   }
   
-  td.mat-cell {
-    padding: 16px;
-  }
   
-  th.mat-header-cell:first-of-type,
-  td.mat-cell:first-of-type,
-  td.mat-footer-cell:first-of-type {
+  tr.mat-row:nth-child(even)
+   {
     padding: 16px;
+    table-layout:inherit;
+    background-color:burlywood;
+  }
+ 
+
+  
+  
+  th.mat-header-cell:first-of-type
+   {
+    padding: 16px;
+    table-layout:inherit;
+    background-color:darkgreen;
   }
   
   th.mat-header-cell {
     padding: 16px;
+    table-layout:fixed;
+    background-color:darkgreen;
   }
   
   .mat-header-cell {
     font-size: 14px;
+    table-layout:fixed;
+    background-color:darkorange;
   }
+  
   
