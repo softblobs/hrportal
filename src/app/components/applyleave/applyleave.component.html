@@ -24,7 +24,7 @@
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
             <mat-label>Leave days</mat-label>
-            <input matInput type="number" min="1"   formControlName="days">
+            <input matInput type="number" min="1"   formControlName="days" [(ngModel)]="LeavedaysData">
             <mat-error *ngIf="days?.errors?.['required']">
                 date from is required
             </mat-error>

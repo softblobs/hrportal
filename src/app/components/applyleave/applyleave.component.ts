@@ -64,6 +64,7 @@ export class ApplyleaveComponent implements OnInit {
   date1:any;
   date2:any;
   total:any;
+  LeavedaysData:any;
   
 
 
@@ -105,16 +106,20 @@ leavedays:any;
 
 
   submit(){
-    alert(this.datefrom);
-    console.log(this.datefrom);
     if(this.leavedays==this.datefrom)
     alert(this.leaveform.value.dateto);
-    this.date1 = new Date('12/7/2022');
-    this.date2 = new Date('12/7/2022');
+    this.date1 =this.datefrom?.value;
+    this.date2 = this.dateto?.value;
     this.total = Math.abs(this.date2 - this.date1);
-    const diffDays = Math.ceil(this.total / (1000*60*60 * 24)); 
-    console.log(this.total + " milliseconds");
-    console.log(diffDays + " days");
+    var diffDays = Math.ceil(this.total / (1000*60*60 * 24)); 
+    
+if(this.LeavedaysData==diffDays)
+{
+console.log("date successfully")
+}
+else{
+  console.log("Please enter does not match dates.!")
+}
     
     this.leaveservice.applyleavemethod(this.leaveform.value.dateto);
     
