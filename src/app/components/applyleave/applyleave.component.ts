@@ -61,6 +61,11 @@ export class ApplyleaveComponent implements OnInit {
   customerArrayU:any[]=[];
   dayss:any[] = []; 
   dayscout:any;
+
+  date1:any;
+  date2:any;
+  total:any;
+  LeavedaysData:any;
   
 
 
@@ -75,6 +80,7 @@ export class ApplyleaveComponent implements OnInit {
     return new Date().toISOString().split('T')[0]
   }
 
+  minDate = new Date();
 
   ngOnInit(): void {
     this.customerArray=  [];    
@@ -101,12 +107,32 @@ export class ApplyleaveComponent implements OnInit {
 
 
   submit(){
-    this.leaveservice.applyleavemethod(this.leaveform.value);
+
+    this.date1 =this.datefrom?.value;
+    this.date2 = this.dateto?.value;
+    this.total = Math.abs(this.date2 - this.date1);
+   // const diffDays = Math.ceil(this.total / (1000*60*60 * 24)); 
+    console.log(this.total);
+   // console.log(diffDays + " days");
+    var diffDays = Math.ceil(this.total / (1000*60*60 * 24) +1); 
+    console.log(diffDays);
+if(this.leaveform.value.days==diffDays)
+{
+
+  this.leaveservice.applyleavemethod(this.leaveform.value);
     
-    this.leaveform.reset();
+    //this.leaveform.reset();
     
     this.error="Leave Request succesfully Submitted"
     setTimeout(() => {this.error="";}, 3000);
+    console.log("date successfully")
+}
+else{
+  this.error="leaves days should match"
+    setTimeout(() => {this.error="";}, 3000);
+}
+
+    
    }
 
    getleaves(){

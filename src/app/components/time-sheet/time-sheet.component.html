@@ -88,7 +88,7 @@
           
           id="hour" 
          required min="1" max="12"
-         ngModel name="hour" #hour="ngModel"
+         ngModel name="hour" #hour="ngModel"  onkeydown="return false"
           
 
           class="form-control"
@@ -116,7 +116,7 @@
           {{list.status}}
         </td> 
         <td> <button  class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)">Save</button> </td>
-        <td> <button  class="btn btn-primary active" [disabled]="list.status == 'Approved' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>
+        <td> <button  class="btn btn-primary active" [disabled]="list.status != 'pending' || list.status == 'Approved' ||  hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>
         <td><button id="remove" class="btn btn-danger" [disabled]="list.status == 'Approved'" (click)="delete(list.id)">Delete</button></td>          
       </tr>
     

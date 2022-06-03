@@ -27,7 +27,7 @@
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
             <mat-label>Leave days</mat-label>
-            <input matInput type="number" min="1"   formControlName="days">
+            <input matInput type="number" min="1"  max="12" formControlName="days" onkeydown="return false">
             <mat-error *ngIf="days?.errors?.['required']">
                 date from is required
             </mat-error>
@@ -40,7 +40,7 @@
 
           <mat-form-field class="w-75 fs-16" appearance="outline">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="d1" formControlName="datefrom">
+            <input matInput [matDatepicker]="d1" formControlName="datefrom" [min]="minDate"  onkeydown="return false">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="d1"></mat-datepicker-toggle>
             <mat-datepicker #d1></mat-datepicker>
@@ -51,7 +51,7 @@
 
           <mat-form-field class="w-75 fs-16" appearance="outline" >
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="d2" formControlName="dateto">
+            <input matInput [matDatepicker]="d2" formControlName="dateto" [min]="minDate"  onkeydown="return false">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="d2"></mat-datepicker-toggle>
             <mat-datepicker #d2></mat-datepicker>
