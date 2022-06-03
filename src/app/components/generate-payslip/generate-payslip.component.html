@@ -1,5 +1,5 @@
 <div style="display:inline;">
-    <h3>Generate Payslip</h3>
+    <h3 style="color:darkgreen;">Generate Payslip</h3>
     
     <h4 style="color:blue;">   
        
@@ -19,7 +19,7 @@
     --> 
     
     </h4>
-    <mat-form-field style="float: right;">    
+    <mat-form-field style="float: right;" class="btn-link">    
       <input matInput [matDatepicker]="picker" [(ngModel)]="curDate" [max]="getToday()"   [min]="minDate" placeholder="Choose a date" (dateChange)="onChangeEvent($event)" >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker ></mat-datepicker>    
@@ -38,9 +38,9 @@
         <thead class="headerstyle">
           <tr>                
             <!--<th>Select</th>  -->      
-            <th>User ID</th>
-            <th>Bank Name</th>
-            <th>Bank Account</th>  
+            <th style="color:darkred;">User ID</th>
+            <th style="color:darkred;">Bank Name</th>
+            <th style="color:darkred;">Bank Account</th>  
             
           </tr>
         </thead>

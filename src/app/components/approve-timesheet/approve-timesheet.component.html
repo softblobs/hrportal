@@ -1,11 +1,11 @@
 
 <div style="display:inline;">
-<h3>Approve Time Sheet</h3>
+<h3 style="color:cadetblue;">Approve Time Sheet</h3>
 
 <h4 style="color:blue;">   
    
   <select style="float: left; margin-top: 34px; width: 220px;"  formControlName="userName" (change)="changeUser($event)" aria-placeholder="select">    
-    <option [ngValue]="undefined" selected disabled="disabled">Select User</option>
+    <option [ngValue]="undefined" selected disabled="disabled" style="color:crimson;">Select User</option>
     <option *ngFor="let user of approveDropSheetList" [ngValue]="user.userId">   
       {{ user.userName }}
     </option>
@@ -26,11 +26,11 @@
   <table class="table table-bordered">
     <thead class="headerstyle">
       <tr>                
-        <th>Select</th>        
-        <th>Task</th>
-        <th>Description</th>
-        <th>Hours</th>  
-        <th>Status</th> 
+        <th style="color:darkgreen;">Select</th>        
+        <th style="color:darkgreen;">Task</th>
+        <th style="color:darkgreen;">Description</th>
+        <th style="color:darkgreen;">Hours</th>  
+        <th style="color:darkgreen;">Status</th> 
       </tr>
     </thead>
     <tbody>      

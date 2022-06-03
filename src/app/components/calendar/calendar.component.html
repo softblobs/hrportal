@@ -115,7 +115,7 @@
 <!-- Calendar Events -->
 
 <div style="margin-top: 30px;" *ngIf="isAdmin">
-<h3>
+<h3 style="color:blueviolet;">
   Holiday List  
   <button class="btn btn-primary float-right" (click)="addEvent()">
     Add new
@@ -126,9 +126,9 @@
 <div class="table-responsive">
 <table class="table table-bordered">
   <thead>
-    <th>Title</th>
-    <th>Date</th>
-    <th colspan="2">Action</th> 
+    <th style="color:crimson;">Title</th>
+    <th style="color:crimson;">Date</th>
+    <th colspan="2" style="color:crimson;">Action</th> 
   </thead>
   <tbody>
     <tr *ngFor="let event of eventsList" >

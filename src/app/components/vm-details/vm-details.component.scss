@@ -11,6 +11,7 @@
 mat-panel-title,
 mat-panel-description {
     font-size: 15px;
+    background-color:burlywood;
 }
 
 .table-responsive {
@@ -25,10 +26,12 @@ mat-panel-description {
   td.mat-cell:first-of-type,
   td.mat-footer-cell:first-of-type {
     padding: 16px;
+    
   }
   
   th.mat-header-cell {
     padding: 16px;
+    background-color:cadetblue;
   }
   
   .mat-header-cell {

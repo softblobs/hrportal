@@ -14,9 +14,28 @@
   
   th.mat-header-cell {
     padding: 16px;
+    background-color: chocolate;
   }
   
   .mat-header-cell {
     font-size: 14px;
+    background-color: chocolate;
   }
+  tr.mat-row:nth-child(even){
+    background-color:darkseagreen;
+  }
+  .btn-link{
+    color:rgb(0, 140, 255)
+}
+
+.btn-linkk{
+    color:chartreuse;
+}
+
+.btn-linkkk{
+    color:rgb(255, 0, 85)
+}
+.btn-link1{
+  color:darkgreen;
+}
   
