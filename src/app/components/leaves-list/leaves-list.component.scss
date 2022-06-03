@@ -14,3 +14,13 @@ span {
     
     margin: 10px    /* apply the needed vertical margins */
 }
+
+th.mat-header-cell{
+    background-color:coral;
+
+}
+tr:nth-child(even){
+
+    background-color:darkgray;
+
+}

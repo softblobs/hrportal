@@ -61,6 +61,9 @@ export class ApplyleaveComponent implements OnInit {
   customerArrayU:any[]=[];
   dayss:any[] = []; 
   dayscout:any;
+  date1:any;
+  date2:any;
+  total:any;
   
 
 
@@ -70,11 +73,12 @@ export class ApplyleaveComponent implements OnInit {
   {id:"sick",value:"Sick"},
   {id:"Casual",value:"Casual"},
   {id:"other",value:"Other"}];
-
+  
+leavedays:any;
   getToday(): string {
     return new Date().toISOString().split('T')[0]
   }
-
+  
 
   ngOnInit(): void {
     this.customerArray=  [];    
@@ -101,7 +105,18 @@ export class ApplyleaveComponent implements OnInit {
 
 
   submit(){
-    this.leaveservice.applyleavemethod(this.leaveform.value);
+    alert(this.datefrom);
+    console.log(this.datefrom);
+    if(this.leavedays==this.datefrom)
+    alert(this.leaveform.value.dateto);
+    this.date1 = new Date('12/7/2022');
+    this.date2 = new Date('12/7/2022');
+    this.total = Math.abs(this.date2 - this.date1);
+    const diffDays = Math.ceil(this.total / (1000*60*60 * 24)); 
+    console.log(this.total + " milliseconds");
+    console.log(diffDays + " days");
+    
+    this.leaveservice.applyleavemethod(this.leaveform.value.dateto);
     
     this.leaveform.reset();
     
@@ -162,5 +177,6 @@ export class ApplyleaveComponent implements OnInit {
          }
         }
       })
-    }    
+    }  
+
 }
