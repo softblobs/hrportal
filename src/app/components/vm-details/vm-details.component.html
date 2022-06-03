@@ -5,7 +5,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
             <!--    <mat-panel-title> View available VMs </mat-panel-title> -->
-                <mat-panel-description> List of all VMs
+                <mat-panel-description style="color:rgb(148, 6, 6)"> List of all VMs
                   <!-- <mat-icon>account_circle</mat-icon> -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
@@ -15,13 +15,13 @@
           
                   <!-- Id Column -->
                   <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef>VM Id </th>
+                    <th mat-header-cell *matHeaderCellDef style="color:plum;">VM Id </th>
                     <td mat-cell class="fw-medium" *matCellDef="let element"> {{element.vmid}} </td>
                   </ng-container>
           
                   <!-- Project Column -->
                   <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> VM Name </th>
+                    <th mat-header-cell *matHeaderCellDef style="color:plum;"> VM Name </th>
                     <td mat-cell *matCellDef="let element">
                       <p class="mb-0 fw-medium">{{element.vmname}}</p>
                     </td>
@@ -29,7 +29,7 @@
           
                   <!-- Priority Column -->
                   <ng-container matColumnDef="isActive">
-                    <th mat-header-cell *matHeaderCellDef> VM Active </th>
+                    <th mat-header-cell *matHeaderCellDef style="color:plum;"> VM Active </th>
                     <td mat-cell *matCellDef="let element">                      
                         <p class="mb-0 fw-medium ">{{element.isActive}}</p>
                         <!-- <span class="badge {{element.isActive}} rounded-pill">{{element.isActive}</span> -->
@@ -38,7 +38,7 @@
         
                    <!-- view Column -->
                    <ng-container matColumnDef="user">
-                    <th mat-header-cell *matHeaderCellDef>Assigned User</th>
+                    <th mat-header-cell *matHeaderCellDef style="color:plum;">Assigned User</th>
                     <td mat-cell *matCellDef="let element">
                       <p class="mb-0 fw-medium">{{element.vmtype}}</p>
                       <!-- <button mat-raised-button class="me-1 mb-1" (click)="onView()" color="primary">View</button> -->
@@ -46,7 +46,7 @@
                   </ng-container>
 
                   <ng-container matColumnDef="delete">
-                    <th mat-header-cell *matHeaderCellDef>Delete VM</th>
+                    <th mat-header-cell *matHeaderCellDef style="color:plum;">Delete VM</th>
                     <td mat-cell *matCellDef="let element">
                       <button mat-raised-button class="me-1 mb-1" color="primary" (click)="Deletevm(element.id)"   >Delete</button>
                     </td>
@@ -63,27 +63,27 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                <!-- <mat-panel-title> Add a VM </mat-panel-title>  -->
-                <mat-panel-description> Add a VM  </mat-panel-description>
+                <mat-panel-description style="color:rgb(148, 6, 6)"> Add a VM  </mat-panel-description>
               </mat-expansion-panel-header>
               
               <form [formGroup]="vmForm" >
                 <mat-form-field class="w-100 fs-16" appearance="outline">
-                  <mat-label>VM name</mat-label>
+                  <mat-label style="color:mediumvioletred;">VM name</mat-label>
                   <input matInput type="text" value="" placeholder="Enter VM name" formControlName="vmname">
                 </mat-form-field>
           
                 <mat-form-field class="w-100 fs-16" appearance="outline">
-                  <mat-label>VM ID</mat-label>
+                  <mat-label style="color:mediumvioletred;">VM ID</mat-label>
                   <input matInput type="text" placeholder="Enter VM ID" value="CHQ-MICROKNOT" formControlName="vmid">
                 </mat-form-field>
                   
                 <mat-form-field class="w-100 fs-16" appearance="outline">
-                    <mat-label>VM User Name</mat-label>
+                    <mat-label style="color:mediumvioletred;">VM User Name</mat-label>
                     <input matInput type="text" placeholder="VM User Name" formControlName="vmusername">
                   </mat-form-field>
           
                 <mat-form-field class="w-100 fs-16" appearance="outline">
-                  <mat-label>VM Password</mat-label>
+                  <mat-label style="color:mediumvioletred;">VM Password</mat-label>
                   <input matInput type="text" placeholder="Enter VM password" formControlName="vmpassword">
                 </mat-form-field>
         
@@ -129,7 +129,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                <!-- <mat-panel-title> Assing VM to User </mat-panel-title>-->
-                <mat-panel-description> Assing VM to User
+                <mat-panel-description style="color:rgb(148, 6, 6)"> Assing VM to User
                   <!-- <mat-icon>account_circle</mat-icon> -->
                 </mat-panel-description>
               </mat-expansion-panel-header>
@@ -139,7 +139,7 @@
               
 
               <mat-form-field class="w-100 fs-16" appearance="outline">
-                <mat-label>Select User</mat-label>                
+                <mat-label style="color:mediumspringgreen;">Select User</mat-label>                
                 <mat-select  placeholder="Role of Employee"  formControlName="firstName" >
                   <ng-container *ngFor="let user of customerArrayU">
                     <mat-option value="{{user.firstName}}">{{user.firstName}}</mat-option>
@@ -148,7 +148,7 @@
               </mat-form-field>
 
               <mat-form-field class="w-100 fs-16" appearance="outline">
-                <mat-label>Select VM</mat-label>               
+                <mat-label style="color:mediumspringgreen;">Select VM</mat-label>               
                 <mat-select  placeholder="Role of Employee"  formControlName="userid" >
                   <ng-container *ngFor="let user of customerArray">
                     <mat-option value="{{user.vmid}}">{{user.vmid}}</mat-option>

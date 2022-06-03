@@ -1,6 +1,6 @@
-<h3>Time Sheet</h3>
+<h3 style="color:rgb(86, 11, 11)">Time Sheet</h3>
 
-<h4 style="color:blue;">   
+<h4 style="color:rgb(238, 18, 161);">   
     <mat-form-field style="float: right;">
     <input matInput [matDatepicker]="picker" [(ngModel)]="curDate" [max]="maxDate"   [min]="minDate" placeholder="Choose a date" (dateChange)="onChangeEvent($event)" >
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -18,11 +18,11 @@
   <table class="table table-bordered">
     <thead>
       <tr>          
-        <th>Task</th>
-        <th>Description</th>
-        <th>Hours</th>  
-        <th>Status</th>
-        <th colspan="2">Action</th>   
+        <th style="color:rgb(15, 59, 190);">Task</th>
+        <th style="color:rgb(15, 59, 190);">Description</th>
+        <th style="color:rgb(15, 59, 190);">Hours</th>  
+        <th style="color:rgb(15, 59, 190);">Status</th>
+        <th colspan="2" style="color:rgb(15, 59, 190);">Action</th>   
       </tr>
     </thead>
 

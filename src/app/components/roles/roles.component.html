@@ -2,17 +2,17 @@
 <div >
   <mat-card class="example-cardd">
     <mat-card-content>
-      <h4 class="mb-60">Time sheet</h4>
-      <span ><a  class="btn-link"   >    Total Timesheets Applied    :{{alltimel}}</a>             </span>  
-      <span ><a  class="btn-linkk"  (click)="fortimelink()" >Total Timesheets Pending  :{{pendingtimel}}</a>    </span>            
+      <h4 class="mb-60" style="color:darkgreen;">Time sheet</h4>
+      <span ><a  class="btn-link"   >    <h4>Total Timesheets Applied    :{{alltimel}}</h4></a>             </span>  
+      <span ><a  class="btn-linkk"  (click)="fortimelink()" ><h4>Total Timesheets Pending  :{{pendingtimel}}</h4></a>    </span>            
     </mat-card-content>
   </mat-card>
 
   <mat-card class="example-cardd">
     <mat-card-content>
-      <h4 class="mb-60">Leave Info</h4>
-      <span ><a  class="btn-link"   >    Total Leaves Applied    :{{allleavel}}</a>             </span>  
-      <span ><a  class="btn-linkk" (click)="forleavelink()"  >Total Leaves Pending  :{{pendingleavel}}</a>    </span> 
+      <h4 class="mb-60" style="color:rgb(17, 211, 56);">Leave Info</h4>
+      <span ><a  class="btn-link"   >   <h4> Total Leaves Applied    :{{allleavel}}</h4></a>             </span>  
+      <span ><a  class="btn-linkk" (click)="forleavelink()"  ><h4>Total Leaves Pending  :{{pendingleavel}}</h4></a>    </span> 
            
     </mat-card-content>
   </mat-card>
@@ -21,7 +21,7 @@
 
 <mat-card class="example-card">
     <mat-card-content>
-      <h4 class="mb-60">Roles</h4>    
+      <h4 class="mb-60" style="color:cyan;">Roles</h4>    
     <button class="btn btn-primary float-right" (click)="addEvent()"  [disabled]="!isSuperAdmin">
       Add new
     </button>
@@ -30,9 +30,9 @@
       <table class="table table-bordered">
         <thead>
           <tr>          
-            <th>Roles</th>
+            <th style="color:darkmagenta;">Roles</th>
             
-            <th colspan="2">Action</th>   
+            <th colspan="2" style="color:darkmagenta;">Action</th>   
           </tr>
         </thead>
     
@@ -71,7 +71,7 @@
   
   <mat-card class="example-cardd">
     <mat-card-content>
-      <h4 class="mb-60">Projects</h4>
+      <h4 class="mb-60" style="color:indianred;">Projects</h4>
       <button class="btn btn-primary float-right" (click)="paddEvent()" [disabled]="!isSuperAdmin">
         Add
       </button>
@@ -80,9 +80,9 @@
         <table class="table table-bordered">
           <thead>
             <tr>          
-              <th>projects</th>
+              <th style="color:darkmagenta;">projects</th>
               
-              <th colspan="2">Action</th>   
+              <th colspan="2" style="color:darkmagenta;">Action</th>   
             </tr>
           </thead>
       

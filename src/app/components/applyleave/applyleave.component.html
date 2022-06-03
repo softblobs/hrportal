@@ -1,9 +1,9 @@
 <mat-card>
     <mat-card-content>
-        <h4 class="mb-16">Apply Leave</h4>
+        <h4 class="mb-16" style="color:rgb(210, 36, 135)">Apply Leave</h4>
          <form [formGroup]="leaveform" >
         <mat-form-field class="w-75 fs-16"  appearance="outline">
-            <mat-label>Leave type</mat-label>
+            <mat-label style="color:rgb(20, 110, 110)">Leave type</mat-label>
             <mat-select formControlName="leavetype" placeholder="Select leave type" >
               <ng-container *ngFor="let leavetype of leavetypes">
                 <mat-option value="{{leavetype.id}}">{{leavetype.value}}</mat-option>
@@ -15,7 +15,7 @@
            </mat-form-field>
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Leave Reason</mat-label>
+          <mat-label style="color:rgb(20, 110, 110)">Leave Reason</mat-label>
           <input matInput type="text" placeholder="Enter user's LastName" maxlength="30"  formControlName="leavereason"/>
           <mat-error *ngIf="leavetype?.errors?.['required']">
             Leave reason is required
@@ -23,7 +23,7 @@
         </mat-form-field>
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
-            <mat-label>Leave days</mat-label>
+            <mat-label style="color:rgb(20, 110, 110)">Leave days</mat-label>
             <input matInput type="number" min="1"   formControlName="days" [(ngModel)]="LeavedaysData">
             <mat-error *ngIf="days?.errors?.['required']">
                 date from is required
@@ -36,7 +36,7 @@
 
 
           <mat-form-field class="w-75 fs-16" appearance="outline">
-            <mat-label>Choose From Date</mat-label>
+            <mat-label style="color:rgb(20, 110, 110)">Choose From Date</mat-label>
             <input matInput [matDatepicker]="d1" formControlName="datefrom">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="d1"></mat-datepicker-toggle>
@@ -47,7 +47,7 @@
           </mat-form-field>
 
           <mat-form-field class="w-75 fs-16" appearance="outline" >
-            <mat-label>Choose To Date</mat-label>
+            <mat-label style="color:rgb(20, 110, 110)">Choose To Date</mat-label>
             <input matInput [matDatepicker]="d2" formControlName="dateto">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="d2"></mat-datepicker-toggle>
