@@ -34,7 +34,7 @@ export class ApplyleaveComponent implements OnInit {
   
   leaveform=new FormGroup({
        leavetype:new FormControl('',Validators.required),
-       leavereason:new FormControl('',Validators.required),    
+       leavereason:new FormControl('',[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),    
        datefrom:new FormControl('', Validators.required),
        dateto:new FormControl('',Validators.required),
        days:new FormControl('',[ Validators.required,Validators.max(8)]),

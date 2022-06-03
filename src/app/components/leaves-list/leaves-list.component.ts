@@ -107,8 +107,8 @@ export class LeavesListComponent implements OnInit {
                      
         return {        
           id: e.payload.doc.id,                                                   
-          datefrom:e.payload.doc.get("datefrom").toDate().toISOString().split("T")[0],
-          dateto:e.payload.doc.get("dateto").toDate().toISOString().split("T")[0],
+          datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
+          dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0],
           leavereason:e.payload.doc.get("leavereason"),
           leavetype:e.payload.doc.get("leavetype"),
           days:e.payload.doc.get("days"),

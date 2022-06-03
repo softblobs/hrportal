@@ -13,6 +13,8 @@ import { id } from 'date-fns/locale';
 import { DatePipe } from '@angular/common';
 //import { UserService } from '../services/user.service';
 import { MatTableDataSource } from '@angular/material/table';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { groupBy } from 'rxjs/internal/operators/groupBy';
 
 
 
@@ -51,6 +53,12 @@ const colors: any = {
 })
 export class TimeSheetComponent implements OnInit {
   //view: CalendarView = CalendarView.Month;
+  name:any;
+     
+     
+   
+  //view: CalendarView = CalendarView.Month;
+  
   //CalendarView = CalendarView;
   viewDate: Date = new Date();
   
@@ -93,14 +101,17 @@ export class TimeSheetComponent implements OnInit {
   selectedDate = new Date();
   date = new Date();
   myDate = new Date();  
-  constructor(private timesheetService : TimesheetService,public firestore: AngularFirestore) {
+  exampleForm = new FormGroup ({ firstName: new FormControl(), lastName: new FormControl()});
+  
+  constructor(private timesheetService : TimesheetService,public firestore: AngularFirestore,private _formBuilder: FormBuilder) {
     const currentYear = new Date().getFullYear();
     const currentMonth= new Date().getMonth();
     const currentDate =new Date().getDay();
     this.minDate = new Date(currentYear - 0, currentMonth-0, currentDate-15);
    }
-  //,public userService:UserService
-  //date1 = new Date((new Date().getTime() - 3888000000));
+
+   
+  
   maxDate = new Date();
 
   curDate = new Date();
@@ -113,10 +124,15 @@ export class TimeSheetComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    
+    
   //this.myDate.setDate(this.date.getDate() + 7);
+  this.fetchData();
   this.selectedDate = new Date();
   this.fetchData(); 
-  this.onChangeEvent(this.selectedDate);  
+  this.onChangeEvent(this.selectedDate);
+  this.fetchData();
   }  
 
   //New
@@ -161,27 +177,34 @@ update(timesht: timesheetInfo) {
   timesht.userName=localStorage.getItem('logName'); 
   timesht.userId = localStorage.getItem('currentUser'); 
   timesht.status= "pending" ;
-  timesht.project= localStorage.getItem('logProject');
-  this.saveupdateSheetList(timesht); 
-  
+  timesht.project= localStorage.getItem('logProject'); 
+  this.saveupdateSheetList(timesht)
 }
 
-saveupdateSheetList(timeSheet: timesheetInfo){  
-  
-  if(timeSheet.id==0 || timeSheet.id==null || timeSheet.id=='') 
-  {     
+saveupdateSheetList(timeSheet: timesheetInfo){   
      this.firestore.collection('timesheet').add(timeSheet);
     this.error="Inserted Successfully";
-    
-  }
-  else{
-   //alert(timeSheet.id);
-    this.firestore.doc('timesheet/'+timeSheet.id).update(timeSheet);
-   this.error="Updated Successfully";
-  
-   
-  }   
+    setTimeout(() => {this.error="";}, 3000);  
  }
+
+ updatelist(timesht: timesheetInfo) {    
+  //const user = localStorage.getItem('currentUser');
+  timesht.userName=localStorage.getItem('logName'); 
+  timesht.userId = localStorage.getItem('currentUser'); 
+  timesht.status= "pending" ;
+  timesht.project= localStorage.getItem('logProject'); 
+  this.saveupdate(timesht);
+}
+
+saveupdate(timeSheet: timesheetInfo){   
+  this.firestore.doc('timesheet/'+timeSheet.id).update(timeSheet);
+    this.error="Updated Successfully"; 
+    setTimeout(() => {this.error="";}, 3000);
+ }
+
+
+
+
 
 
 delete(id: string) {
@@ -197,5 +220,7 @@ delete(id: string) {
    }
 }
 }
+
+
 
 }

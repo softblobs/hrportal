@@ -27,38 +27,99 @@
     </thead>
 
     <tbody>
+
       <tr *ngFor="let list of sheetList">              
         <td>
           <input
-            type="text"
+           id="name" 
+           required maxlength="30" minlength="1"
+           ngModel name="name" #name="ngModel"
+
+            type="text"            
             class="form-control"
             [(ngModel)]="list.task"
             (keyup)="refresh.next()"
             [disabled]="list.status == 'Approved'"
+            
           />
+
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+           class="alert alert-info">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+           class="alert">
+
+          <div *ngIf="name.errors?.['required']">
+          required.
+          </div>
+          </div>  
+          </div>
+
         </td>
-        <td>  <input
+        
+        <td > <input
+
+          id="description" 
+         required maxlength="30" minlength="1"
+         ngModel description="name" #description="ngModel"
+
           type="text"
           class="form-control"
           [(ngModel)]="list.description"
           (keyup)="refresh.next()"
           [disabled]="list.status == 'Approved'"
-        /></td>
-        <td><input          
+          
+          required
+          />
+
+          <div *ngIf="description.invalid && (description.dirty || description.touched)"
+           class="alert alert-info">
+          <div *ngIf="description.invalid && (description.dirty || description.touched)"
+           class="alert">
+
+          <div *ngIf="description.errors?.['required']">
+          required.
+          </div>
+          </div>  
+          </div>
+         
+          
+        </td>
+        <td><input 
+          
+          id="hour" 
+         required min="1" max="12"
+         ngModel name="hour" #hour="ngModel"
+          
+
           class="form-control"
           [(ngModel)]="list.hours"
           (keyup)="refresh.next()"
           [disabled]="list.status == 'Approved'"
-          type="number"  min=0 max=12  
+          type="number"  
+
         />
+        <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
+           class="alert alert-info">Max 12 hour
+          <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
+           class="alert">
+
+          <div *ngIf="hour.errors?.['required']">
+           required.
+          </div>
+          <div *ngIf="hour.errors?.['min']">
+             Min 1 hour
+          </div>
+          </div>  
+          </div>
         </td>  
         <td>
           {{list.status}}
         </td> 
-        <td> <button  class="btn btn-primary active" [disabled]="list.status == 'Approved'" (click)="update(list)">Save</button> </td>
+        <td> <button  class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)">Save</button> </td>
+        <td> <button  class="btn btn-primary active" [disabled]="list.status == 'Approved' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>
         <td><button id="remove" class="btn btn-danger" [disabled]="list.status == 'Approved'" (click)="delete(list.id)">Delete</button></td>          
       </tr>
-      
+    
     </tbody>    
   </table>
 </div>
