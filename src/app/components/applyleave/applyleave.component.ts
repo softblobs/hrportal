@@ -112,7 +112,6 @@ leavedays:any;
     this.date2 = this.dateto?.value;
     this.total = Math.abs(this.date2 - this.date1);
     var diffDays = Math.ceil(this.total / (1000*60*60 * 24)); 
-    
 if(this.LeavedaysData==diffDays)
 {
 console.log("date successfully")
