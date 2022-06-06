@@ -22,20 +22,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w-75 fs-16" appearance="outline">
-            <mat-label style="color:rgb(20, 110, 110)">Leave days</mat-label>
-            <input matInput type="number" min="1"   formControlName="days" [(ngModel)]="LeavedaysData">
-            <mat-error *ngIf="days?.errors?.['required']">
-                date from is required
-            </mat-error>
-            <mat-error *ngIf="days?.errors?.['max']">
-                Maximum 8 days
-              </mat-error>
-          </mat-form-field>
-
-
-
-          <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-form-field class="w-75 fs-16" appearance="outline">
             <mat-label style="color:rgb(20, 110, 110)">Choose From Date</mat-label>
             <input matInput [matDatepicker]="d1" formControlName="datefrom">
             <mat-hint>MM/DD/YYYY</mat-hint>
@@ -55,6 +42,18 @@
             <mat-error *ngIf="dateto?.errors?.['required']">
               date to is required
             </mat-error>
+          </mat-form-field><br>
+
+
+          <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label style="color:rgb(20, 110, 110)">Leave days</mat-label>
+            <input matInput type="number" min="1"   formControlName="days" [(ngModel)]="LeavedaysData">
+            <mat-error *ngIf="days?.errors?.['required']">
+                date from is required
+            </mat-error>
+            <mat-error *ngIf="days?.errors?.['max']">
+                Maximum 8 days
+              </mat-error>
           </mat-form-field><br>
        
      <!--   <mat-form-field class="w-75 fs-16"  appearance="outline">
