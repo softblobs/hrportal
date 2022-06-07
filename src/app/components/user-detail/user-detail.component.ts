@@ -32,23 +32,23 @@ export class UserDetailComponent implements OnInit {
   resetformone= new FormGroup({
     uid:new FormControl(''),  
     id:new FormControl(''),
-    firstName:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
-    lastName:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
-    dob:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
-    doj:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
-    email:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false}),
+    firstName:new FormControl('',[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
+    lastName:new FormControl('',Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
+    dob:new FormControl('',Validators.required),
+    doj:new FormControl('',Validators.required),
+    email:new FormControl(''),
     photoURL:new FormControl(''),
-    role:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
-    userId:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false}),
+    role:new FormControl('',Validators.required),
+    userId:new FormControl(''),
     phone:new FormControl('',[ Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]),
-    project:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
+    project:new FormControl('',Validators.required),
     address:new FormControl(''),
     skillSet:new FormControl(''),
-    officeEmail:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.email),
+    officeEmail:new FormControl('',Validators.email),
     paystatus:new FormControl(''),
 
   });
-  
+  editing:boolean=true;
   uid:any;
   checked = true;  
   hide = true;
@@ -120,7 +120,9 @@ export class UserDetailComponent implements OnInit {
     return this.resetformone.get('dob');
    }
    get project(){
-    return this.resetformone.get('project');
+     
+    return this.resetformone.value.project
+    
    }
 
 
@@ -190,7 +192,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   updateeditUser():void{
-    
+
+   
+   
     if((Number(new Date().toISOString().split('-')[0]))-this.resetformone.value.dob.split('-')[0]>20) {
 
     console.log(this.userService.editSelectedUser)
@@ -201,7 +205,7 @@ export class UserDetailComponent implements OnInit {
       address: this.resetformone.value.address,
       officeEmail: this.resetformone.value.officeEmail,
       phone:this.resetformone.value.phone,
-      project:this.resetformone.value.project,
+      project:this.project,
       photoURL:this.photoUrl
     });
       localStorage.setItem('UpdateSt','Yes');
@@ -218,6 +222,12 @@ export class UserDetailComponent implements OnInit {
     this.error="DOB should be more than 20 years"
     setTimeout(() => {this.error="";}, 2000);
   }
+
+    
+    
+  
+
+  
 
 }
 
