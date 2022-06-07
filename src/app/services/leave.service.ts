@@ -18,6 +18,7 @@ export class LeaveService {
   }
 
   getleaves() {
+    
     return this.firestore.collection('leaves').snapshotChanges().pipe(
       map(actions => 
         actions.map(a => {

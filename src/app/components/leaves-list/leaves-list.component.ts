@@ -27,10 +27,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './leaves-list.component.html',
   styleUrls: ['./leaves-list.component.scss']
 })
-export class LeavesListComponent implements OnInit {
-
-  
-  
+export class LeavesListComponent implements OnInit { 
   
 
   checked = true;  
@@ -57,14 +54,10 @@ export class LeavesListComponent implements OnInit {
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day].join("-");
-  }
-
-  
+  } 
 
 
-  constructor(private leaveservice:LeaveService,private _router: Router, public afs:AngularFirestore ) { }
-  
-  
+  constructor(private leaveservice:LeaveService,private _router: Router, public afs:AngularFirestore ) { }  
 
   
 
@@ -74,15 +67,10 @@ export class LeavesListComponent implements OnInit {
     //this.getleaves();
     this.fetchData()
     //this.lastuser();
-    this.fetchDataDays();
-    
+    this.fetchDataDays(); 
     
 
-  }
-  
-  
-
-  
+  } 
 
    getleaves(){
     this.customerArray=[];
@@ -149,11 +137,6 @@ export class LeavesListComponent implements OnInit {
     });      
   }
 
-  
-     
-
-
-
    onBack(): void {
     this._router.navigate(['/flexy/home']);
   }
@@ -190,13 +173,12 @@ export class LeavesListComponent implements OnInit {
 
          this.dayss.push(Number(result[i].days));
          console.log(this.dayss);
-         this.dayscout= this.dayss.reduce((a, b) => a + b, 0) 
+         this.dayscout= this.dayss.reduce((a, b) => a + b, 0)
          console.log(this.dayscout);        
          }
         }
       })
-    }
-    
+    }   
     
 }
 

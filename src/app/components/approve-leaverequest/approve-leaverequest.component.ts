@@ -25,6 +25,7 @@ export class ApproveLeaverequestComponent implements OnInit {
   form: any;
   currenstatus:any = "Approved";
   error="";
+  getEmployeeData:any;
  
   constructor(private leaveService:LeaveService) { }
 
@@ -51,7 +52,7 @@ export class ApproveLeaverequestComponent implements OnInit {
   fetchData() {
     
     this.leaveService.getLeaveList().subscribe(data => { 
-      
+    
       var selectedData= data.filter( (record) => {         
         //return record.payload.doc.get("datefrom") == this.convert(this.selectedDate)  && record.payload.doc.get("userId") == this.UserList; 
         return record.payload.doc.get("status") == this.currenstatus  && record.payload.doc.get("userId") == this.UserList; 
@@ -62,14 +63,13 @@ export class ApproveLeaverequestComponent implements OnInit {
           id: e.payload.doc.id,      
           leavetype:e.payload.doc.get("leavetype"),
           leavereason:e.payload.doc.get("leavereason"),
-          datefrom:e.payload.doc.get("datefrom"),
-          dateto:e.payload.doc.get("dateto"), 
+          datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
+          dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0], 
           userId:e.payload.doc.get("userId"),   
           status:e.payload.doc.get("status"),      
         } as leaveinfo;     
       })          
     });  
-
 
   } 
 
@@ -87,8 +87,8 @@ export class ApproveLeaverequestComponent implements OnInit {
             id: e.payload.doc.id,      
             leavetype:e.payload.doc.get("leavetype"),
             leavereason:e.payload.doc.get("leavereason"),
-            datefrom:e.payload.doc.get("datefrom"),
-            dateto:e.payload.doc.get("dateto"), 
+            datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
+            dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0], 
             userId:e.payload.doc.get("userId"),   
             status:e.payload.doc.get("status"),      
             userName:e.payload.doc.get("userName"),
@@ -116,8 +116,8 @@ export class ApproveLeaverequestComponent implements OnInit {
           id: e.payload.doc.id,      
           leavetype:e.payload.doc.get("leavetype"),
           leavereason:e.payload.doc.get("leavereason"),
-          datefrom:e.payload.doc.get("datefrom"),
-          dateto:e.payload.doc.get("dateto"), 
+          datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
+          dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0], 
           userId:e.payload.doc.get("userId"),   
           status:e.payload.doc.get("status"),      
           userName:e.payload.doc.get("userName"),
