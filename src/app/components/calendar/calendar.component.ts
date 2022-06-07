@@ -168,12 +168,12 @@ export class CalendarComponent implements OnInit {
         title: 'New event',
         start: startOfDay(new Date()),
         //end: endOfDay(new Date()),        
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
+       // color: colors.red,
+       // draggable: true,
+        //resizable: {
+        //  beforeStart: true,
+        //  afterEnd: true,
+       // },
       },
     ];
   }
@@ -245,7 +245,7 @@ fetchData() {
         id: e.payload.doc.id,      
         title:e.payload.doc.get("title"),
         start:e.payload.doc.get("start").toDate(),
-        end:e.payload.doc.get("end").toDate(),     
+       // end:e.payload.doc.get("end").toDate(),     
       } as Calinfo;     
     })   
   });  

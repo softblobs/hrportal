@@ -28,35 +28,36 @@ import { projectInfo } from 'src/app/models/project-data';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-
+  disabled: boolean = localStorage.getItem("logRole") != "2" ? true: false;
   resetformone= new FormGroup({
     uid:new FormControl(''),  
     id:new FormControl(''),
-    firstName:new FormControl(''),
-    lastName:new FormControl(''),
-    dob:new FormControl(''),
-    doj:new FormControl(''),
-    email:new FormControl(''),
+    firstName:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},[Validators.required ,Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
+    lastName:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.pattern('[a-zA-Z][a-zA-Z ]+')),
+    dob:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
+    doj:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
+    email:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false}),
     photoURL:new FormControl(''),
-    role:new FormControl(''),
-    userId:new FormControl(''),
+    role:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
+    userId:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false}),
     phone:new FormControl('',[ Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]),
-    project:new FormControl(''),
+    project:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.required),
     address:new FormControl(''),
     skillSet:new FormControl(''),
-    officeEmail:new FormControl(''),
+    officeEmail:new FormControl({value: '', disabled: localStorage.getItem("logRole") != "2" ? true: false},Validators.email),
     paystatus:new FormControl(''),
 
   });
-
+  
   uid:any;
   checked = true;  
   hide = true;
+  newstring:boolean=true;
   selectedUserID = this.userService.selectedUser != null ? this.userService.selectedUser.uid : 0;
   photoURL = this.userService.editSelectedUser.photoURL;
   isEdit = false;
   //issuperAdmin= localStorage.getItem("logRole") == "2" ? true: false;
-  issuperAdmin= localStorage.getItem("logRole") == "2" && !this.isEdit  ? true: false;
+  issuperAdmin= localStorage.getItem("logRole") == "2" ? true: false ;// && this.isEdit  ? true: false;
   isAdmin = this.userService.selectedUser.role == "1" ? true: false;
   isAdminEdit = this.isAdmin && !this.isEdit ? true : false;
   error="";
@@ -104,6 +105,30 @@ export class UserDetailComponent implements OnInit {
   }
   get phone(){
     return this.resetformone.get("phone")
+  }
+
+  get firstName(){
+    return this.resetformone.get('firstName');
+   }
+   get lastName(){
+    return this.resetformone.get('lastName');
+   }
+   get doj(){
+    return this.resetformone.get('doj');
+   }
+   get dob(){
+    return this.resetformone.get('dob');
+   }
+   get project(){
+    return this.resetformone.get('project');
+   }
+
+
+   get role(){
+    return this.resetformone.get('role');
+   }
+   get officeEmail (){
+    return this.resetformone.get("officeEmail")
   }
 
   
@@ -165,14 +190,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   updateeditUser():void{
-    debugger
-    // this.userService.updateEditUser(this.userService.editSelectedUser.id,this.resetformone.value.firstName,this.resetformone.value.lastName,
-    // this.resetformone.value.dob,this.resetformone.value.doj,this.resetformone.value.skillSet,this.resetformone.value.address,
-    // this.resetformone.value.officeEmail,this.resetformone.value.phone,this.resetformone.value.project,this.photoUrl    
-    // );
-    //alert("testing");
-    //this.ngOnInit();
-    //this._router.navigate(['/manage-users']);
+    
+    if((Number(new Date().toISOString().split('-')[0]))-this.resetformone.value.dob.split('-')[0]>20) {
 
     console.log(this.userService.editSelectedUser)
     
@@ -195,6 +214,12 @@ export class UserDetailComponent implements OnInit {
     //this._router.navigate(['user-details']); 
     //this._router.navigate(['/user-detail']);   
   }
+  else{
+    this.error="DOB should be more than 20 years"
+    setTimeout(() => {this.error="";}, 2000);
+  }
+
+}
 
   populateForm(user:any){
     this.resetformone.setValue(user);
@@ -207,7 +232,14 @@ export class UserDetailComponent implements OnInit {
         console.log(this.fb);
     }
     else{
-    return this.userService.editSelectedUser.photoURL;
+      if(localStorage.getItem("logRole") != "2"){
+
+       return  localStorage.getItem('logUrl');
+      }
+      else{
+     
+        return this.userService.editSelectedUser.photoURL;
+        }
     }
     
 

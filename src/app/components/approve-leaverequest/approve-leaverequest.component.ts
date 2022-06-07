@@ -62,8 +62,8 @@ export class ApproveLeaverequestComponent implements OnInit {
           id: e.payload.doc.id,      
           leavetype:e.payload.doc.get("leavetype"),
           leavereason:e.payload.doc.get("leavereason"),
-          datefrom:e.payload.doc.get("datefrom"),
-          dateto:e.payload.doc.get("dateto"), 
+          datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
+          dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0], 
           userId:e.payload.doc.get("userId"),   
           status:e.payload.doc.get("status"),      
         } as leaveinfo;     
@@ -163,7 +163,7 @@ export class ApproveLeaverequestComponent implements OnInit {
    console.log(this.selectedCheck);
 }
 approve(timesht: leaveinfo) { 
-   
+  if(this.selectedCheck.length!=0){ 
   for (let i = 0; i < this.selectedCheck.length; i++) {
     for (let j = 0; j < this.approveSheetList.length; j++) {
       if(this.approveSheetList[j].id == this.selectedCheck[i]){
@@ -174,7 +174,11 @@ approve(timesht: leaveinfo) {
   }  
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
-   
+}
+else{
+  this.error="Please select check box to approve";
+    setTimeout(() => {this.error="";}, 3000);
+}
 }
 
 changeUser(e: any) {    

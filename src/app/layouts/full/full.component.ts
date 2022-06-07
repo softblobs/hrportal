@@ -124,7 +124,7 @@ export class FullComponent {
     {
       link: "/pay-info",
       icon: "payment",
-      menu: "Pay-Role",
+      menu: "Pay-Roll",
     },
     {
       link: "/generate-payslip",
