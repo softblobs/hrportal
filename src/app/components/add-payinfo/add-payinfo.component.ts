@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 import { map, finalize } from "rxjs/operators";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -77,6 +77,17 @@ export class AddPayinfoComponent implements OnInit {
   }
     
    );
+  
+   changeStatus(event:any){ 
+  this.paymentForm.patchValue({
+    pfAmount:event.target.value/10,
+    profTax:event.target.value/20,
+  directAllowence:event.target.value/30,
+  fixedBonus:event.target.value/25
+  
+   });
+ }
+ 
 
   constructor(public paymentservice:PaymentService,public userservice:UserService,public genpaymentservice:GeneratePaymentService, public afs:AngularFirestore) { }
 
@@ -117,7 +128,9 @@ export class AddPayinfoComponent implements OnInit {
     return this.paymentForm.get('basicAmount');
    }
    get pfAmount(){
+   
     return this.paymentForm.get('pfAmount');
+    
    }
    get profTax(){
     return this.paymentForm.get('profTax');
@@ -128,6 +141,7 @@ export class AddPayinfoComponent implements OnInit {
    get fixedBonus(){
     return this.paymentForm.get('fixedBonus');
    }
+   
    submit(){
    
       this.paymentservice.addpayment(this.paymentForm.value);
@@ -137,7 +151,7 @@ export class AddPayinfoComponent implements OnInit {
       this.updateeditUser();
 
    }
-
+   
   
 
 

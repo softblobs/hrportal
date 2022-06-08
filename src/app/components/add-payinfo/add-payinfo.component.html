@@ -58,7 +58,7 @@
 
         <mat-form-field class="w-75 fs-16"  appearance="outline">
             <mat-label>Basic Amount</mat-label>
-            <input matInput type="number" placeholder="Enter user's personal email"  formControlName="basicAmount"/>
+            <input matInput type="number" placeholder="Enter user's personal email"  formControlName="basicAmount" (change)="changeStatus($event)"/>
             <mat-error *ngIf="basicAmount?.errors?.['required']">
               PF Number is required
             </mat-error>
@@ -66,7 +66,7 @@
 
         <mat-form-field class="w-75 fs-16"  appearance="outline">
             <mat-label>PF Amount</mat-label>
-            <input matInput type="number" placeholder="Enter user's personal email" formControlName="pfAmount"/>
+            <input matInput type="number" placeholder="Enter user's personal email" formControlName="pfAmount" />
             <mat-error *ngIf="pfAmount?.errors?.['required']">
               PF Number is required
             </mat-error>
