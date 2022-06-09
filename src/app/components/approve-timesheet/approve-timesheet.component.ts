@@ -180,6 +180,7 @@ export class ApproveTimesheetComponent implements OnInit {
     }  
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
+    (document.getElementById('remove') as HTMLInputElement).disabled = false;
   }
 
 

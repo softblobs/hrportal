@@ -15,6 +15,10 @@ import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { groupBy } from 'rxjs/internal/operators/groupBy';
+import { sortAscendingPriority } from '@angular/flex-layout';
+
+
+
 
 
 
@@ -164,13 +168,16 @@ export class TimeSheetComponent implements OnInit {
 
         } as timesheetInfo;     
      })   
-    });      
+    });
+    
+   
   } 
   onChangeEvent(event:any){ 
    
    this.selectedDate = event.target.value;
    
-   this.fetchData();  
+   this.fetchData();
+  
   }
 update(timesht: timesheetInfo) {    
   //const user = localStorage.getItem('currentUser');
@@ -184,7 +191,7 @@ update(timesht: timesheetInfo) {
 saveupdateSheetList(timeSheet: timesheetInfo){   
      this.firestore.collection('timesheet').add(timeSheet);
     this.error="Inserted Successfully";
-    setTimeout(() => {this.error="";}, 3000);  
+    setTimeout(() => {this.error="";}, 1000);  
  }
 
  updatelist(timesht: timesheetInfo) {    
@@ -198,27 +205,28 @@ saveupdateSheetList(timeSheet: timesheetInfo){
 
 saveupdate(timeSheet: timesheetInfo){   
   this.firestore.doc('timesheet/'+timeSheet.id).update(timeSheet);
-    this.error="Updated Successfully"; 
-    setTimeout(() => {this.error="";}, 3000);
+  this.error="Updated sucessfully";
+  setTimeout(() => {this.error="";}, 3000);
+   
+   
  }
-
-
-
-
 
 
 delete(id: string) {
   this.timesheetService.deleteEvent(id);     
   
   this.error="The events was Deleted";
-  
-  
-  this.ngOnInit();  
-  for(let i = 0; i < this.sheetList.length; ++i){
-    if (this.sheetList[i].id === id) {
+  setTimeout(() => {this.error="";},3000);      
+  for(let i = 0; i < this.sheetList.length; ++i)
+  {
+    if (this.sheetList[i].id === id) 
+    {
         this.sheetList.splice(i,1);
-   }
-}
+    }
+  }
+  if(this.sheetList.status=="Pending" && this.error=="The events was Deleted")
+  this.fetchData();
+  
 }
 
 
