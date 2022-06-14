@@ -15,7 +15,7 @@
 </button>
 <br/>
 <div class="table-responsive">
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="mytable">
     <thead>
       <tr>          
         <th>Task</th>
@@ -32,7 +32,7 @@
         <td>
           <input
            id="name" 
-           required maxlength="30" minlength="1"
+           required maxlength="150" minlength="1"
            ngModel name="name" #name="ngModel"
 
             type="text"            
@@ -68,6 +68,7 @@
           (keyup)="refresh.next()"
           [disabled]="list.status == 'Approved'"
           
+          
           required
           />
 
@@ -87,7 +88,7 @@
         <td><input 
           
           id="hour" 
-         required min="1" max="12"
+         required min="1" max="8"
          ngModel name="hour" #hour="ngModel"  onkeydown="return false"
           
 
@@ -99,9 +100,9 @@
 
         />
         <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
-           class="alert alert-info">Max 12 hour
+           class="alert alert-info">Max 8 hour
           <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
-           class="alert">
+           class="alert alert-info">Min 1 hour">
 
           <div *ngIf="hour.errors?.['required']">
            required.
@@ -117,7 +118,7 @@
         </td> 
         <td> <button  class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)">Save</button> </td>
         <td> <button  class="btn btn-primary active" [disabled]="list.status != 'pending' || list.status == 'Approved' ||  hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>
-        <td><button id="remove" class="btn btn-danger" [disabled]="list.status == 'Approved'" (click)="delete(list.id)">Delete</button></td>          
+        <td><button id="remove" class="btn btn-danger"  [disabled]="list.status == 'Approved'"  [hidden]="list.status == 'Approved'"(click)="delete(list.id)">Delete</button></td>          
       </tr>
     
     </tbody>    

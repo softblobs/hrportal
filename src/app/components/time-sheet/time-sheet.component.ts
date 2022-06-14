@@ -133,6 +133,7 @@ export class TimeSheetComponent implements OnInit {
   this.fetchData(); 
   this.onChangeEvent(this.selectedDate);
   this.fetchData();
+  this.fetchData();
   }  
 
   //New
@@ -170,7 +171,8 @@ export class TimeSheetComponent implements OnInit {
    
    this.selectedDate = event.target.value;
    
-   this.fetchData();  
+    
+   this.fetchData();
   }
 update(timesht: timesheetInfo) {    
   //const user = localStorage.getItem('currentUser');
@@ -212,15 +214,20 @@ delete(id: string) {
   
   this.error="The events was Deleted";
   
-  
-  this.ngOnInit();  
-  for(let i = 0; i < this.sheetList.length; ++i){
-    if (this.sheetList[i].id === id) {
-        this.sheetList.splice(i,1);
-   }
+   
+     setTimeout(() => {this.error="";},3000);
+        for(let i = 0; i < this.sheetList.length; ++i){
+          if (this.sheetList[i].id === id) {
+            this.sheetList.splice(i,1);
+   
 }
 }
 
+if(this.sheetList.status=="Pending" && this.error=="The events was Deleted")
+ 
+this.ngOnInit();
+  this.fetchData();
 
 
+}
 }

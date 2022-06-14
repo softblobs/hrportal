@@ -11,6 +11,7 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
+  
   ValidationErrors,ReactiveFormsModule ,
   Validators,
   ValidatorFn,
@@ -77,6 +78,15 @@ export class AddPayinfoComponent implements OnInit {
   }
     
    );
+   changeStatus(event:any){ 
+    this.paymentForm.patchValue({
+      pfAmount:event.target.value/10,
+      profTax:event.target.value/20,
+    directAllowence:event.target.value/30,
+    fixedBonus:event.target.value/25
+    
+     });
+   }
 
   constructor(public paymentservice:PaymentService,public userservice:UserService,public genpaymentservice:GeneratePaymentService, public afs:AngularFirestore) { }
 
@@ -86,6 +96,7 @@ export class AddPayinfoComponent implements OnInit {
                    
 
                  ];
+
 
   ngOnInit(): void {
 
@@ -138,8 +149,6 @@ export class AddPayinfoComponent implements OnInit {
 
    }
 
-  
-
 
    newmethod(){
     
@@ -148,7 +157,7 @@ export class AddPayinfoComponent implements OnInit {
         
           return record.payload.doc.get("paystatus")== "1"
           
-       });  
+       });         
          
         console.log(selectedData);  
         this.userdataA = selectedData.map(e => {                    
@@ -158,14 +167,13 @@ export class AddPayinfoComponent implements OnInit {
             firstName:e.payload.doc.get("firstName"),
             paystatus:e.payload.doc.get("paystatus"),        
           } as ProfileUser;            
-       }) 
+       })       
 
         this.customerArray=this.userdataA;
         console.log(this.customerArray);
        }
       )}
-
-
+     
 
       updateeditUser():void{ 
         let i=1;
@@ -188,6 +196,7 @@ export class AddPayinfoComponent implements OnInit {
       });
       localStorage.setItem('UpdateSt','Yes'); 
       }    
+      
     
        
 }
