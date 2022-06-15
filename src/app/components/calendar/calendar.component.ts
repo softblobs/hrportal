@@ -162,7 +162,8 @@ export class CalendarComponent implements OnInit {
   }
   addEvent(): void { 
     this.error="" ; 
-    this.eventsList = [
+    setTimeout(()=>{ this.error="";},3000);
+      this.eventsList = [
       ...this.eventsList,
       {
         title: 'New event',
@@ -179,7 +180,7 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  counter: number = 0;
+  counter: number = 3;
 
 rows = [];
 
@@ -224,6 +225,8 @@ rows = [];
   delete(id: string) {
     this.CalenderService.deleteEvent(id);     
     this.error='The events was Deleted';
+    setTimeout(()=>{ this.error="";},3000);
+
     this.ngOnInit();  
 //New start
     for(let i = 0; i < this.eventsList.length; ++i){
@@ -231,7 +234,7 @@ rows = [];
           this.eventsList.splice(i,1);
       }
   }
-//New end     
+    
   } 
 //update(cal: Calinfo) {
 //  this.saveupdateEvent(cal);

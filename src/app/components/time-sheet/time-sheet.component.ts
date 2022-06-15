@@ -205,17 +205,13 @@ saveupdate(timeSheet: timesheetInfo){
  }
 
 
-
-
-
-
 delete(id: string) {
   this.timesheetService.deleteEvent(id);     
   
   this.error="The events was Deleted";
-  
    
-     setTimeout(() => {this.error="";},3000);
+  setTimeout(() => {this.error="";}, 3000);
+  
         for(let i = 0; i < this.sheetList.length; ++i){
           if (this.sheetList[i].id === id) {
             this.sheetList.splice(i,1);
@@ -227,7 +223,6 @@ if(this.sheetList.status=="Pending" && this.error=="The events was Deleted")
  
 this.ngOnInit();
   this.fetchData();
-
 
 }
 }

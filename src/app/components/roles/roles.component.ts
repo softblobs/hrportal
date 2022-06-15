@@ -172,7 +172,6 @@ delete(id: string) {
 
   }}
 
-
   rolescount() {
     this.firestore.collection('roles').valueChanges()
      .subscribe( result => {
