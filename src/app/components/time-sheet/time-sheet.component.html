@@ -89,20 +89,21 @@
           
           id="hour" 
          required min="1" max="8"
-         ngModel name="hour" #hour="ngModel"  onkeydown="return false"
+         ngModel name="hour" #hour="ngModel"  
           
 
           class="form-control"
           [(ngModel)]="list.hours"
           (keyup)="refresh.next()"
           [disabled]="list.status == 'Approved'"
-          type="number"  
+          type="text" pattern="[0-8]{1}"  
+          maxlength="1"
 
         />
         <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
-           class="alert alert-info">Max 8 hour
+           class="alert alert-info">Max 8 hours
           <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
-           class="alert alert-info">Min 1 hour">
+           class="alert alert-info">Min 1 hour
 
           <div *ngIf="hour.errors?.['required']">
            required.

@@ -51,8 +51,11 @@ const colors: any = {
   templateUrl: './time-sheet.component.html',
   //styleUrls: ['./time-sheet.component.scss']
 })
+
+
 export class TimeSheetComponent implements OnInit {
   //view: CalendarView = CalendarView.Month;
+  
   name:any;
      
      
@@ -68,7 +71,7 @@ export class TimeSheetComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
   sheetList:any;
-  error="";
+  error='';
   //showListDate:any;
 
   addEvent(): void {
@@ -206,23 +209,28 @@ saveupdate(timeSheet: timesheetInfo){
 
 
 delete(id: string) {
-  this.timesheetService.deleteEvent(id);     
   
-  this.error="The events was Deleted";
-   
-  setTimeout(() => {this.error="";}, 3000);
+  this.timesheetService.deleteEvent(id); 
   
-        for(let i = 0; i < this.sheetList.length; ++i){
+  for(let i = 0; i < this.sheetList.length; ++i){
           if (this.sheetList[i].id === id) {
             this.sheetList.splice(i,1);
    
 }
 }
+this.error="The events was Deleted";
+setTimeout(this.clearerror, 3000);
 
 if(this.sheetList.status=="Pending" && this.error=="The events was Deleted")
  
 this.ngOnInit();
   this.fetchData();
 
+}
+clearerror(){
+  debugger;
+  console.log(this.error+' inside clear error method before reset');
+  this.error='';
+  console.log(this.error+' inside clear error method after reset');
 }
 }
