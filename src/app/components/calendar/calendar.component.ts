@@ -38,6 +38,7 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import startOfISOWeekYear from 'date-fns/startOfISOWeekYear';
+import { sortAscendingPriority } from '@angular/flex-layout';
 
 
 const colors: any = {
@@ -168,6 +169,7 @@ export class CalendarComponent implements OnInit {
       {
         title: 'New event',
         start: startOfDay(new Date()),
+        
         //end: endOfDay(new Date()),        
        // color: colors.red,
        // draggable: true,
