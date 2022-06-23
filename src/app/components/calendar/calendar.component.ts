@@ -38,6 +38,7 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import startOfISOWeekYear from 'date-fns/startOfISOWeekYear';
+import { sortAscendingPriority } from '@angular/flex-layout';
 
 
 const colors: any = {
@@ -83,7 +84,7 @@ export class CalendarComponent implements OnInit {
   tempAdmin:any;
 
   //var numberr=localStorage.getItem('logurl');
-  isAdmin:boolean = localStorage.getItem('logRole') == "1" ? true : false;
+  isAdmin:boolean = localStorage.getItem('logRole') == "2" ? true : false;
   //isAdmin:boolean = this.userService.selectedUser?.role == "1" ? true : false;
   
   
@@ -162,24 +163,26 @@ export class CalendarComponent implements OnInit {
   }
   addEvent(): void { 
     this.error="" ; 
-    this.eventsList = [
+    setTimeout(()=>{ this.error="";},3000);
+      this.eventsList = [
       ...this.eventsList,
       {
         title: 'New event',
         start: startOfDay(new Date()),
-        end: endOfDay(new Date()),        
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
+        
+        //end: endOfDay(new Date()),        
+       // color: colors.red,
+       // draggable: true,
+        //resizable: {
+        //  beforeStart: true,
+        //  afterEnd: true,
+       // },
       },
     ];
   }
 
 
-  counter: number = 0;
+  counter: number = 3;
 
 rows = [];
 
@@ -224,6 +227,8 @@ rows = [];
   delete(id: string) {
     this.CalenderService.deleteEvent(id);     
     this.error='The events was Deleted';
+    setTimeout(()=>{ this.error="";},3000);
+
     this.ngOnInit();  
 //New start
     for(let i = 0; i < this.eventsList.length; ++i){
@@ -231,7 +236,7 @@ rows = [];
           this.eventsList.splice(i,1);
       }
   }
-//New end     
+    
   } 
 //update(cal: Calinfo) {
 //  this.saveupdateEvent(cal);
@@ -245,7 +250,7 @@ fetchData() {
         id: e.payload.doc.id,      
         title:e.payload.doc.get("title"),
         start:e.payload.doc.get("start").toDate(),
-        end:e.payload.doc.get("end").toDate(),     
+       // end:e.payload.doc.get("end").toDate(),     
       } as Calinfo;     
     })   
   });  

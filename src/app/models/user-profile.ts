@@ -15,6 +15,7 @@ export interface ProfileUser {
     skillSet?:Array<string>;
     photoURL?:string;
     userId?:string;
+    paystatus?:string;
 
     
     

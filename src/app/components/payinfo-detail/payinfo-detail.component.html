@@ -1,0 +1,103 @@
+<div class="card">
+    <div class="card-body">
+      <h4 class="mb-32">View / Edit User</h4>
+      
+      
+      <form [formGroup]="paymentformone">
+
+        
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>User Id </mat-label>
+            <input matInput type="text"  placeholder="Employee ID" formControlName="userId" >
+          </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+          <mat-label>Bankname</mat-label>
+          <input matInput type="text"  placeholder="Employee ID" formControlName="bankName" >
+        </mat-form-field>
+        
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+          <mat-label>Bankaccount</mat-label>
+          <input matInput type="number"  placeholder="Enter user's first name" formControlName="bankAccount" >
+        </mat-form-field>
+
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>uannumber</mat-label>
+            <input matInput type="text"  placeholder="Enter user's first name" formControlName="uanNumber" >
+        </mat-form-field>
+        
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>basics</mat-label>
+            <input matInput type="number"  placeholder="Enter user's first name" formControlName="basicAmount" >
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>pfamount</mat-label>
+            <input matInput type="number" placeholder="Enter user's first name" formControlName="pfAmount" >
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>proftax</mat-label>
+            <input matInput type="number"  placeholder="Enter user's first name" formControlName="profTax" >
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>Direct Allowence (DA)</mat-label>
+            <input matInput type="number"  placeholder="Enter user's first name" formControlName="directAllowence" >
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16" appearance="outline">
+            <mat-label>Fixed Bonus</mat-label>
+            <input matInput type="number"  placeholder="Enter user's first name" formControlName="fixedBonus" >
+        </mat-form-field>
+
+        <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" placeholder="Role of Employee" >
+            <ng-container *ngFor="let role of roles">
+              <mat-option value="{{role.id}}">{{role.value}}</mat-option>
+            </ng-container>
+          </mat-select>          
+        </mat-form-field><br>
+        
+        
+        
+       <!-- <button mat-raised-button class="mb-16 btn btn-info" color="accent" (click)="onEdit()">Edit</button>&nbsp;         // *ngIf="isEdit"  -->
+        <button mat-raised-button class="mb-16 btn btn-info" (click)="updateeditUser()">Update User Details</button>          
+        &nbsp;
+         
+
+         <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+          <line x1="12" y1="16" x2="12.01" y2="16"  ></line>
+          </svg></i-feather> {{error}} 
+        </div>
+
+      </form>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Form Design Type -->
+  <!-- <div class="card">
+    <div class="card-body">
+      <h4 class="mb-32">Form Design Type</h4>
+  
+      <mat-form-field class="me-24 fs-16" appearance="outline">
+        <mat-label>Outlined</mat-label>
+        <input matInput>
+      </mat-form-field>
+  
+      <mat-form-field class="me-24 fs-16" appearance="fill">
+        <mat-label>Filled</mat-label>
+        <input matInput>
+      </mat-form-field>
+  
+      <mat-form-field class="me-24 fs-16" appearance="legacy">
+        <mat-label>Standard</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+  </div> -->

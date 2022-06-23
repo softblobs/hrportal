@@ -64,12 +64,14 @@ export class LoginComponent implements OnInit {
             
             this.userService.selectedUser = res[i];
             localStorage.setItem('userdata',JSON.stringify(this.userService.selectedUser));
+            localStorage.setItem('loginCheck','Yes');
             localStorage.setItem('logRole',this.userService.selectedUser.role);
             localStorage.setItem('currentUser',this.userService.selectedUser.uid);
             localStorage.setItem('logName',this.userService.selectedUser.firstName);
             localStorage.setItem('logUrl',this.userService.selectedUser.photoURL);
             localStorage.setItem('logUrltime',this.userService.selectedUser.photoURL);
             localStorage.setItem('logProject',this.userService.selectedUser.project);
+            localStorage.setItem('loguserid',this.userService.selectedUser.userId);
 
             console.log(this.userService.selectedUser);
 
@@ -90,10 +92,15 @@ export class LoginComponent implements OnInit {
       // }
       // else
       // {
-        if(this.userService.selectedUser.role == "1")
+        if(this.userService.selectedUser.role == "1" ||  this.userService.selectedUser.role == "2")
         {
-          if(localStorage.getItem('UpdateSt') != 'Yes')
+          
+         
+          if(localStorage.getItem('UpdateSt') != 'Yes')// || localStorage.getItem('loginCheck') == 'Yes' )
           this.router.navigate(['/manage-users']);
+
+          //localStorage.setItem('loginCheck','');
+          
         
         }
         else{

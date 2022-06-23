@@ -17,7 +17,7 @@
           <li class="list-group mb-8" *ngFor="let sidenav of sidebarMenu">
             <a matRipple [matRippleColor]="'#f7f8f443'" routerLink="{{ sidenav.link }}"
               class="sidebar-menu fs-16 w-100 d-flex align-items-center" [routerLinkActive]="routerActive">
-              <i-feather name="{{ sidenav.icon }}" class="feather-base me-16"></i-feather> <span
+               <mat-icon>{{ sidenav.icon}}</mat-icon> <span
                 class="ps-4">{{ sidenav.menu }}</span>
             </a>
           </li>
@@ -72,11 +72,7 @@
         <router-outlet></router-outlet>
       </div>
     </div>
-
-    <p class="text-center pb-24 fs-16">© 2022 All rights reserved by <a
-        href="http://www.softblobs.com/" target="_blank"
-        class="text-indigo">Softblobs</a></p>
-
+    
   </mat-sidenav-content>
 
 </mat-sidenav-container>
@@ -92,3 +88,10 @@
     <i-feather name="x-circle" class="mt-n3 text-light-muted feather-base text-dark"></i-feather>
   </button>
 </div>
+
+
+<footer>
+  <p class="text-center pb-24 fs-16">© 2022 All rights reserved by <a
+      href="http://www.softblobs.com/" target="_blank"
+      class="text-indigo">Softblobs</a></p>
+</footer>

@@ -31,22 +31,22 @@
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>First Name</mat-label>
-          <input matInput type="text" value="User" placeholder="Enter user's first name" formControlName="firstName" [readonly]="!isAdmin" >
+          <input matInput type="text"    formControlName="firstName"  [readonly]="!issuperAdmin"   >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Last Name</mat-label>
-          <input matInput type="text" value="User" placeholder="Enter user's last name" formControlName="lastName" [readonly]="!isEdit">
+          <input matInput type="text" value="User" placeholder="Enter user's last name" formControlName="lastName" [readonly]="!issuperAdmin" >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Date of Birth</mat-label>
-          <input matInput type="date" placeholder="Date of Birth"   formControlName="dob" [max]="getToday()" [readonly]="!isEdit">
+          <input matInput type="date" placeholder="Date of Birth"   formControlName="dob" [max]="getToday()" [readonly]="!issuperAdmin">
         </mat-form-field>
 
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Contact Number</mat-label>
-          <input matInput type="text" placeholder="Enter Contact Number" maxlength="10" formControlName="phone" [readonly]="!isEdit">
+          <input matInput type="text" placeholder="Enter Contact Number" maxlength="10" formControlName="phone" >
           <mat-error *ngIf="phone?.errors?.['required']">
             Contact number is required
           </mat-error>
@@ -57,38 +57,43 @@
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Personal Mail</mat-label>
-          <input matInput type="email" placeholder="Enter user's personal email"  formControlName="email" [readonly]="!isEdit" readonly>
+          <input matInput type="email" placeholder="Enter user's personal email"  formControlName="email"  readonly>
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Official Mail</mat-label>
-          <input matInput type="email" placeholder="Enter company email"   formControlName="officeEmail" [readonly]="!isEdit">
+          <input matInput type="email" placeholder="Enter company email"   formControlName="officeEmail" [readonly]="!issuperAdmin" >
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Date of Joining</mat-label>
-            <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!isAdmin">
+            <input matInput  type="date" placeholder="Date of Joining"  formControlName="doj"  [max]="getToday()" [readonly]="!issuperAdmin" >
           </mat-form-field>
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
               <mat-label>Designation</mat-label>
-              <input matInput type="text" placeholder="User Designation" formControlName="role" [readonly]="!isAdmin" >
+              <input matInput type="text" placeholder="User Designation" formControlName="role"   [readonly]="!issuperAdmin">
             </mat-form-field>            
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>Project</mat-label>
-            <input matInput type="text" placeholder="Project"  formControlName="project" [readonly]="!isEdit">
+            <mat-label>Project</mat-label> 
+                   
+            <mat-select    formControlName="project"    >
+              <ng-container *ngFor="let role of projectSheetList" >
+                <mat-option [disabled]="!issuperAdmin"  value="{{role.pproject}}" >{{role.pproject}} </mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>          
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Address for Communication</mat-label>
-          <textarea matInput [readonly]="!isEdit" rows="5" placeholder="Address for Communication" formControlName="address"></textarea>
+          <textarea matInput  rows="5" placeholder="Address for Communication" formControlName="address"></textarea>
         </mat-form-field>
         
 
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>skill set</mat-label>
-          <textarea matInput [readonly]="!isEdit" rows="5" placeholder="Address for Communication" formControlName="skillSet"></textarea>
+          <textarea matInput  rows="5" placeholder="Address for Communication" formControlName="skillSet"></textarea>
         </mat-form-field>
 
         
@@ -108,9 +113,11 @@
         </mat-form-field> -->
         
         
-        <button mat-raised-button class="mb-16 btn btn-info" color="accent" (click)="onEdit()">Edit</button>&nbsp; 
-        <button *ngIf="isEdit" mat-raised-button class="mb-16 btn btn-info" (click)="updateeditUser()">Update User Details</button>
+       <!-- <button mat-raised-button class="mb-16 btn btn-info" color="accent" (click)="onEdit()">Edit</button>&nbsp; -->
+        <button mat-raised-button class="mb-16 btn btn-info" (click)="updateeditUser()">Update User Details</button>       
         &nbsp;
+
+        
          <button *ngIf="isAdmin" mat-raised-button right class="me-8 mb-8" color="warn" (click)="deleteUser()">Delete User</button> 
 
          <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">

@@ -55,7 +55,7 @@ export class FullComponent {
        console.log(localStorage.getItem('logRole')); 
        
        this.rolee=localStorage.getItem('logRole')
-       this.isAdmin = this.rolee== "1" ? true:false;
+       this.isAdmin = this.rolee== "1" || this.rolee== "2" ? true:false;
        this.photourl=localStorage.getItem('logUrltime');
        console.log(localStorage.getItem('logUrltime'));
 
@@ -69,73 +69,107 @@ export class FullComponent {
 
   adminSideBarMenu: sidebarMenu[] = [
     {
-      link: "/dashboard",
-      icon: "home",
+      link: "/roles",
+      icon: "dns",
       menu: "Dashboard",
     },
+
+    // {
+    //   link: "/dashboard",
+    //   icon: "home",
+    //   menu: "Dashboard",
+    // },
+
+
     {
       link: "/manage-users",
-      icon: "layout",
+      icon: "people",
       menu: "Manage Users",
     },
     {
       link: "/calendar",
-      icon: "layout",
+      icon: "calendar_month",
       menu: "Calendar",
     },
     {
       link: "/vm-details",
-      icon: "layout",
+      icon: "airplay",
       menu: "Manage VMs",
     },
     {
       link: "/time-sheet",
-      icon: "layout",
+      icon: "access_time",
       menu: "Time Sheet",
     },
     {
+      link: "/applyleave",
+      icon: "time_to_leave",
+      menu: "Leave Request",
+    },
+    {
+      link: "/leaves-list",
+      icon: "format_list_bulleted",
+      menu: "Leaves List",
+    },
+    {
       link: "/approve-timesheet",
-      icon: "layout",
+      icon: "approval",
       menu: "Approve Timesheet",
     },
     {
       link: "/approve-leaverequest",
-      icon: "layout",
+      icon: "approval",
       menu: "Approve Leave",
+    },
+    {
+      link: "/pay-info",
+      icon: "payment",
+      menu: "Pay-Roll",
+    },
+    {
+      link: "/generate-payslip",
+      icon: "payments",
+      menu: "Generate-payslip",
     }
 
   ]
   userSideBarMenu: sidebarMenu[] = [
     {
       link: "/user-detail",
-      icon: "layout",
+      icon: "details",
       menu: "User Details",
     },
-    // {
-    //   link: "/change-password",
-    //   icon: "layout",
-    //   menu: "Change Password",
-    // },
+    {
+      link: "/change-password",
+      icon: "password",
+      menu: "Change Password",
+    },
     {
       link: "/calendar",
-      icon: "layout",
+      icon: "calendar_month",
       menu: "Calendar",
     },
     {
       link: "/time-sheet",
-      icon: "layout",
+      icon: "access_time",
       menu: "Time Sheet",
     },
     {
       link: "/applyleave",
-      icon: "layout",
+      icon: "border_color",
       menu: "Leave Request",
     },
     {
       link: "/leaves-list",
-      icon: "layout",
+      icon: "format_list_bulleted",
       menu: "Leaves List",
+    },
+    {
+      link: "/payslip",
+      icon: "note",
+      menu: "Payslip",
     }
+
 
   ]
   sidebarMenu:any = null;
@@ -154,8 +188,10 @@ export class FullComponent {
 
     //localStorage.setItem('UpdateSt',''); 
     this.afAuth.signOut()
-    .then(() => {window.location.href = '/'});
-    localStorage.setItem('UpdateSt','');
-    this._router.navigate(['/login']);    
+    .then(() => {window.location.href = '/login'}
+    );
+    //localStorage.setItem('UpdateSt','');
+   // this._router.navigate(['/login']); 
+    localStorage.setItem('UpdateSt','');   
   } 
 }

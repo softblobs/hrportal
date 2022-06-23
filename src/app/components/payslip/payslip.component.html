@@ -1,0 +1,138 @@
+<div  class="container mt-5 mb-5">
+  
+  <div  class="row">
+    <mat-form-field appearance="fill">
+        <mat-label>Month and Year</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date">
+        <mat-hint>MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp
+                        startView="multi-year"
+                        (monthSelected)="setMonthAndYear($event, dp)"
+                        panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field>
+      
+      <div id=contentToConvert [hidden]="!disableDIV" class="col-md-12" >
+        <div class="d-flex justify-content-end">
+            <img src="assets/images/sb.png" alt="" width="200" height="50">
+          </div>
+          <div class="text-center lh-1 mb-2">
+              <h3 class="fw-bold">Payslip</h3> 
+              <span class="fw-normal">Softblobs PVT LTD, Sri Krishna Nagar Yousufguda, Hyderabad, Telangana 500045</span>                 
+          </div>
+          <div class="d-flex justify-content-end">Year & Month:<span class="ms-3">{{monthandyear}}</span> </div>
+          <div class="row">
+              <div class="col-md-10">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">EMP Name: </span> <span class="ms-3">{{arraydata.firstName}} {{arraydata.lastName}}</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">PF NO: </span> <span class="ms-3">{{Pfnumber}}</span> </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">EMP Code:</span> <span class="ms-3">{{arraydata.userId}}</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">UAN: </span> <span class="ms-3">{{UanNumber}}</span> </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Join Date: </span> <span class="ms-3">{{arraydata.doj}}</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Bank Name: </span> <span class="ms-3">{{Bankname}}</span> </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Location: </span> <span class="ms-3">Hyderabad</span> </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div> <span class="fw-bolder">Bank Account Number: </span> <span class="ms-3">{{Bankaccount}}</span> </div>
+                      </div>
+                  </div>
+              </div>
+              <table  disabled class="mt-4 table table-bordered">
+                  <thead class="bg-dark text-white">
+                      <tr>
+                          <th scope="col">Earnings</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Deductions</th>
+                          <th scope="col">Amount</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">Basic</th>
+                          <td>{{Basicamount}}</td>
+                          <td>PF</td>
+                          <td>{{Pfamount}}</td>
+                      </tr>
+                      
+                      
+                      <tr>
+                          <th scope="row">Fixed Bonus</th>
+                          <td>{{Fixedbonus}}</td>
+
+                          <td>Prof Tax</td>
+                          <td>{{Proftax}}</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">DA</th>
+                          <td>{{Directallowence}}</td>
+                          
+                      </tr>
+
+
+                   <!--   <tr>
+                          <th scope="row">Bonus</th>
+                          <td>1400.00</td>
+                          <td colspan="2"></td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Individual Incentive</th>
+                          <td>2400.00</td>
+                          <td colspan="2"></td>
+                      </tr> 
+                    -->
+                    
+                      <tr class="border-top">
+                          <th scope="row">Total Earning</th>
+                          <td>{{totalearnings}}</td>
+
+
+                          <td>Total Deductions</td>
+                          <td>{{totaldec}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="row">
+              <div class="col-md-4"> <br> <span class="fw-bold">Net Pay for the month:{{ netpay}}</span> </div>
+            <!--  <div class="border col-md-8">
+                  <div class="d-flex flex-column"> <span>In Words</span> <span>Twenty Five thousand nine hundred seventy only</span> </div>
+              </div>
+              -->
+          </div>
+        <!--  <div class="d-flex justify-content-end">
+              <div class="d-flex flex-column mt-2"> <span class="fw-bolder">softblobs</span> <span class="mt-4">Authorised Signatory</span> </div>
+          </div>
+        -->
+        
+      </div>
+     
+      <div [hidden]="!disableDIV" class="button-row mb-24">
+        <button mat-raised-button class="me-8 mb-8 btn btn-info fw-normal" (click)="downloadpdf()"   >Download PDF</button>
+      <!--  <button mat-raised-button class="me-8 mb-8" color="warn">Cancel</button> -->
+      </div>
+    </div> 
+    <div role="article"  *ngIf="error.length > 0" class="alert alert-info alert-text-info align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-green" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle"> 
+        <line color="Primary" x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg></i-feather> {{error}} 
+      </div>
+</div>

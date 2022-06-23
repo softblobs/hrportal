@@ -1,0 +1,114 @@
+
+<div >
+  <mat-card class="example-cardd">
+    <mat-card-content>
+      <h4 class="mb-60">Time sheet</h4>
+      <span ><a  class="btn-link"   >    Total Timesheets Applied    :{{alltimel}}</a>             </span>  
+      <span ><a  class="btn-linkk"  (click)="fortimelink()" >Total Timesheets Pending  :{{pendingtimel}}</a>    </span>            
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-cardd">
+    <mat-card-content>
+      <h4 class="mb-60">Leave Info</h4>
+      <span ><a  class="btn-link"   >    Total Leaves Applied    :{{allleavel}}</a>             </span>  
+      <span ><a  class="btn-linkk" (click)="forleavelink()"  >Total Leaves Pending  :{{pendingleavel}}</a>    </span> 
+           
+    </mat-card-content>
+  </mat-card>
+
+
+
+<mat-card class="example-card">
+    <mat-card-content>
+      <h4 class="mb-60">Roles</h4>    
+    <button class="btn btn-primary float-right" (click)="addEvent()"  [disabled]="!isSuperAdmin">
+      Add new
+    </button>
+    <br/>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>          
+            <th>Roles</th>
+            
+            <th colspan="2">Action</th>   
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr *ngFor="let list of sheetList">              
+            <td>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="list.prole"
+                (keyup)="refresh.next()"
+                [disabled]="list.status == 'Approved'"
+              />
+            </td>
+            
+           
+            
+             
+            <td> <button  class="btn btn-primary active"  (click)="update(list)"  [disabled]="!isSuperAdmin" >Save</button> </td>
+            <td><button id="remove" class="btn btn-danger"  (click)="delete(list.id)" [disabled]="!isSuperAdmin" >Delete</button></td>          
+          </tr>
+          
+        </tbody>    
+      </table>
+      
+    </div>
+    <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+      <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+  </svg></i-feather> {{error}} 
+   </div>     
+    </mat-card-content>
+  </mat-card> 
+
+
+
+  
+  <mat-card class="example-cardd">
+    <mat-card-content>
+      <h4 class="mb-60">Projects</h4>
+      <button class="btn btn-primary float-right" (click)="paddEvent()" [disabled]="!isSuperAdmin">
+        Add
+      </button>
+      <br/>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>          
+              <th>projects</th>
+              
+              <th colspan="2">Action</th>   
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr *ngFor="let lists of psheetList">              
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="lists.pproject"
+                  (keyup)="refresh.next()"                  
+                />
+              </td>  
+              <td> <button  class="btn btn-primary active"  (click)="pupdate(lists)" [disabled]="!isSuperAdmin">Save</button> </td>
+              <td><button id="premove" class="btn btn-danger"  (click)="pdelete(lists.id)" [disabled]="!isSuperAdmin">Delete</button></td>          
+            </tr>
+            
+          </tbody>    
+        </table>
+        
+      </div> 
+      
+      <div  *ngIf="errorp.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+        <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg></i-feather> {{errorp}} 
+     </div>
+    </mat-card-content>
+  </mat-card>
+</div>
