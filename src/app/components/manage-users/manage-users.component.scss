@@ -25,33 +25,6 @@
 }
 
 
-tr.mat-row:nth-child(even)
- {
-  padding: 16px;
-  table-layout:inherit;
-  background-color:rgb(144, 185, 192);
-}
 
-
-
-
-th.mat-header-cell:first-of-type
- {
-  padding: 16px;
-  table-layout:inherit;
-  background-color:rgb(181, 172, 216);
-}
-
-th.mat-header-cell {
-  padding: 16px;
-  table-layout:fixed;
-  background-color:rgb(181, 172, 216);
-}
-
-.mat-header-cell {
-  font-size: 14px;
-  table-layout:fixed;
-  background-color:darkorange;
-}
 
   

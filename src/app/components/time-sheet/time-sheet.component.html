@@ -14,7 +14,55 @@
   Add new
 </button>
 <br/>
+<!-- <form [formGroup]="signUpForm"  (ngSubmit)="submit">
+      
+           
+      
+      <input matInput type="text" placeholder="Enter a Task" formControlName="task"  #name="ngModel"/>
+      <mat-error *ngIf="name?.errors?.['required']">
+        Please enter a Task
+      </mat-error>   
 
+    
+      <
+      <input matInput type="text"  id="description" placeholder="Enter a description" formControlName="description"/>
+      <mat-error *ngIf="description?.errors?.['required']">
+        Please enter a description
+      </mat-error>
+    
+
+    
+      
+      <input matInput type="number" placeholder="Enter hours" formControlName="hours"/>
+      <mat-error *ngIf="hour?.errors?.['required']">
+        Enter hours
+      </mat-error> 
+    
+    -->
+    <!-- <form [formGroup]="signUpForm" (ngSubmit)="onFormSubmit()">
+            
+            <input formControlName="task" >
+             <label
+              *ngIf="task?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted"  class="form-control">
+              
+              task required.
+            </label> -->
+        
+          
+            <!-- <input formControlName="description">
+             <label
+               *ngIf="signUpForm?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="form-control"
+              >
+              description required.
+            </label>
+
+     
+            <input formControlName="hours">
+             <label
+              *ngIf="signUpForm?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="form-control"
+              >
+              hour is  required.
+            </label>     -->
 <div class="table-responsive">
   
      
