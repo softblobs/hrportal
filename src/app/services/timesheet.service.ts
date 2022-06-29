@@ -10,6 +10,9 @@ import { id } from 'date-fns/locale';
   providedIn: 'root'
 })
 export class TimesheetService {
+  signUp(phone: any, officeEmail: any, project: any, address: any, skillSet: any, paystatus: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(public firestore: AngularFirestore) { }
 

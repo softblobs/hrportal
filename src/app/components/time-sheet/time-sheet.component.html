@@ -14,8 +14,11 @@
   Add new
 </button>
 <br/>
+
 <div class="table-responsive">
-  <table class="table table-bordered" id="mytable">
+  
+     
+   <table class="table table-bordered" id="mytable">
     <thead>
       <tr>          
         <th>Task</th>
@@ -28,7 +31,7 @@
 
     <tbody>
 
-      <tr *ngFor="let list of sheetList">              
+        <tr *ngFor="let list of sheetList">              
         <td>
           <input
            id="name" 
@@ -42,7 +45,7 @@
             [disabled]="list.status == 'Approved'"
             
           />
-
+<label>
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
            class="alert alert-info">
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
@@ -53,7 +56,7 @@
           </div>
           </div>  
           </div>
-
+</label>
         </td>
         
         <td > <input
@@ -119,35 +122,25 @@
         <!-- <td> <button mat button class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)">Save</button> </td> -->
        <!-- <td> <button  class="btn btn-primary active" [disabled]="list.status != 'pending' || list.status == 'Approved' ||  hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>-->
         <td><button id="remove" class="btn btn-danger"  [disabled]="list.status == 'Approved'"  [hidden]="list.status == 'Approved'"(click)="delete(list.id)">Delete</button></td>          
-      </tr>    
-    </tbody>     
-  </table>
-  <tr *ngFor="let list of sheetList"> 
-    
-    <td>    
-      <button  #hour="ngModel" #description="ngModel" [(ngModel)]="list.hours"[(ngModel)]="list.description"mat button class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)
-      " >Save</button>
-    </td>
-  </tr> 
-  <!-- <div style="float: right;">
-    <button type="save" value="Save" class="btn btn-primary active" style="margin-left: 50px;" (click)="submit()">save</button> 
-    <div class="space">
-      
-    </div> -->
-  
-<!-- <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
-  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-  </svg></i-feather> {{error}} 
-</div> -->
+      </tr>
+   
+      <tr>
+        <td *ngIf="sheetList.length == 0" colspan="5">
+          No Recods Found
+        </td>
+      </tr>      
+   </tbody>     
+  </table>     
+  <!-- <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+</svg></i-feather> {{error}} 
+ </div>  -->
+  <span *ngIf="sheetList.length != 0 ">    
+    <button class="btn btn-primary active"  (click)="update(sheetList)">Update/Save</button>
+  </span>
 
-
-
-<div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+  <div style="display: none;" id="errorMsg"  class="alert alert-danger alert-text-danger align-items-center"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
   <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
 </svg></i-feather> {{error}} 
 </div>
-<div>
-  
-
-
-                                
+<!-- </form>  -->

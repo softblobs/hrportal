@@ -21,7 +21,7 @@
         
         <mat-form-field class="w-75 fs-16" appearance="outline">
           <mat-label>First Name</mat-label>
-          <input matInput type="text" placeholder="Enter user's FirstName" maxlength="30" [value]="ud.firstName" formControlName="firstName"/>
+          <input matInput type="text" placeholder="Enter user's FirstName" maxlength="30" [value]="ud.firstName" required formControlName="firstName"/>
           <mat-error *ngIf="firstName?.errors?.['required']">
             FirstName is required
           </mat-error>

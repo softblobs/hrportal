@@ -121,6 +121,7 @@ export class CalendarComponent implements OnInit {
   currentProduct = null;
   currentIndex = -1;
   name = '';
+  errorMsg=0;
   
   //New End
 
@@ -219,29 +220,24 @@ rows = [];
            
  }
 
-  // ngOnChanges() {
-  //   // this.message = '';
-  //   // this.currentTutorial = { ...this.tutorial };
-  //   this.fetchData();  
-  // }  
   delete(id: string) {
-    this.CalenderService.deleteEvent(id);     
-    this.error='The events was Deleted';
-    setTimeout(()=>{ this.error="";},3000);
-
-    this.ngOnInit();  
-//New start
+    this.CalenderService.deleteEvent(id);  
     for(let i = 0; i < this.eventsList.length; ++i){
       if (this.eventsList[i].id === id) {
           this.eventsList.splice(i,1);
       }
+    
+    this.error='The events was Deleted';
+    let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+    theDiv.style.display = 'block';
+  setTimeout(() => {this.displayErrorMsg();
+      }, 3000); 
+    this.ngOnInit();  
+    this.fetchData();
   }
     
-  } 
-//update(cal: Calinfo) {
-//  this.saveupdateEvent(cal);
-  //alert('The events was Updated successfully!');
-//}
+  }  
+
 fetchData() {
   this.CalenderService.getPolicies().subscribe(data => { 
     this.eventsList = data.map(e => {
@@ -262,17 +258,25 @@ update(cal: Calinfo):void{
   {
     this.firestore.collection('calender').add(cal);    
     this.error="Inserted Successfully";
-    setTimeout(()=>{ this.error="";},3000);
+    let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+      theDiv.style.display = 'block';
+      setTimeout(() => {this.displayErrorMsg();
+        }, 3000); 
     
   }
   else{
     this.firestore.doc('calender/'+cal.id).update(cal);
     this.error="Updated Succssfully";
-    setTimeout(()=>{ this.error="";},3000);
+    let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+   theDiv.style.display = 'block';
+ setTimeout(() => {this.displayErrorMsg();
+     }, 3000); 
   }
-}  
-
-   
+} 
+displayErrorMsg(){   
+  this.errorMsg = 0;
+  let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+  theDiv.style.display = 'none';       
 }
-
-  
+ 
+}
