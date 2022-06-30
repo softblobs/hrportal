@@ -6,65 +6,19 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker ></mat-datepicker>
   </mat-form-field>  
-  <div class="clearfix"></div>  
- 
+  <div class="clearfix"></div>   
   
 </h4>
 <button class="btn btn-primary float-right" (click)="addEvent()">
   Add new
 </button>
 <br/>
-<!-- <form [formGroup]="signUpForm"  (ngSubmit)="submit">
-      
-           
-      
-      <input matInput type="text" placeholder="Enter a Task" formControlName="task"  #name="ngModel"/>
-      <mat-error *ngIf="name?.errors?.['required']">
-        Please enter a Task
-      </mat-error>   
-
-    
-      <
-      <input matInput type="text"  id="description" placeholder="Enter a description" formControlName="description"/>
-      <mat-error *ngIf="description?.errors?.['required']">
-        Please enter a description
-      </mat-error>
-    
-
-    
-      
-      <input matInput type="number" placeholder="Enter hours" formControlName="hours"/>
-      <mat-error *ngIf="hour?.errors?.['required']">
-        Enter hours
-      </mat-error> 
-    
-    -->
-    <!-- <form [formGroup]="signUpForm" (ngSubmit)="onFormSubmit()">
-            
-            <input formControlName="task" >
-             <label
-              *ngIf="task?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted"  class="form-control">
-              
-              task required.
-            </label> -->
-        
-          
-            <!-- <input formControlName="description">
-             <label
-               *ngIf="signUpForm?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="form-control"
-              >
-              description required.
-            </label>
-
-     
-            <input formControlName="hours">
-             <label
-              *ngIf="signUpForm?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="form-control"
-              >
-              hour is  required.
-            </label>     -->
 <div class="table-responsive">
   
+ 
+   
+    
+
      
    <table class="table table-bordered" id="mytable">
     <thead>
@@ -132,15 +86,14 @@
           required.
           </div>
           </div>  
-          </div>
-         
+        </div>        
           
         </td>
         <td><input 
           
           id="hour" 
          required min="1" max="8"
-         ngModel name="hour" #hour="ngModel"  
+         ngModel name="hour" #hour="ngModel"  (change)='onSelectChange($event)'
           
          
           class="form-control"
@@ -191,4 +144,3 @@
   <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
 </svg></i-feather> {{error}} 
 </div>
-<!-- </form>  -->

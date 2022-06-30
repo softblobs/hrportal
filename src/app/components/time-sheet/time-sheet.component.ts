@@ -60,6 +60,10 @@ export class TimeSheetComponent implements OnInit {
   //view: CalendarView = CalendarView.Month; 
   //view: CalendarView = CalendarView.Month;  
   //CalendarView = CalendarView;
+
+
+
+  
   name:any;
   viewDate: Date = new Date();
   isValidFormSubmitted: boolean | null = null;
@@ -72,7 +76,10 @@ export class TimeSheetComponent implements OnInit {
   sheetList:any;
   error='';
   errorMsg = 0;  
-  
+  temptotalhours=0;
+  temp=0;
+  myForm: any;
+  fb: any;
 
   addEvent(): void {    
     this.sheetList = [
@@ -154,7 +161,17 @@ export class TimeSheetComponent implements OnInit {
   this.onChangeEvent(this.selectedDate);
   this.fetchData();
   this.fetchData();
-  }  
+
+    // this._buildForm();
+}
+
+// private _buildForm() {
+//     this.myForm = this.fb.group({
+//         task: ['', [Validators.required]],
+//         description : ['', [Validators.required]],
+//         hours: ['', [Validators.required]]
+//     });
+// }
   
   convert(str:any) {
     var date = new Date(str),
@@ -194,6 +211,12 @@ export class TimeSheetComponent implements OnInit {
    this.fetchData();
   }
 
+  onSelectChange(event:any){
+    
+    var  value =this.temp+parseInt(event.target.value);
+     this.temp =value;
+  }
+
 //   submit(){ 
 //     if((Number(new Date().toISOString().split('-')[0]))-this.signUpForm.value.dob.split('-')[0]>20) {
       
@@ -226,22 +249,24 @@ export class TimeSheetComponent implements OnInit {
     timesht.userId = localStorage.getItem('currentUser');
     timesht.status = "pending";
     timesht.project = localStorage.getItem('logProject');
-    this.saveupdateSheetList(timesht)
+    this.saveupdateSheetList(timesht)  
 
   }
 
   update(timesht: timesheetInfo) {
-
+   if(this.temp<=8)
+   {
     for (const [key, value] of Object.entries(timesht)) {
       if (value.status != 'pending')
          this.insertNewDetails(value);
+         
       else
         this.saveupdate(value);
-        
+        this.error="Inserted/Update Successfully";
     }
-
-
-    this.error="Inserted/Update Successfully";
+  }else
+    // this.error="Inserted/Update Successfully";
+    this.error=" please add only 8 hours";
     let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
     theDiv.style.display = 'block';
     setTimeout(() => {this.displayErrorMsg();
@@ -257,8 +282,7 @@ export class TimeSheetComponent implements OnInit {
 
 saveupdateSheetList(timeSheet: timesheetInfo){ 
 
-    this.firestore.collection('timesheet').add(timeSheet);
-    
+    this.firestore.collection('timesheet').add(timeSheet);    
 
  }
  updatelist(timesht: timesheetInfo) {    
@@ -268,6 +292,7 @@ saveupdateSheetList(timeSheet: timesheetInfo){
   timesht.status= "pending" ;
   timesht.project= localStorage.getItem('logProject'); 
   this.saveupdate(timesht);
+  
 }
 
 saveupdate(timeSheet: timesheetInfo){   
