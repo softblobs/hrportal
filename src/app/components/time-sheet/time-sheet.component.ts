@@ -252,7 +252,7 @@ export class TimeSheetComponent implements OnInit {
     for (const [key, value] of Object.entries(timesht)) {
      temp = temp +parseInt(value.hours);
     }
-    if(temp < 8 ){
+    if(temp < 9 ){
     for (const [key, value] of Object.entries(timesht)) {
       if (value.status != 'pending')
         this.insertNewDetails(value);
