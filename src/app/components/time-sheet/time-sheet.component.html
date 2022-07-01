@@ -13,13 +13,8 @@
   Add new
 </button>
 <br/>
-<div class="table-responsive">
-  
- 
-   
-    
 
-     
+<div class="table-responsive">     
    <table class="table table-bordered" id="mytable">
     <thead>
       <tr>          
@@ -39,7 +34,7 @@
            id="name" 
            required maxlength="150" minlength="1"
            ngModel name="name" #name="ngModel"
-
+          placeholder="Enter a task"
             type="text"            
             class="form-control"
             [(ngModel)]="list.task"
@@ -47,18 +42,18 @@
             [disabled]="list.status == 'Approved'"
             
           />
-<label>
+
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
            class="alert alert-info">
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
-           class="alert">
+          class="alert alert-info">
 
           <div *ngIf="name.errors?.['required']">
           required.
           </div>
           </div>  
           </div>
-</label>
+
         </td>
         
         <td > <input
@@ -66,7 +61,7 @@
           id="description" 
          required maxlength="300" minlength="1"
          ngModel description="name" #description="ngModel"
-
+          placeholder="Enter a description "
           type="text"
           class="form-control"
           [(ngModel)]="list.description"
@@ -102,7 +97,7 @@
           [disabled]="list.status == 'Approved'"
           type="text" pattern="[1-8]{1}"  
           maxlength="1"
-
+          placeholder="Enter hours"
         />
         <div *ngIf="hour.invalid && (hour.dirty || hour.touched)"
            class="alert alert-info">Max 8 hours
@@ -122,7 +117,7 @@
         </td> 
         <!-- <td> <button mat button class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)">Save</button> </td> -->
        <!-- <td> <button  class="btn btn-primary active" [disabled]="list.status != 'pending' || list.status == 'Approved' ||  hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>-->
-        <td><button id="remove" class="btn btn-danger"  [disabled]="list.status == 'Approved'"  [hidden]="list.status == 'Approved'"(click)="delete(list.id)">Delete</button></td>          
+        <td><button id="remove" class="btn btn-danger"  [disabled]="list.status == 'Approved'"  [hidden]="list.status == 'Approved'"(click)="delete(list.id,$event)">Delete</button></td>          
       </tr>
    
       <tr>
@@ -137,7 +132,7 @@
 </svg></i-feather> {{error}} 
  </div>  -->
   <span *ngIf="sheetList.length != 0 ">    
-    <button class="btn btn-primary active"  (click)="update(sheetList)">Update/Save</button>
+    <button class="btn btn-primary active" [disabled]="sheetList.status == 'pending' ||sheetList.status == 'Approved'|| name.invalid " (click)="update(sheetList)">Update/Save</button>
   </span>
 
   <div style="display: none;" id="errorMsg"  class="alert alert-danger alert-text-danger align-items-center"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">

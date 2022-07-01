@@ -17,10 +17,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { groupBy } from 'rxjs/internal/operators/groupBy';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
-
-
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -60,9 +56,6 @@ export class TimeSheetComponent implements OnInit {
   //view: CalendarView = CalendarView.Month; 
   //view: CalendarView = CalendarView.Month;  
   //CalendarView = CalendarView;
-
-
-
   
   name:any;
   viewDate: Date = new Date();
@@ -80,6 +73,7 @@ export class TimeSheetComponent implements OnInit {
   temp=0;
   myForm: any;
   fb: any;
+  temp2:any;
 
   addEvent(): void {    
     this.sheetList = [
@@ -94,7 +88,7 @@ export class TimeSheetComponent implements OnInit {
       },
     ];
   }
-
+ 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
   }
@@ -143,18 +137,7 @@ export class TimeSheetComponent implements OnInit {
   weekStarttemp = this.weekStart;
   tasks:any;
 
-
-  // get task(){
-  //   return this.signUpForm.get('task');
-  //  }
-  //  get discription(){
-  //   return this.signUpForm.get('description');
-  //  }
-  //  get hours(){
-  //   return this.signUpForm.get('hours');
-  //  }
-
-  ngOnInit(): void { 
+   ngOnInit(): void { 
   this.fetchData();
   this.selectedDate = new Date();
   this.fetchData(); 
@@ -215,6 +198,7 @@ export class TimeSheetComponent implements OnInit {
     
     var  value =this.temp+parseInt(event.target.value);
      this.temp =value;
+     
   }
 
 //   submit(){ 
@@ -235,13 +219,23 @@ export class TimeSheetComponent implements OnInit {
         
 //   } 
 
-//   onFormSubmit() {
-// 		this.isValidFormSubmitted = false;
-//     this.signUpForm.value.task,
-//     this.signUpForm.value.description,
-//     this.signUpForm.value.hours
-//   }
+  // onFormSubmit() {
+	// 	this.isValidFormSubmitted = false;
+  //   this.signUpForm.value.task,
+  //   this.signUpForm.value.description,
+  //   this.signUpForm.value.hours
+  // }
 
+
+// get task(){
+//   return this.signUpForm.get('task');
+//  }
+//  get discription(){
+//   return this.signUpForm.get('description');
+//  }
+//  get hours(){
+//   return this.signUpForm.get('hours');
+//  }
 
   insertNewDetails(timesht: timesheetInfo) {
 
@@ -254,24 +248,31 @@ export class TimeSheetComponent implements OnInit {
   }
 
   update(timesht: timesheetInfo) {
-   if(this.temp<=8)
-   {
+    let temp = 0; 
+    for (const [key, value] of Object.entries(timesht)) {
+     temp = temp +parseInt(value.hours);
+    }
+    if(temp < 8 ){
     for (const [key, value] of Object.entries(timesht)) {
       if (value.status != 'pending')
-         this.insertNewDetails(value);
-         
+        this.insertNewDetails(value);
       else
         this.saveupdate(value);
-        this.error="Inserted/Update Successfully";
     }
-  }else
-    // this.error="Inserted/Update Successfully";
-    this.error=" please add only 8 hours";
+  
+    this.error="Inserted/Update Successfully";
     let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
     theDiv.style.display = 'block';
     setTimeout(() => {this.displayErrorMsg();
       }, 3000); 
 
+    }else{
+      this.error=" please add only 8 hours";
+      let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+      theDiv.style.display = 'block';
+      setTimeout(() => {this.displayErrorMsg();
+        }, 3000);
+    }
   }
 
   displayErrorMsg(){   
@@ -283,7 +284,13 @@ export class TimeSheetComponent implements OnInit {
 saveupdateSheetList(timeSheet: timesheetInfo){ 
 
     this.firestore.collection('timesheet').add(timeSheet);    
-
+    // this.timesheetService.signUp(
+//       this.signUpForm.value.task,
+//       this.signUpForm.value.description,
+//       this.signUpForm.value.hours,
+//      this.signUpForm.value.status,
+// this.signUpForm.value.userId,
+// this.signUpForm.value.userName)
  }
  updatelist(timesht: timesheetInfo) {    
   //const user = localStorage.getItem('currentUser');
@@ -300,15 +307,12 @@ saveupdate(timeSheet: timesheetInfo){
  
  }
 
-delete(id: string) {
-  
-  this.timesheetService.deleteEvent(id)
-; 
-  
+delete(id: string,event:any) {  
+
+  this.timesheetService.deleteEvent(id);
   for(let i = 0; i < this.sheetList.length; ++i){
           if (this.sheetList[i].id === id) {
-            this.sheetList.splice(i,1);
-   
+            this.sheetList.splice(i,1);  
 }
 }
 
@@ -323,7 +327,6 @@ if(this.sheetList.status=="Pending" && this.error=="The events was Deleted")
 
 this.ngOnInit();
   this.fetchData();
-
 }
 }
 

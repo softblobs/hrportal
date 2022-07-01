@@ -131,7 +131,8 @@
         class="form-control"
         maxlength="20"
         [(ngModel)]="event.title"  
-        (keyup)="refresh.next()"       
+        (keyup)="refresh.next()" 
+        placeholder="Enter a event"      
       /></td>
      
         <td>
@@ -146,7 +147,7 @@
               [enableTime]="false"
               dateFormat="Y-m-d"
               altFormat="F j, Y"
-              placeholder="Select Date"
+              placeholder="Select a date"
         /> 
         </td>
         <td style="display: none;">

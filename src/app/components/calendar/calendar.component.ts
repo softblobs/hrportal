@@ -168,8 +168,8 @@ export class CalendarComponent implements OnInit {
       this.eventsList = [
       ...this.eventsList,
       {
-        title: 'New event',
-        start: startOfDay(new Date()),
+        title: '',
+        start: '',
         
         //end: endOfDay(new Date()),        
        // color: colors.red,
