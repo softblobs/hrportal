@@ -107,20 +107,6 @@ export class TimeSheetComponent implements OnInit {
   myDate = new Date();  
   exampleForm = new FormGroup ({ firstName: new FormControl(), lastName: new FormControl()});
 
-
-
-//   signUpForm = new FormGroup({
-
-      
-//     task:new FormControl('',[Validators.required ]),
-//     discription:new FormControl('',Validators.required),
-//     hours:new FormControl('', [Validators.required]),  
-//   },
-//    );
-// historyRef: any;
-// history: any;
-
-  
   constructor(private timesheetService : TimesheetService,public firestore: AngularFirestore,private _formBuilder: FormBuilder) {
     const currentYear = new Date().getFullYear();
     const currentMonth= new Date().getMonth();
@@ -144,17 +130,7 @@ export class TimeSheetComponent implements OnInit {
   this.onChangeEvent(this.selectedDate);
   this.fetchData();
   this.fetchData();
-
-    // this._buildForm();
 }
-
-// private _buildForm() {
-//     this.myForm = this.fb.group({
-//         task: ['', [Validators.required]],
-//         description : ['', [Validators.required]],
-//         hours: ['', [Validators.required]]
-//     });
-// }
   
   convert(str:any) {
     var date = new Date(str),
@@ -198,44 +174,9 @@ export class TimeSheetComponent implements OnInit {
     
     var  value =this.temp+parseInt(event.target.value);
      this.temp =value;
-     
+    
   }
 
-//   submit(){ 
-//     if((Number(new Date().toISOString().split('-')[0]))-this.signUpForm.value.dob.split('-')[0]>20) {
-      
-          
-//     this.timesheetService.signUp(
-//       this.signUpForm.value.task,
-//       this.signUpForm.value.description,
-//       this.signUpForm.value.hours,
-//      this.signUpForm.value.status,
-// this.signUpForm.value.userId,
-// this.signUpForm.value.userName
-
-//       )     
-     
-//     }
-        
-//   } 
-
-  // onFormSubmit() {
-	// 	this.isValidFormSubmitted = false;
-  //   this.signUpForm.value.task,
-  //   this.signUpForm.value.description,
-  //   this.signUpForm.value.hours
-  // }
-
-
-// get task(){
-//   return this.signUpForm.get('task');
-//  }
-//  get discription(){
-//   return this.signUpForm.get('description');
-//  }
-//  get hours(){
-//   return this.signUpForm.get('hours');
-//  }
 
   insertNewDetails(timesht: timesheetInfo) {
 
@@ -248,31 +189,44 @@ export class TimeSheetComponent implements OnInit {
   }
 
   update(timesht: timesheetInfo) {
+
     let temp = 0; 
     for (const [key, value] of Object.entries(timesht)) {
      temp = temp +parseInt(value.hours);
     }
-    if(temp < 9){
-    for (const [key, value] of Object.entries(timesht)) {
-      if (value.status != 'pending')
-        this.insertNewDetails(value);
-      else
-        this.saveupdate(value);
-    }
-  
-    this.error="Inserted/Update Successfully";
-    let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
-    theDiv.style.display = 'block';
-    setTimeout(() => {this.displayErrorMsg();
-      }, 3000); 
 
-    }else{
-      this.error=" please add only 8 hours";
-      let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
-      theDiv.style.display = 'block';
-      setTimeout(() => {this.displayErrorMsg();
-        }, 3000);
+    for (const [key, value] of Object.entries(timesht)) {
+      if(value.task!="" && value.description!="" && value.hours!="")
+      {
+       
+     if(temp<9){
+
+      if (value.status != 'pending')       
+        this.insertNewDetails(value);
+        this.saveupdate(value);
+        this.error="Inserted/Update Successfully";
+        let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+        theDiv.style.display = 'block';
+        setTimeout(() => {this.displayErrorMsg();
+          }, 3000); 
+        }else{
+          this.error=" please add only 8 hours";
+             let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+             theDiv.style.display = 'block';
+             setTimeout(() => {this.displayErrorMsg();
+               }, 3000);
+        }
+        
+      }
+      else{
+          this.error="Please fill the Details";
+        let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+        theDiv.style.display = 'block';
+        setTimeout(() => {this.displayErrorMsg();
+          }, 3000);
+        }
     }
+
   }
 
   displayErrorMsg(){   
@@ -283,14 +237,7 @@ export class TimeSheetComponent implements OnInit {
 
 saveupdateSheetList(timeSheet: timesheetInfo){ 
 
-    this.firestore.collection('timesheet').add(timeSheet);    
-    // this.timesheetService.signUp(
-//       this.signUpForm.value.task,
-//       this.signUpForm.value.description,
-//       this.signUpForm.value.hours,
-//      this.signUpForm.value.status,
-// this.signUpForm.value.userId,
-// this.signUpForm.value.userName)
+    this.firestore.collection('timesheet').add(timeSheet);   
  }
  updatelist(timesht: timesheetInfo) {    
   //const user = localStorage.getItem('currentUser');
@@ -304,7 +251,7 @@ saveupdateSheetList(timeSheet: timesheetInfo){
 
 saveupdate(timeSheet: timesheetInfo){   
   this.firestore.doc('timesheet/'+timeSheet.id).update(timeSheet);
- 
+
  }
 
 delete(id: string,event:any) {  
@@ -315,7 +262,6 @@ delete(id: string,event:any) {
             this.sheetList.splice(i,1);  
 }
 }
-
 this.error="The events was Deleted";
 //this.error="Inserted/Update Successfully";
 let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
