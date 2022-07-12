@@ -69,7 +69,11 @@ export class ApplyleaveComponent implements OnInit {
   
 
 
-  constructor(private leaveservice:LeaveService,private _router: Router, public afs:AngularFirestore ) { }
+  constructor(private leaveservice:LeaveService,private _router: Router, public afs:AngularFirestore ) { 
+    const currentYear = new Date().getFullYear();
+    const currentMonth= new Date().getMonth();
+    const currentDate =new Date().getDay();
+    this.minDate = new Date(currentYear - 0, currentMonth-0, currentDate-7);}
   
   leavetypes =[ {id:"Planed",value:"Planed"},
   {id:"sick",value:"Sick"},

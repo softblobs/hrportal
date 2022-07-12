@@ -25,7 +25,8 @@ export class ApproveLeaverequestComponent implements OnInit {
   form: any;
   currenstatus:any = "Approved";
   error="";
- 
+  selectButtonsEnabled:boolean=true;
+
   constructor(private leaveService:LeaveService) { }
 
   ngOnInit(): void {
@@ -58,15 +59,17 @@ export class ApproveLeaverequestComponent implements OnInit {
 
       })
       this.approveSheetList = selectedData.map(e => {        
-        return {        
-          id: e.payload.doc.id,      
-          leavetype:e.payload.doc.get("leavetype"),
-          leavereason:e.payload.doc.get("leavereason"),
-          datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
-          dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0], 
-          userId:e.payload.doc.get("userId"),   
-          status:e.payload.doc.get("status"),      
-        } as leaveinfo;     
+        let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
+        let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];
+        return {
+          id: e.payload.doc.id,
+          leavetype: e.payload.doc.get("leavetype"),
+          leavereason: e.payload.doc.get("leavereason"),
+          datefrom: d2,
+          dateto: d3,
+          userId: e.payload.doc.get("userId"),
+          status: e.payload.doc.get("status"),
+        } as unknown as leaveinfo;     
       })          
     });  
 
@@ -82,17 +85,19 @@ export class ApproveLeaverequestComponent implements OnInit {
           && localStorage.getItem('logName') != record.payload.doc.get("userName");  
          });  
           
-        this.approveDropSheetList = selectedData.map(e => {        
-          return {        
-            id: e.payload.doc.id,      
-            leavetype:e.payload.doc.get("leavetype"),
-            leavereason:e.payload.doc.get("leavereason"),
-            datefrom:e.payload.doc.get("datefrom"),
-            dateto:e.payload.doc.get("dateto"), 
-            userId:e.payload.doc.get("userId"),   
-            status:e.payload.doc.get("status"),      
-            userName:e.payload.doc.get("userName"),
-          } as leaveinfo;     
+        this.approveDropSheetList = selectedData.map(e => {  
+          let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
+          let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];      
+          return {
+            id: e.payload.doc.id,
+            leavetype: e.payload.doc.get("leavetype"),
+            leavereason: e.payload.doc.get("leavereason"),
+            datefrom: d2,
+            dateto: d3,
+            userId: e.payload.doc.get("userId"),
+            status: e.payload.doc.get("status"),
+            userName: e.payload.doc.get("userName"),
+          } as unknown as leaveinfo;     
         })       
        var key = "userName";
        this.approveDropSheetList = [...new Map(this.approveDropSheetList.map((d: { [x: string]: any; }) => [d[key], d])).values()]
@@ -111,17 +116,19 @@ export class ApproveLeaverequestComponent implements OnInit {
           && localStorage.getItem('logName') != record.payload.doc.get("userName");  
          });   
         
-      this.approveDropSheetList = selectedData.map(e => {        
-        return {        
-          id: e.payload.doc.id,      
-          leavetype:e.payload.doc.get("leavetype"),
-          leavereason:e.payload.doc.get("leavereason"),
-          datefrom:e.payload.doc.get("datefrom"),
-          dateto:e.payload.doc.get("dateto"), 
-          userId:e.payload.doc.get("userId"),   
-          status:e.payload.doc.get("status"),      
-          userName:e.payload.doc.get("userName"),
-        } as leaveinfo;     
+      this.approveDropSheetList = selectedData.map(e => {   
+        let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
+        let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];
+        return {
+          id: e.payload.doc.id,
+          leavetype: e.payload.doc.get("leavetype"),
+          leavereason: e.payload.doc.get("leavereason"),
+          datefrom: d2,
+          dateto: d3,
+          userId: e.payload.doc.get("userId"),
+          status: e.payload.doc.get("status"),
+          userName: e.payload.doc.get("userName"),
+        } as unknown as leaveinfo;     
       })       
      var key = "userName";
      this.approveDropSheetList = [...new Map(this.approveDropSheetList.map((d: { [x: string]: any; }) => [d[key], d])).values()]
@@ -168,12 +175,15 @@ approve(timesht: leaveinfo) {
     for (let j = 0; j < this.approveSheetList.length; j++) {
       if(this.approveSheetList[j].id == this.selectedCheck[i]){
         this.approveSheetList[j].status = "Approved";
+        // this.selectButtonsEnabled=false;
         this.leaveService.saveupdateSheetList(this.approveSheetList[j]);     
       }
     }
   }  
+  this.selectButtonsEnabled=false;
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
+    
 }
 else{
   this.error="Please select check box to approve";
@@ -182,11 +192,17 @@ else{
 }
 
 changeUser(e: any) {    
+  this.selectButtonsEnabled=true;
   var splitted = e.target.value.split("\:"); 
   this.UserList = splitted[1].trim();  
   this.fetchData();  
+  // for (let i = 0; i < this.approveDropSheetList.length; i++) 
+  // {
+  //   if(this.approveDropSheetList[i].status!=="Approved")
+
+  //   {this.selectButtonsEnabled=false;}
+    
+  // }
 }
-
-
 
 }

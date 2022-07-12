@@ -187,6 +187,16 @@ export class TimeSheetComponent implements OnInit {
     this.saveupdateSheetList(timesht)  
 
   }
+//   if(timesht.id==0 || timesht.id==null || timesht.id=='') 
+//   else{
+//     this.firestore.doc('calender/'+timesht.id).update(timesht);
+//     this.error="Updated Succssfully";
+//     let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
+//    theDiv.style.display = 'block';
+//  setTimeout(() => {this.displayErrorMsg();
+//      }, 3000); 
+//   }
+
 
   update(timesht: timesheetInfo) {
 

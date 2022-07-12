@@ -11,6 +11,9 @@ import { leaveinfo } from 'src/app/models/leave-data';
 import { LeaveService } from 'src/app/services/leave.service';
 import {  
   AbstractControl,
+
+
+
   FormControl,
   FormGroup,
   ValidationErrors,ReactiveFormsModule ,
@@ -64,11 +67,6 @@ export class LeavesListComponent implements OnInit {
 
   constructor(private leaveservice:LeaveService,private _router: Router, public afs:AngularFirestore ) { }
   
-  
-
-  
-
-
   ngOnInit(): void {
     this.customerArray=  [];   
     //this.getleaves();
@@ -102,20 +100,23 @@ export class LeavesListComponent implements OnInit {
       var selectedData= data.filter( (record) => {    
      return localStorage.getItem('currentUser') == record.payload.doc.get("userId")  
   });  
-
       this.leaveslist = selectedData.map(e => {
-                     
-        return {        
-          id: e.payload.doc.id,                                                   
-          datefrom:e.payload.doc.get("datefrom").toDate().toString().split("00")[0],
-          dateto:e.payload.doc.get("dateto").toDate().toString().split("00")[0],
-          leavereason:e.payload.doc.get("leavereason"),
-          leavetype:e.payload.doc.get("leavetype"),
-          days:e.payload.doc.get("days"),
-          userId:e.payload.doc.get("userId"),   
-         status:e.payload.doc.get("status"),  
-         userName:e.payload.doc.get("userName")     
-        } as leaveinfo;     
+        // console.log(e.payload.doc.get("modified").toDate());             
+         
+        let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
+        let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];
+
+        return {
+          id: e.payload.doc.id,
+          datefrom: d2,
+          dateto: d3,
+          leavereason: e.payload.doc.get("leavereason"),
+          leavetype: e.payload.doc.get("leavetype"),
+          days: e.payload.doc.get("days"),
+          userId: e.payload.doc.get("userId"),
+          status: e.payload.doc.get("status"),
+          userName: e.payload.doc.get("userName")
+        } as unknown as leaveinfo;     
      })   
      this.dataleave =new MatTableDataSource(this.leaveslist);
      console.log(this.leaveslist);
@@ -129,19 +130,20 @@ export class LeavesListComponent implements OnInit {
      return localStorage.getItem('currentUser') == record.payload.doc.get("userId")  
   });  
 
-      this.dayslist = selectedData.map(e => {
-                     
-        return {        
-          id: e.payload.doc.id,                                                   
-          datefrom:e.payload.doc.get("datefrom"),
-          dateto:e.payload.doc.get("dateto"),
-          leavereason:e.payload.doc.get("leavereason"),
-          leavetype:e.payload.doc.get("leavetype"),
-          days:e.payload.doc.get("days"),
-          userId:e.payload.doc.get("userId"),   
-         status:e.payload.doc.get("status"),  
-         userName:e.payload.doc.get("userName")     
-        } as leaveinfo;     
+      this.dayslist = selectedData.map(e => {           
+        let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
+        let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];
+        return {
+          id: e.payload.doc.id,
+          datefrom: d2,
+          dateto: d3,
+          leavereason: e.payload.doc.get("leavereason"),
+          leavetype: e.payload.doc.get("leavetype"),
+          days: e.payload.doc.get("days"),
+          userId: e.payload.doc.get("userId"),
+          status: e.payload.doc.get("status"),
+          userName: e.payload.doc.get("userName")
+        } as unknown as leaveinfo;     
      })  
      this.dayscout=this.dayslist.reduce(function (a,b) { return a + b.days; }, 0);
      console.log(this.dayscout);

@@ -8,6 +8,7 @@ import { timesheetInfo } from 'src/app/models/timesheet-data';
 import { id } from 'date-fns/locale';
 //import { DatePipe } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
+import { J } from '@angular/cdk/keycodes';
 
 
 @Component({
@@ -23,9 +24,10 @@ export class ApproveTimesheetComponent implements OnInit {
   approveSheetList:any;
   approveDropSheetList:any;
   form: any;
+
   UserList: any;
   error="";
-
+  selectButtonsEnabled:boolean=true;
 
   constructor(private timesheetService:TimesheetService) { }
 
@@ -50,7 +52,8 @@ export class ApproveTimesheetComponent implements OnInit {
 
     if (localStorage.getItem("logRole")=="2"){
       this.timesheetService.getSheetList().subscribe(data => {             
-        var selectedData= data;//.filter( (record) => {  
+        var selectedData= data;
+      //.filter( (record) => {  
       // localStorage.getItem('currentUser') != record.payload.doc.get("userId")
       // && localStorage.getItem('logName') != record.payload.doc.get("userName");  
      // });  
@@ -120,7 +123,6 @@ export class ApproveTimesheetComponent implements OnInit {
           } as timesheetInfo;     
        })   
       }); 
-
     }
 
     else{
@@ -174,10 +176,13 @@ export class ApproveTimesheetComponent implements OnInit {
       for (let j = 0; j < this.approveSheetList.length; j++) {
         if(this.approveSheetList[j].id == this.selectedCheck[i]){
           this.approveSheetList[j].status = "Approved";
+          // this.selectButtonsEnabled=false;
           this.timesheetService.saveApproveSheetList(this.approveSheetList[j]);     
         }
       }
-    }  
+    } 
+    this.selectButtonsEnabled=false;
+ 
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
     (document.getElementById('remove') as HTMLInputElement).disabled = false;
@@ -205,9 +210,17 @@ onCheckboxChange(event:any)
 }
 
 changeUser(e: any) {    
+  this.selectButtonsEnabled=false;
   var splitted = e.target.value.split("\:"); 
-  this.UserList = splitted[1].trim();
-  this.fetchData();
+  this.UserList = splitted[1].trim();  
+  this.fetchData();  
+  for (let i = 0; i < this.approveDropSheetList.length; i++) 
+  {
+    if(this.approveDropSheetList[i].status.toLowerCase()=="pending")
+
+    {this.selectButtonsEnabled=true;}
+    
+  }
 }
 
 }

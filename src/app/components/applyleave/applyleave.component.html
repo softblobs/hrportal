@@ -16,7 +16,7 @@
 
         <mat-form-field class="w-75 fs-16" appearance="outline">
           <mat-label>Leave Reason</mat-label>
-          <input matInput type="text" placeholder="Enter user's LastName" maxlength="30"  formControlName="leavereason"/>
+          <input matInput type="text" placeholder="Enter leave reason" maxlength="30"  formControlName="leavereason"/>
           <mat-error *ngIf="leavetype?.errors?.['required']">
             Leave reason is required
           </mat-error>
@@ -78,10 +78,11 @@
         </mat-form-field><br>
       -->
 
-
-        <button mat-button class="btn btn-info fw-normal" (click)="submit()"  [disabled]="leaveform.invalid"  type="submit">Submit</button>     
-        <div role="green"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
-        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        <button mat-button class="btn btn-info fw-normal" (click)="submit()"  [disabled]="leaveform.invalid"  type="submit">Submit</button> 
+        
+        
+        <div role="alert"*ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+          <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg></i-feather> {{error}} 
         </div> 
 

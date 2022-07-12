@@ -169,13 +169,15 @@ export class CalendarComponent implements OnInit {
       ...this.eventsList,
       {
         title: '',
-        start: '',
-        
+        // start: '',
+         start: '',
         //end: endOfDay(new Date()),        
        // color: colors.red,
        // draggable: true,
         //resizable: {
         //  beforeStart: true,
+
+
         //  afterEnd: true,
        // },
       },
@@ -242,12 +244,15 @@ fetchData() {
   this.CalenderService.getPolicies().subscribe(data => { 
     this.eventsList = data.map(e => {
       //alert(this.eventsList.id);
-      return {        
-        id: e.payload.doc.id,      
-        title:e.payload.doc.get("title"),
-        start:e.payload.doc.get("start").toDate(),
-       // end:e.payload.doc.get("end").toDate(),     
-      } as Calinfo;     
+      // let d2 = new Date(e.payload.doc.get("start")).toDateString();
+      //console.log(d2);
+      return {
+        id: e.payload.doc.id,
+        title: e.payload.doc.get("title"),
+       // start: d2,
+         start:e.payload.doc.get("start").toDate(),
+        // end:e.payload.doc.get("end").toDate(),     
+      } as unknown as Calinfo;     
     })   
   });  
 } 
