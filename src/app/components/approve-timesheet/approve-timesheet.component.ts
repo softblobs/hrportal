@@ -27,7 +27,7 @@ export class ApproveTimesheetComponent implements OnInit {
 
   UserList: any;
   error="";
-  selectButtonsEnabled:boolean=true;
+  // selectButtonsEnabled:boolean=true;
 
   constructor(private timesheetService:TimesheetService) { }
 
@@ -181,7 +181,7 @@ export class ApproveTimesheetComponent implements OnInit {
         }
       }
     } 
-    this.selectButtonsEnabled=false;
+    // this.selectButtonsEnabled=false;
  
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
@@ -210,17 +210,17 @@ onCheckboxChange(event:any)
 }
 
 changeUser(e: any) {    
-  this.selectButtonsEnabled=false;
+  // this.selectButtonsEnabled=false;
   var splitted = e.target.value.split("\:"); 
   this.UserList = splitted[1].trim();  
   this.fetchData();  
-  for (let i = 0; i < this.approveDropSheetList.length; i++) 
-  {
-    if(this.approveDropSheetList[i].status.toLowerCase()=="pending")
+  // for (let i = 0; i < this.approveDropSheetList.length; i++) 
+  // {
+  //   if(this.approveDropSheetList[i].status.toLowerCase()=="pending")
 
-    {this.selectButtonsEnabled=true;}
+  //   {this.selectButtonsEnabled=true;}
     
-  }
+  // }
 }
 
 }

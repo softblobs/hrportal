@@ -25,7 +25,7 @@ export class ApproveLeaverequestComponent implements OnInit {
   form: any;
   currenstatus:any = "Approved";
   error="";
-  selectButtonsEnabled:boolean=true;
+  // selectButtonsEnabled:boolean=true;
 
   constructor(private leaveService:LeaveService) { }
 
@@ -180,7 +180,7 @@ approve(timesht: leaveinfo) {
       }
     }
   }  
-  this.selectButtonsEnabled=false;
+  // this.selectButtonsEnabled=false;
     this.error="Approved Successfully";
     setTimeout(() => {this.error="";}, 3000);
     
@@ -192,7 +192,7 @@ else{
 }
 
 changeUser(e: any) {    
-  this.selectButtonsEnabled=true;
+  // this.selectButtonsEnabled=true;
   var splitted = e.target.value.split("\:"); 
   this.UserList = splitted[1].trim();  
   this.fetchData();  
