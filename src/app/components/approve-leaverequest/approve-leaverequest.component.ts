@@ -61,6 +61,16 @@ export class ApproveLeaverequestComponent implements OnInit {
       this.approveSheetList = selectedData.map(e => {        
         let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
         let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];
+        if(d3 == 'Invalid Date'){ 
+          const timeStampDateD2 = e.payload.doc.get("datefrom");
+          const dateInMillisD2  = timeStampDateD2.seconds * 1000;          
+          var date2 = new Date(dateInMillisD2).toDateString();
+          d2 = date2;
+          const timeStampDate3 = e.payload.doc.get("dateto");
+          const dateInMillis3 = timeStampDate3.seconds * 1000;          
+          var date3 = new Date(dateInMillis3).toDateString();
+          d3 = date3;
+        }
         return {
           id: e.payload.doc.id,
           leavetype: e.payload.doc.get("leavetype"),
@@ -87,7 +97,17 @@ export class ApproveLeaverequestComponent implements OnInit {
           
         this.approveDropSheetList = selectedData.map(e => {  
           let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
-          let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];      
+          let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];   
+          if(d3 == 'Invalid Date'){ 
+            const timeStampDateD2 = e.payload.doc.get("datefrom");
+            const dateInMillisD2  = timeStampDateD2.seconds * 1000;          
+            var date2 = new Date(dateInMillisD2).toDateString();
+            d2 = date2;
+            const timeStampDate3 = e.payload.doc.get("dateto");
+            const dateInMillis3 = timeStampDate3.seconds * 1000;          
+            var date3 = new Date(dateInMillis3).toDateString();
+            d3 = date3;
+          }   
           return {
             id: e.payload.doc.id,
             leavetype: e.payload.doc.get("leavetype"),
@@ -119,6 +139,16 @@ export class ApproveLeaverequestComponent implements OnInit {
       this.approveDropSheetList = selectedData.map(e => {   
         let d2 = new Date(e.payload.doc.get("datefrom")).toDateString().split("00")[0];
         let d3 = new Date(e.payload.doc.get("dateto")).toDateString().split("00")[0];
+        if(d3 == 'Invalid Date'){ 
+          const timeStampDateD2 = e.payload.doc.get("datefrom");
+          const dateInMillisD2  = timeStampDateD2.seconds * 1000;          
+          var date2 = new Date(dateInMillisD2).toDateString();
+          d2 = date2;
+          const timeStampDate3 = e.payload.doc.get("dateto");
+          const dateInMillis3 = timeStampDate3.seconds * 1000;          
+          var date3 = new Date(dateInMillis3).toDateString();
+          d3 = date3;
+        }
         return {
           id: e.payload.doc.id,
           leavetype: e.payload.doc.get("leavetype"),
