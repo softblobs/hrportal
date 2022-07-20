@@ -12,10 +12,6 @@ import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 
 
 
-
-
-
-
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -42,7 +38,6 @@ export class ManageUsersComponent implements OnInit {
         
   }
 
-
   onBack(): void {
     this._router.navigate(['/flexy/home']);
   }
@@ -57,11 +52,6 @@ export class ManageUsersComponent implements OnInit {
       this.userService.editSelectedUser = selectedData;
       localStorage.setItem('userdata', JSON.stringify(this.userService.editSelectedUser));
       localStorage.setItem('logUrl',this.userService.editSelectedUser.photoURL)
-
-      
-
-
-
 
       setTimeout(() => {
         console.log('sleep');
@@ -81,17 +71,16 @@ export class ManageUsersComponent implements OnInit {
   getAllUser(){
 
     this.userService.getAllUsers().subscribe(res=>{
-      // this.dataSourceone=res;
-    // this. dataSourceone = res.filter(function(record){  
-    //     return record.paystatus == “active”; 
-
-    // }); 
-
-    this.dataSourceone = res.filter(pilot => pilot.paystatus == "active");
+      this.dataSourceone = res.filter(pilot => pilot.paystatus == "active");
     this.datasoc =new MatTableDataSource(this.dataSourceone);      
       this.customerArray=this.datasoc.data;
       let tempList = res.filter(pilot => pilot.paystatus != "active");
       this.datasourceInActive = new MatTableDataSource(tempList);
+
+      // this.dataSourceone=res;
+    // this. dataSourceone = res.filter(function(record){  
+    //     return record.paystatus == “active”; 
+
 
     })
   }  

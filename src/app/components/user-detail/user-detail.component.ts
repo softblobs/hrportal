@@ -46,7 +46,7 @@ export class UserDetailComponent implements OnInit {
     skillSet:new FormControl(''),
     officeEmail:new FormControl('',Validators.email),
     paystatus:new FormControl(''),
-   // status:new FormControl(''),
+   
   });
   editing:boolean=true;
   uid:any;
@@ -225,12 +225,6 @@ export class UserDetailComponent implements OnInit {
     this.error="DOB should be more than 20 years"
     setTimeout(() => {this.error="";}, 2000);
   }
-
-    
-    
-  
-
-  
 
 }
 

@@ -1,215 +1,205 @@
 <!-- Form Layout -->
 <div class="card">
-    <div class="card-body">
-      <h4 class="mb-32">Add User</h4>
-      <form [formGroup]="signUpForm"  (ngSubmit)="submit()">
+  <div class="card-body">
+    <h4 class="mb-32">Add User</h4>
+    <form [formGroup]="signUpForm"  (ngSubmit)="submit()">
 
-        <section class="fs-16 mb-16">
-          <mat-label>Upload User Photo / Documents
-            <input type="file"
-          id="file"
-          
-          #userPhoto
-          (change)="onFileSelected($event)"
-          name="image"
-          autocomplete="off" accept=".png,.jpg"
-          />
-          </mat-label>  
-          <br/>          
-          <div *ngIf="fb != null"><img [src]="fb" style="border: 3px solid black;border-radius:6px;height: 20%; width:20%"></div>
-       </section>
+      <section class="fs-16 mb-16">
+        <mat-label>Upload User Photo / Documents
+          <input type="file"
+        id="file"
         
-        <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>First Name</mat-label>
-          <input matInput type="text" placeholder="Enter user's FirstName" maxlength="30" [value]="ud.firstName" required formControlName="firstName"/>
-          <mat-error *ngIf="firstName?.errors?.['required']">
-            FirstName is required
-          </mat-error>
-          <mat-error *ngIf="firstName?.errors?.['pattern']">
-            Only alphabets allowed 
-          </mat-error>
-        </mat-form-field>
+        #userPhoto
+        (change)="onFileSelected($event)"
+        name="image"
+        autocomplete="off" accept=".png,.jpg"
+        />
+        </mat-label>  
+        <br/>          
+        <div *ngIf="fb != null"><img [src]="fb" style="border: 3px solid black;border-radius:6px;height: 20%; width:20%"></div>
+     </section>
+      
+      <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" placeholder="Enter user's FirstName" maxlength="30" [value]="ud.firstName" required formControlName="firstName"/>
+        <mat-error *ngIf="firstName?.errors?.['required']">
+          FirstName is required
+        </mat-error>
+        <mat-error *ngIf="firstName?.errors?.['pattern']">
+          Only alphabets allowed 
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Last Name</mat-label>
-          <input matInput type="text" placeholder="Enter user's LastName" [value]="ud.lastName"  formControlName="lastName"/>
-          <mat-error *ngIf="lastName?.errors?.['pattern']">
-            Only alphabets allowed
-          </mat-error>
-        </mat-form-field>
-       
-        <mat-form-field class="w-75 fs-16"  appearance="outline">
-          <mat-label>Personal Email</mat-label>
-          <input matInput type="email" placeholder="Enter user's personal email" [value]="ud.email" formControlName="email"/>
-          <mat-error *ngIf="email?.errors?.['required']">
-            Email is required
-          </mat-error>
-          <mat-error *ngIf="email?.errors?.['email']">
-            Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" placeholder="Enter user's LastName" [value]="ud.lastName"  formControlName="lastName"/>
+        <mat-error *ngIf="lastName?.errors?.['pattern']">
+          Only alphabets allowed
+        </mat-error>
+      </mat-form-field>
+     
+      <mat-form-field class="w-75 fs-16"  appearance="outline">
+        <mat-label>Personal Email</mat-label>
+        <input matInput type="email" placeholder="Enter user's personal email" [value]="ud.email" formControlName="email"/>
+        <mat-error *ngIf="email?.errors?.['required']">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="w-75 fs-16"  appearance="outline">
-          <mat-label>Official Email</mat-label>
-          <input matInput type="email" placeholder="Enter user's official email" formControlName="officeEmail"/>
-          <mat-error *ngIf="officeEmail?.errors?.['email']">
-            Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
-        
-        <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Contact Number</mat-label>
-          <input matInput type="text" placeholder="Enter user's contact number" maxlength="10" formControlName="phone"/>
-          <mat-error *ngIf="phone?.errors?.['required']">
-            Contact number is required
-          </mat-error>
-          <mat-error *ngIf="phone?.errors?.['pattern']">
-            Mobile number should numbers and 10 digit
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field class="w-75 fs-16"  appearance="outline">
+        <mat-label>Official Email</mat-label>
+        <input matInput type="email" placeholder="Enter user's official email" formControlName="officeEmail"/>
+        <mat-error *ngIf="officeEmail?.errors?.['email']">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>Contact Number</mat-label>
+        <input matInput type="text" placeholder="Enter user's contact number" maxlength="10" formControlName="phone"/>
+        <mat-error *ngIf="phone?.errors?.['required']">
+          Contact number is required
+        </mat-error>
+        <mat-error *ngIf="phone?.errors?.['pattern']">
+          Mobile number should numbers and 10 digit
+        </mat-error>
+      </mat-form-field>
 
 
-        <mat-form-field class="w-75 fs-16"  appearance="outline">
-          <mat-label>User Designation</mat-label>
-          <mat-select formControlName="role" placeholder="Role of Employee" >
-            <ng-container *ngFor="let role of roleSheetList">
-              <mat-option value="{{role.proleid}}">{{role.prole}}</mat-option>
-            </ng-container>
-          </mat-select>
-          <mat-error *ngIf="role?.errors?.['required']">
-              Role is required
-            </mat-error>
-         </mat-form-field>
-
-         <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Project</mat-label>
-          <mat-select   placeholder="Project"   formControlName="project">
-          <ng-container *ngFor="let role of projectSheetList">
-            <mat-option value="{{role.pproject}}">{{role.pproject}}</mat-option>
+      <mat-form-field class="w-75 fs-16"  appearance="outline">
+        <mat-label>User Designation</mat-label>
+        <mat-select formControlName="role" placeholder="Role of Employee" >
+          <ng-container *ngFor="let role of roleSheetList">
+            <mat-option value="{{role.proleid}}">{{role.prole}}</mat-option>
           </ng-container>
         </mat-select>
-          <mat-error *ngIf="project?.errors?.['required']">
-            Project is required
+        <mat-error *ngIf="role?.errors?.['required']">
+            Role is required
           </mat-error>
-          </mat-form-field>
+       </mat-form-field>
 
-      <!--   <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Project</mat-label>
-          <input matInput type="text" placeholder="Project"   formControlName="project"/>
-          <mat-error *ngIf="project?.errors?.['required']">
-            Project is required
-          </mat-error>
+       <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>Project</mat-label>
+        <mat-select   placeholder="Project"   formControlName="project">
+        <ng-container *ngFor="let role of projectSheetList">
+          <mat-option value="{{role.pproject}}">{{role.pproject}}</mat-option>
+        </ng-container>
+      </mat-select>
+        <mat-error *ngIf="project?.errors?.['required']">
+          Project is required
+        </mat-error>
         </mat-form-field>
-      -->
 
-        <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Address for Communication</mat-label>
-          <input matInput type="text" placeholder="Address"   formControlName="address"/>
-        </mat-form-field><br>
+      <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>Address for Communication</mat-label>
+        <input matInput type="text" placeholder="Address"   formControlName="address"/>
+      </mat-form-field><br>
 
-        <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Skill Set</mat-label>
-          <input matInput type="text" placeholder="Skill set"   formControlName="skillSet"/>
-        </mat-form-field><br>
+      <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>Skill Set</mat-label>
+        <input matInput type="text" placeholder="Skill set"   formControlName="skillSet"/>
+      </mat-form-field><br>
 
-         <mat-form-field class="w-75 fs-16"  appearance="outline">
-            <mat-label>Birth Date (DOB)</mat-label>
-           <input matInput type="date"  max=today placeholder="Date of Birth" [value]="ud.dob" [max]="getToday()" ngModel [min]="minDateyy()" ngModel   formControlName="dob"/> 
-           <mat-error *ngIf="dob?.errors?.['required']">
-            DOB is required
-          </mat-error>            
-         </mat-form-field><br>
-
-        
-         <mat-form-field class="w-75 fs-16"  appearance="outline">
-            <mat-label>Joining Date (DOJ)</mat-label>
-            <input matInput type="date" placeholder="Date of Joining" [value]="ud.doj" [max]="getToday()" ngModel required formControlName="doj"/>
-            <mat-error *ngIf="doj?.errors?.['required']">
-              DOJ is required
-            </mat-error>
-         </mat-form-field> 
-
-
-         <mat-form-field class="w-75 fs-16" appearance="outline">
-          <mat-label>Status</mat-label>
-          <input matInput type="text" placeholder="paystatus" maxlength="30" [value]="ud.paystatus" required formControlName="paystatus"/>
-          <mat-error *ngIf="paystatus?.errors?.['required']">
-            Status is required
-          </mat-error>
-          <mat-error *ngIf="paystatus?.errors?.['pattern']">
-            Only alphabets allowed 
-          </mat-error>
-        </mat-form-field>
-        <br>
-      
-    <!--    <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>User ID</mat-label>
-            <input matInput type="text" disabled placeholder="User ID" value="SB004V1"/>
-          </mat-form-field>  -->
-
-  <!--    <div class="row">
-          <mat-form-field  appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput  placeholder="Password" formControlName="password" />
-            
-            <mat-error *ngIf="password?.errors?.['required']">
-               Password is required 
-            </mat-error>
-            <mat-error *ngIf="password?.errors?.['minlength']">
-              Password must be at least 8 characters long.
-           </mat-error>
-           </mat-form-field>
-
-           <mat-form-field  appearance="outline">
-            <mat-label>ConfirmPassword</mat-label>
-           <input
-             matInput
-             type="password"
-             placeholder="Confirm Password"
-             formControlName="confirmPassword"
-           />    
-           <mat-error *ngIf="confirmPassword?.errors?.['required']">
-             Confirm Password is required
-           </mat-error>
-           </mat-form-field>
-           <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
-             Passwords should match
-           </mat-error>
-        </div>
-          
-          
-
-  <!--      <section class="fs-16">
-            <mat-checkbox color="primary" [checked]="checked" (change)="onCheck()" class="d-block mb-16">Generate Company Email</mat-checkbox>
-            <mat-form-field *ngIf="checked" class="w-100" appearance="outline">
-                <mat-label>Company Email Format</mat-label>
-                <input matInput type="text" placeholder="Enter Company Email Format" value="user@softblobs.com">
-              </mat-form-field>
-          </section>
-  
-        <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>More Details</mat-label>
-          <textarea matInput rows="6" placeholder="Enter more information about the user" value="Verified, added by Admin"></textarea>
-        </mat-form-field>
-<!--         
-        <mat-radio-group color="primary" class="fs-16" aria-label="Select an option">
-          <mat-label class="text-secondary">Gender</mat-label>
-          <mat-radio-button value="1" class="mt-8 mb-16 d-block" [checked]="checked">Female</mat-radio-button>
-          <mat-radio-button value="2" class="d-block mb-16">Male</mat-radio-button>
-          <mat-radio-button value="3" class="d-block mb-36">Other</mat-radio-button>
-        </mat-radio-group> -->
-        
-        
-  
-        <button mat-button class="btn btn-info fw-normal"  [disabled]="signUpForm.invalid"  type="submit">Submit</button>
+       <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>Birth Date (DOB)</mat-label>
+         <input matInput type="date"  max=today placeholder="Date of Birth" [value]="ud.dob" [max]="getToday()" ngModel [min]="minDateyy()" ngModel   formControlName="dob"/> 
+         <mat-error *ngIf="dob?.errors?.['required']">
+          DOB is required
+        </mat-error>            
+       </mat-form-field><br>
 
       
-      <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
-        <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
-      </svg></i-feather> {{error}} 
+       <mat-form-field class="w-75 fs-16"  appearance="outline">
+          <mat-label>Joining Date (DOJ)</mat-label>
+          <input matInput type="date" placeholder="Date of Joining" [value]="ud.doj" [max]="getToday()" ngModel required formControlName="doj"/>
+          <mat-error *ngIf="doj?.errors?.['required']">
+            DOJ is required
+          </mat-error>
+       </mat-form-field> 
+
+
+       <mat-form-field class="w-75 fs-16" appearance="outline">
+        <mat-label>Status</mat-label>
+        <input matInput type="text" placeholder="paystatus" maxlength="30" [value]="ud.paystatus" required formControlName="paystatus"/>
+        <mat-error *ngIf="paystatus?.errors?.['required']">
+          Status is required
+        </mat-error>
+        <mat-error *ngIf="paystatus?.errors?.['pattern']">
+          Only alphabets allowed 
+        </mat-error>
+      </mat-form-field>
+      <br>
+    
+  <!--    <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>User ID</mat-label>
+          <input matInput type="text" disabled placeholder="User ID" value="SB004V1"/>
+        </mat-form-field>  -->
+
+<!--    <div class="row">
+        <mat-form-field  appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput  placeholder="Password" formControlName="password" />
+          
+          <mat-error *ngIf="password?.errors?.['required']">
+             Password is required 
+          </mat-error>
+          <mat-error *ngIf="password?.errors?.['minlength']">
+            Password must be at least 8 characters long.
+         </mat-error>
+         </mat-form-field>
+
+         <mat-form-field  appearance="outline">
+          <mat-label>ConfirmPassword</mat-label>
+         <input
+           matInput
+           type="password"
+           placeholder="Confirm Password"
+           formControlName="confirmPassword"
+         />    
+         <mat-error *ngIf="confirmPassword?.errors?.['required']">
+           Confirm Password is required
+         </mat-error>
+         </mat-form-field>
+         <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+           Passwords should match
+         </mat-error>
       </div>
+        
+        
 
-      </form>
+<!--      <section class="fs-16">
+          <mat-checkbox color="primary" [checked]="checked" (change)="onCheck()" class="d-block mb-16">Generate Company Email</mat-checkbox>
+          <mat-form-field *ngIf="checked" class="w-100" appearance="outline">
+              <mat-label>Company Email Format</mat-label>
+              <input matInput type="text" placeholder="Enter Company Email Format" value="user@softblobs.com">
+            </mat-form-field>
+        </section>
+
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>More Details</mat-label>
+        <textarea matInput rows="6" placeholder="Enter more information about the user" value="Verified, added by Admin"></textarea>
+      </mat-form-field>
+<!--         
+      <mat-radio-group color="primary" class="fs-16" aria-label="Select an option">
+        <mat-label class="text-secondary">Gender</mat-label>
+        <mat-radio-button value="1" class="mt-8 mb-16 d-block" [checked]="checked">Female</mat-radio-button>
+        <mat-radio-button value="2" class="d-block mb-16">Male</mat-radio-button>
+        <mat-radio-button value="3" class="d-block mb-36">Other</mat-radio-button>
+      </mat-radio-group> -->
+      
+      
+
+      <button mat-button class="btn btn-info fw-normal"  [disabled]="signUpForm.invalid"  type="submit">Submit</button>
+
+    
+    <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
+      <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg></i-feather> {{error}} 
     </div>
+
+    </form>
   </div>
-  
+</div>

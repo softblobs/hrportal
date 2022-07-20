@@ -108,7 +108,7 @@ export class AddUserComponent implements OnInit {
       //photoURL: new FormControl(''),
       role:new FormControl('', Validators.required),
       paystatus:new FormControl('1'),
-      //status:new FormControl('',Validators.required),
+      
     },
       //{ validators: passwordsMatchValidator()}
      );
@@ -214,8 +214,7 @@ export class AddUserComponent implements OnInit {
   else{
   return this.enull;
   }
-   }
-   
+   }  
 
 
    get phone(){
