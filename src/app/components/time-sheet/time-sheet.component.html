@@ -8,7 +8,35 @@
   </mat-form-field>  
   <div class="clearfix"></div>   
 </h4>
-
+<div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Previous
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Next
+      </div>
+    </div>
+  </div>
 <button class="btn btn-primary float-right" (click)="addEvent()">
   Add new
 </button>
@@ -125,7 +153,12 @@
         </td>
       </tr>      
    </tbody>     
-  </table>     
+  </table> 
+  <!-- <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25]"
+              aria-label="Select page">
+</mat-paginator>     -->
   <!-- <div role="alert"  *ngIf="error.length > 0" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
     <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
 </svg></i-feather> {{error}} 
