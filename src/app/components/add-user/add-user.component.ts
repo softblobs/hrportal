@@ -58,7 +58,7 @@ export class AddUserComponent implements OnInit {
   enull="";
   roleSheetList: any;
   projectSheetList: any;
-  
+  paystatus:any;
 
   //
   //today = new Date();
@@ -85,6 +85,7 @@ export class AddUserComponent implements OnInit {
     dob:'',
     photoURL:'',
     role:'',
+    paystatus:'',
   };
 
 
@@ -107,6 +108,7 @@ export class AddUserComponent implements OnInit {
       //photoURL: new FormControl(''),
       role:new FormControl('', Validators.required),
       paystatus:new FormControl('1'),
+      //status:new FormControl('',Validators.required),
     },
       //{ validators: passwordsMatchValidator()}
      );
@@ -149,6 +151,8 @@ export class AddUserComponent implements OnInit {
   get firstName(){
     return this.signUpForm.get('firstName');
    }
+  
+     
    get lastName(){
     return this.signUpForm.get('lastName');
    }
@@ -272,7 +276,8 @@ export class AddUserComponent implements OnInit {
         this.signUpForm.value.project,
         this.signUpForm.value.address,
         this.signUpForm.value.skillSet,
-        this.signUpForm.value.paystatus
+        this.signUpForm.value.paystatus,
+       // this.signUpForm.value.status,
         ).then((result) => {
           this.error="Successfully created user";
             setTimeout(() => {this.error="";}, 3000);  //5s        

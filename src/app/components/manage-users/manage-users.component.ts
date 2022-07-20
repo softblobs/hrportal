@@ -14,6 +14,8 @@ import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 
 
 
+
+
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -22,20 +24,19 @@ import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 export class ManageUsersComponent implements OnInit {
   employeeList: any;
   hospitalsArray=[];
-  displayedColumns: string[] = ['uid', 'assigned', 'name', 'doj', 'view'];
+  displayedColumns: string[] = ['uid', 'assigned', 'name', 'doj','view'];
   issuperAdmin= localStorage.getItem("logRole") == "2" ? true: false;
-    
+  displayedColumnsinActive: string[] = ['uid', 'assigned', 'name', 'doj','view'];
     //dataSource:firebase.firestore.DocumentData[]=[];
      dataSourceone:any;
-    //dataSource:MatTableDataSource<Element>;
+   
      customerArray = [];    
      datasoc:any;
-    //dataSource = this.dataSourceone;
-    //user:any;
+    datasourceInActive:any; 
   constructor(private _router: Router,public firestore:AngularFirestore,private userService:UserService ) {
     this.userService.editSelectedUser = null;
    }
-
+   panelOpenState = false;
   ngOnInit(): void {    
     this.getAllUser();
         
@@ -80,10 +81,18 @@ export class ManageUsersComponent implements OnInit {
   getAllUser(){
 
     this.userService.getAllUsers().subscribe(res=>{
-      this.dataSourceone=res;
-      this.datasoc =new MatTableDataSource(this.dataSourceone);
-      //console.log(this.datasoc.data)
+      // this.dataSourceone=res;
+    // this. dataSourceone = res.filter(function(record){  
+    //     return record.paystatus == “active”; 
+
+    // }); 
+
+    this.dataSourceone = res.filter(pilot => pilot.paystatus == "active");
+    this.datasoc =new MatTableDataSource(this.dataSourceone);      
       this.customerArray=this.datasoc.data;
+      let tempList = res.filter(pilot => pilot.paystatus != "active");
+      this.datasourceInActive = new MatTableDataSource(tempList);
+
     })
   }  
 }

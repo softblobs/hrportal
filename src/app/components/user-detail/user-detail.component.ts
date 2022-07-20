@@ -46,7 +46,7 @@ export class UserDetailComponent implements OnInit {
     skillSet:new FormControl(''),
     officeEmail:new FormControl('',Validators.email),
     paystatus:new FormControl(''),
-
+   // status:new FormControl(''),
   });
   editing:boolean=true;
   uid:any;
@@ -106,6 +106,9 @@ export class UserDetailComponent implements OnInit {
   get phone(){
     return this.resetformone.get("phone")
   }
+  get paystatus(){
+   return this.resetformone.get('paystatus');
+ }
 
   get firstName(){
     return this.resetformone.get('firstName');
@@ -194,7 +197,6 @@ export class UserDetailComponent implements OnInit {
   updateeditUser():void{
 
    
-   
     if((Number(new Date().toISOString().split('-')[0]))-this.resetformone.value.dob.split('-')[0]>20) {
 
     console.log(this.userService.editSelectedUser)
@@ -206,7 +208,8 @@ export class UserDetailComponent implements OnInit {
       officeEmail: this.resetformone.value.officeEmail,
       phone:this.resetformone.value.phone,
       project:this.project,
-      photoURL:this.photoUrl
+      photoURL:this.photoUrl,
+      paystatus:this.resetformone.value.paystatus,
     });
       localStorage.setItem('UpdateSt','Yes');
      

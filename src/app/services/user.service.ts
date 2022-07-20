@@ -65,8 +65,8 @@ export class UserService {
      firstName:new FormControl(''),
      uid :new FormControl(''),
      role  :new FormControl(''),
-     lastName: new FormControl('')
-
+     lastName: new FormControl(''),
+     paystatus: new FormControl('')
     });
    
   getAllUsers() {
@@ -121,6 +121,7 @@ export class UserService {
     _officeEmail:string,
     _phone:string,
     _project:string,
+    _paystatus:string,
     _photoURL:string) {    
     let i=1;
     let doc = this.afs.collection('users', ref => ref.where('uid', '==', _id));
@@ -133,6 +134,7 @@ export class UserService {
         officeEmail: _officeEmail,
         phone:_phone,
         project:_project,
+        paystatus:_paystatus,
         photoURL:_photoURL
       });
       i++;      

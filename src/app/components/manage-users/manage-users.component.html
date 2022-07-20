@@ -1,64 +1,154 @@
 <!-- Daily Activity -->
-<mat-card class="w-100">
+<mat-card >
     <mat-card-content>
-      <h4 class="mb-16">View & Manage Users</h4>
-      <button mat-raised-button right class="me-8 mb-8" (click)="onAddUser()" color="primary" [disabled]="!issuperAdmin" >Add New User</button>
-  
-      <div class="table-responsive">
-        
-        <table mat-table [dataSource]="datasoc" class="text-nowrap w-100">
-          
-          <!-- Id Column -->
-          <ng-container matColumnDef="uid">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell class="fw-medium" *matCellDef="let element"> {{element.userId}} </td>
-          </ng-container>
-  
-          <!-- Assigned Column -->
-          <ng-container matColumnDef="assigned">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element">
-              <p class="mb-0 fw-medium">{{ element.firstName }}</p>
-              <p class="mb-0 fw-normal op-5">{{ element.work }}</p>
-            </td>
-          </ng-container>
-  
-          <!-- Project Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Position </th>
-            <td mat-cell *matCellDef="let element">
-              <p class="mb-0 fw-medium op-5">{{element.role}}</p>
-            </td>
-          </ng-container>
-  
-          <!-- Priority Column 
-          <ng-container matColumnDef="priority">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element">
-              <span class="badge {{element.badge}} rounded-pill">{{element.project}}</span>
-            </td>
-          </ng-container> -->
-  
-          <!-- doj Column -->
-          <ng-container matColumnDef="doj">
-            <th mat-header-cell *matHeaderCellDef> Project </th>
-            <td mat-cell *matCellDef="let element">
-              <p class="mb-0 fw-medium">{{element.project}}</p>
-            </td>
-          </ng-container>
+      <mat-accordion>
 
-           <!-- view Column -->
-           <ng-container matColumnDef="view">
-            <th mat-header-cell *matHeaderCellDef>Details</th>
-            <td mat-cell *matCellDef="let element">
-              <!-- <p class="mb-0 fw-medium">{{element.id}}</p> -->
-              <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary" [disabled]="!issuperAdmin">View</button>
-            </td>
-          </ng-container>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+      <!--    <mat-panel-title> View available VMs </mat-panel-title> -->
+          <mat-panel-description>Add New User
+            <!-- <mat-icon>account_circle</mat-icon> -->
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+<!--  <button mat-raised-button right class="me-8 mb-8" (click)="onAddUser()" color="primary" [disabled]="!issuperAdmin" >Add New User</button>
+ -->        <app-add-user></app-add-user>
+        </mat-expansion-panel>        
+        <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+           <!-- <mat-panel-title> Add a VM </mat-panel-title>  -->
+            <mat-panel-description> Active Users 
+          </mat-panel-description >
+          </mat-expansion-panel-header>
+
+          <div class="table-responsive">        
+            <table mat-table [dataSource]="datasoc" class="text-nowrap w-100" >
+
+              <!-- Id Column -->
+              <ng-container matColumnDef="uid" >
+                <th mat-header-cell *matHeaderCellDef > ID </th>
+                <td mat-cell class="fw-medium"   *matCellDef="let element"> {{element.userId}} </td>
+              </ng-container>
+      
+              <!-- Assigned Column -->
+              <ng-container matColumnDef="assigned">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element">
+                  <p class="mb-0 fw-medium">{{ element.firstName }}</p>
+                  <p class="mb-0 fw-normal op-5">{{ element.work }}</p>
+                </td>
+              </ng-container>
+      
+              <!-- Project Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Position </th>
+                <td mat-cell *matCellDef="let element">
+                  <p class="mb-0 fw-medium op-5">{{element.role}}</p>
+                </td>
+              </ng-container>
+    
+              
+<!--       
+              Priority Column 
+              <ng-container matColumnDef="priority">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">
+                  <span class="badge {{element.badge}} rounded-pill">{{element.project}}</span>
+                </td>
+              </ng-container>  -->
+      
+              <!-- doj Column -->
+              <ng-container matColumnDef="doj">
+                <th mat-header-cell *matHeaderCellDef> Project </th>
+                <td mat-cell *matCellDef="let element">
+                  <p class="mb-0 fw-medium">{{element.project}}</p>
+                </td>
+              </ng-container>
+    
+               <!-- view Column -->
+               <ng-container matColumnDef="view">
+                <th mat-header-cell *matHeaderCellDef>Details</th>
+                <td mat-cell *matCellDef="let element">
+                    <!-- <p class="mb-0 fw-medium">{{element.id}}</p>   -->
+                   <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary" [disabled]="!issuperAdmin">View</button> 
+                </td>
+              </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>    
+          </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-description> Inactive Users
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          
+          <div class="table-responsive">
+          
+            <table mat-table [dataSource]="datasourceInActive" class="text-nowrap w-100" >              
+               
+              <ng-container matColumnDef="uid" >
+                <th mat-header-cell *matHeaderCellDef > ID </th>
+                <td mat-cell class="fw-medium"   *matCellDef="let element"> {{element.userId}} </td>
+              </ng-container>
   
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
+                 <!-- Assigned Column -->
+                 <ng-container matColumnDef="assigned">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element">
+                    <p class="mb-0 fw-medium">{{ element.firstName }}</p>
+                    <p class="mb-0 fw-normal op-5">{{ element.work }}</p>
+                  </td>
+                </ng-container>
+        
+                <!-- Project Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Position </th>
+                  <td mat-cell *matCellDef="let element">
+                    <p class="mb-0 fw-medium op-5">{{element.role}}</p>
+                  </td>
+                </ng-container>
+      
+                
+    <!--       
+                Priority Column 
+                <ng-container matColumnDef="priority">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span class="badge {{element.badge}} rounded-pill">{{element.project}}</span>
+                  </td>
+                </ng-container>  -->
+        
+                <!-- doj Column -->
+                <ng-container matColumnDef="doj">
+                  <th mat-header-cell *matHeaderCellDef> Project </th>
+                  <td mat-cell *matCellDef="let element">
+                    <p class="mb-0 fw-medium">{{element.project}}</p>
+                  </td>
+                </ng-container>
+      
+                 <!-- view Column -->
+                 <ng-container matColumnDef="view">
+                  <th mat-header-cell *matHeaderCellDef>Details</th>
+                  <td mat-cell *matCellDef="let element">
+                      <!-- <p class="mb-0 fw-medium">{{element.id}}</p>   -->
+                     <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary" [disabled]="!issuperAdmin">View</button> 
+                  </td>
+                </ng-container>
+                
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsinActive"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsinActive;"></tr>
+            </table> 
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons 
+            aria-label="Select page of periodic elements">
+            </mat-paginator>
+          </div> 
+        </mat-expansion-panel>
+                
+      </mat-accordion>
     </mat-card-content>
   </mat-card>
