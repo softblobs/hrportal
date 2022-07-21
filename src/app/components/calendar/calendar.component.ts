@@ -41,7 +41,6 @@ import startOfISOWeekYear from 'date-fns/startOfISOWeekYear';
 import { sortAscendingPriority } from '@angular/flex-layout';
 
 
-
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -171,8 +170,8 @@ export class CalendarComponent implements OnInit {
       {
         title: '',
         // start: '',
-         start: '',
-        //end: endOfDay(new Date()),        
+         //start: '',
+        start: '',        
        // color: colors.red,
        // draggable: true,
         //resizable: {
@@ -217,15 +216,14 @@ rows = [];
   constructor(private _router: Router,private CalenderService : CelenderServiceService,private userService:UserService,public firestore: AngularFirestore) {
     this.fetchData();
    } 
-  ngOnInit():void {     
-   // this.fetchData();
+  ngOnInit():void {  
+    console.log('Called ngOnInit method');
+    this.fetchData(); 
            
  }
 
   delete(id: string) {
-    this.CalenderService.deleteEvent(id)
-;
- 
+    this.CalenderService.deleteEvent(id);  
     for(let i = 0; i < this.eventsList.length; ++i){
       if (this.eventsList[i].id === id) {
           this.eventsList.splice(i,1);
@@ -234,9 +232,9 @@ rows = [];
     this.error='The events was Deleted';
     let theDiv: HTMLElement = document.getElementById("errorMsg") as HTMLElement;
     theDiv.style.display = 'block';
-  setTimeout(() => {this.displayErrorMsg();
+     setTimeout(() => {this.displayErrorMsg();
       }, 3000); 
-    //this.ngOnInit();  
+    this.ngOnInit();  
     this.fetchData();
   }
     
@@ -244,21 +242,20 @@ rows = [];
 
 fetchData() {
   this.CalenderService.getPolicies().subscribe(data => { 
-   
- 
     this.eventsList = data.map(e => {
+      //alert(this.eventsList.id);
       let d2 = new Date(e.payload.doc.get("start")).toDateString();
+      //console.log(d2);
       
       return {
         id: e.payload.doc.id,
         title: e.payload.doc.get("title"),
-       // start: d2,
+        // start: d2,
          start:e.payload.doc.get("start").toDate(),
         // end:e.payload.doc.get("end").toDate(),     
       } as unknown as Calinfo;     
     })   
   });  
-  
 } 
 
 update(cal: Calinfo):void{

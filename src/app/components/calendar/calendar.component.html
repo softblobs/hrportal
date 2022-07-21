@@ -126,16 +126,41 @@
   </thead>
   <tbody>
     <tr *ngFor="let event of eventsList" >
-      <td><input
+       <td>  <!--<input type="text" id="name" name="name" class="form-control"
+        required 
+        [(ngModel)]="event.title" #name="ngModel"/>
+  
+         <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                       class="alert">
+  
+         <div *ngIf="name.errors?.['required']">
+                       Name is required.
+         </div> -->
+        
+        <input
         type="text"
         class="form-control"
         maxlength="20"
         [(ngModel)]="event.title"  
         (keyup)="refresh.next()" 
         placeholder="Enter a event"      
-      /></td>
+      />
+      
+    </td>
      
         <td>
+           <!--<input type="text" id="start" name="start" class="form-control"
+        required 
+         [(ngModel)]="event.start" #name="ngModel"/>
+  
+         <div *ngIf="start.invalid && (name.dirty || start.touched)"
+                       class="alert">
+  
+         <div *ngIf="start.errors?.['required']">
+                       Name is required.
+         </div> -->
+
+
           <input            
           class="form-control"
           type="text" name="startdate"
@@ -169,8 +194,10 @@
      
       <!-- <td>
            <button class="btn btn-primary active" (click)="saveEvents(event)"  >Save</button></td>  -->
-         <td>  <button  class="btn btn-primary active" (click)="update(event)">Save</button> </td>
+          <td>  <button  class="btn btn-primary active" (click)="update(event)">Save</button> </td>
         <td><button id="remove" class="btn btn-danger" (click)="delete(event.id)">Delete</button></td> 
+     <!-- <td> <mat-icon mat-raised-button class="me-1 mb-1" style="color: #00f2ff;" (click)="update(event)" color="primary">save</mat-icon> </td>  -->
+     <!-- <td> <mat-icon mat-raised-button id="remove" style="color: red;"class="me-1 mb-1" (click)="delete(event.id)" color="primary">delete</mat-icon> </td>-->
     </tr>
   </tbody>
 </table>
