@@ -155,7 +155,7 @@ export class TimeSheetComponent implements OnInit {
           description:e.payload.doc.get("description"),
           hours:e.payload.doc.get("hours"),
           task:e.payload.doc.get("task"),
-         // modified:e.payload.doc.get("modified").toDate(),
+          modified:e.payload.doc.get("modified").toDate(),
           userId:e.payload.doc.get("userId"),          
           status:e.payload.doc.get("status"),
           userName:e.payload.doc.get("userName")

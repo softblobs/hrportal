@@ -145,6 +145,8 @@
         <!-- <td> <button mat button class="btn btn-primary active" [disabled]="list.status == 'pending' || list.status == 'Approved' || hour.invalid || name.invalid || description.invalid " (click)="update(list)">Save</button> </td> -->
        <!-- <td> <button  class="btn btn-primary active" [disabled]="list.status != 'pending' || list.status == 'Approved' ||  hour.invalid || name.invalid || description.invalid " (click)="updatelist(list)">Update</button> </td>-->
         <td><button id="remove" class="btn btn-danger"  [disabled]="list.status == 'Approved'"  [hidden]="list.status == 'Approved'"(click)="delete(list.id,$event)">Delete</button></td>          
+     <!--<td><mat-icon mat-raised-button id="remove" style="color: red;"class="me-1 mb-1" (click)="delete(list.id,$event)" color="primary">delete</mat-icon> </td>-->
+
       </tr>
     <!-- </form> -->
       <tr>
