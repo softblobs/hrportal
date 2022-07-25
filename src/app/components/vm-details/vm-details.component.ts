@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {  AbstractControl,FormControl,FormGroup,ValidationErrors,ReactiveFormsModule ,Validators,
 ValidatorFn,FormBuilder} from '@angular/forms';
@@ -9,7 +9,7 @@ import { AngularFireList } from '@angular/fire/compat/database';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
 import { AddVmComponent } from '../add-vm/add-vm.component';
-
+import {MatPaginator} from '@angular/material/paginator';
 
 
 
@@ -20,6 +20,9 @@ import { AddVmComponent } from '../add-vm/add-vm.component';
   styleUrls: ['./vm-details.component.scss']
 })
 export class VmDetailsComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+ // @ViewChild(MatSort) sort: MatSort;
+
  
   vmForm = new FormGroup({
       
@@ -114,6 +117,7 @@ export class VmDetailsComponent implements OnInit {
       this.datasoc =new MatTableDataSource(this.dataSourceone);
       console.log(this.datasoc.data);
       this.customerArray=this.datasoc.data;
+      
     })
   }  
 
@@ -124,6 +128,8 @@ export class VmDetailsComponent implements OnInit {
       this.datasocU =new MatTableDataSource(this.dataSourceU);
       //console.log(this.datasoc.data)
       this.customerArrayU=this.datasocU.data;
+      this.datasocU.paginator = this.paginator;
+      //this.datasocU.sort = this.sort;
   })
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -9,7 +9,7 @@ import { ProfileUser } from 'src/app/models/user-profile';
 import firebase from 'firebase/compat';
 import { MatTableDataSource } from '@angular/material/table';
 import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
-
+import {MatPaginator} from '@angular/material/paginator';
 
 
 @Component({
@@ -18,6 +18,8 @@ import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
   styleUrls: ['./manage-users.component.scss']
 })
 export class ManageUsersComponent implements OnInit {
+ // @ViewChild(MatPaginator) paginator: MatPaginator;
+  
   employeeList: any;
   hospitalsArray=[];
   displayedColumns: string[] = ['uid', 'assigned', 'name', 'doj','view'];
@@ -72,10 +74,12 @@ export class ManageUsersComponent implements OnInit {
 
     this.userService.getAllUsers().subscribe(res=>{
       this.dataSourceone = res.filter(pilot => pilot.paystatus == "active");
-    this.datasoc =new MatTableDataSource(this.dataSourceone);      
+    this.datasoc =new MatTableDataSource(this.dataSourceone);  
+    // this.datasoc.paginator = this.paginator;    
       this.customerArray=this.datasoc.data;
       let tempList = res.filter(pilot => pilot.paystatus != "active");
       this.datasourceInActive = new MatTableDataSource(tempList);
+      // this.datasourceInActive.paginator = this.paginator;
 
       // this.dataSourceone=res;
     // this. dataSourceone = res.filter(function(record){  

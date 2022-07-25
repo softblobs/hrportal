@@ -12,12 +12,12 @@
   
           <!-- Id Column -->
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Leave type</th>
+            <th mat-header-cell *matHeaderCellDef >Leave type</th>
             <td mat-cell class="fw-medium" *matCellDef="let element"> {{element.leavetype}} </td>
           </ng-container>
 
           <ng-container matColumnDef="reason">
-            <th mat-header-cell *matHeaderCellDef>Leave Reason</th>
+            <th mat-header-cell *matHeaderCellDef >Leave Reason</th>
             <td mat-cell class="fw-medium" *matCellDef="let element"> {{element.leavereason}} </td>
           </ng-container>
   
@@ -31,7 +31,7 @@
   
           <!-- Priority Column -->
           <ng-container matColumnDef="isActive">
-            <th mat-header-cell *matHeaderCellDef> To Date </th>
+            <th mat-header-cell *matHeaderCellDef > To Date </th>
             <td mat-cell *matCellDef="let element">                      
                 <p class="mb-0 fw-medium ">{{element.dateto}}</p>
                 <!-- <span class="badge {{element.isActive}} rounded-pill">{{element.isActive}</span> -->
@@ -48,7 +48,7 @@
           </ng-container>
 
           <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef></th>
+            <th mat-header-cell *matHeaderCellDef ></th>
             <td mat-cell *matCellDef="let element">
              <!-- <button mat-raised-button class="me-1 mb-1" color="primary">Delete</button>-->
             </td>
@@ -57,6 +57,10 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons 
+        aria-label="Select page of periodic elements">
+</mat-paginator>
       </div>
     </mat-card-content>
   </mat-card>

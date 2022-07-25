@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,Output,EventEmitter,OnChanges } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter,OnChanges,ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { paymentinfo } from 'src/app/models/payment-data';
@@ -11,6 +11,7 @@ import { ProfileUser } from 'src/app/models/user-profile';
 import firebase from 'firebase/compat';
 import { MatTableDataSource } from '@angular/material/table';
 import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
+import {MatPaginator} from '@angular/material/paginator';
 
 
 
@@ -20,6 +21,7 @@ import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
   styleUrls: ['./pay-info.component.scss']
 })
 export class PayInfoComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   employeeList: any;
   hospitalsArray=[];
   displayedColumns: string[] = ['uid', 'assigned', 'name', 'doj', 'view'];
@@ -77,6 +79,7 @@ export class PayInfoComponent implements OnInit {
       this.datasoc =new MatTableDataSource(this.dataSourceone);
       //console.log(this.datasoc.data)
       this.customerArray=this.datasoc.data;
+      this.datasoc.paginator = this.paginator; 
     })
   } 
   

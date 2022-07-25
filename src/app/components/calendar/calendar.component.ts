@@ -163,6 +163,8 @@ export class CalendarComponent implements OnInit {
     
   }
   addEvent(): void { 
+   //console.log('start')
+    //console.log(this.eventsList);
     this.error="" ; 
     setTimeout(()=>{ this.error="";},3000);
       this.eventsList = [
@@ -170,8 +172,10 @@ export class CalendarComponent implements OnInit {
       {
         title: '',
         // start: '',
-         //start: '',
-        start: '',        
+         start: '',
+        //start: startOfDay(new Date()),
+        
+         //end: endOfDay(new Date()),        
        // color: colors.red,
        // draggable: true,
         //resizable: {
@@ -243,17 +247,26 @@ rows = [];
 fetchData() {
   this.CalenderService.getPolicies().subscribe(data => { 
     this.eventsList = data.map(e => {
+         //console.log('start')
+    console.log(this.eventsList);
       //alert(this.eventsList.id);
-      let d2 = new Date(e.payload.doc.get("start")).toDateString();
       //console.log(d2);
-      
+      let d2 = new Date(e.payload.doc.get("start")).toDateString().split("00")[0];
+     
+        if(d2 == 'Invalid Date'){ 
+          const timeStampDateD2 = e.payload.doc.get("start");
+           const dateInMillisD2  = timeStampDateD2.seconds * 1000;          
+           var date2 = new Date(dateInMillisD2).toDateString();
+           d2 = date2;
+         
+         }
       return {
         id: e.payload.doc.id,
         title: e.payload.doc.get("title"),
-        // start: d2,
-         start:e.payload.doc.get("start").toDate(),
+        start: d2,
+        //start:e.payload.doc.get("start").toDate(),
         // end:e.payload.doc.get("end").toDate(),     
-      } as unknown as Calinfo;     
+      } as unknown as  Calinfo;     
     })   
   });  
 } 

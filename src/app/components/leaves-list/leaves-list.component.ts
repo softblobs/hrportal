@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireStorage, AngularFireUploadTask } from "@angular/fire/compat/storage";
 import { AngularFireStorageReference } from '@angular/fire/compat/storage';
@@ -9,6 +9,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { leaveinfo } from 'src/app/models/leave-data';
 import { LeaveService } from 'src/app/services/leave.service';
+import {MatPaginator} from '@angular/material/paginator';
+//import {MatSort} from '@angular/material/sort';
 import {  
   AbstractControl,
 
@@ -29,11 +31,12 @@ import { MatTableDataSource } from '@angular/material/table';
   selector: 'app-leaves-list',
   templateUrl: './leaves-list.component.html',
   styleUrls: ['./leaves-list.component.scss']
+
 })
 export class LeavesListComponent implements OnInit {
 
-  
-  
+  //@ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;  
   
 
   checked = true;  
@@ -91,7 +94,8 @@ export class LeavesListComponent implements OnInit {
           console.log(res[i]); 
           this.customerArray.push(res[i]);     
         }}                                      
-          this.dataleave =new MatTableDataSource(this.customerArray);          
+          this.dataleave =new MatTableDataSource(this.customerArray); 
+         
     })
    }
 
@@ -129,6 +133,9 @@ export class LeavesListComponent implements OnInit {
      })   
      this.dataleave =new MatTableDataSource(this.leaveslist);
      console.log(this.leaveslist);
+     this.dataleave.paginator = this.paginator;
+
+    // this.dataleave.sort = this.sort;
     });      
   }
  
